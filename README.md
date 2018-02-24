@@ -68,12 +68,12 @@ Examples | ErriezDH22:
 
 ```c++
 #include <DHT22.h>
-
+  
 // Connect DTH22 data pin to Arduino DIGITAL pin
 #define DHT22_PIN   2
-
+  
 DHT22 sensor = DHT22(DHT22_PIN);
-
+  
 void setup()
 {
     // Initialize serial port
@@ -81,7 +81,7 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor example\n"));
     
     // Initialize sensor
-  	sensor.begin();
+    sensor.begin();
 }
 ```
 
@@ -96,17 +96,17 @@ void loop()
   if (sensor.available()) {
     // Read temperature from sensor
     int16_t temperature = sensor.readTemperature();
-
+  
     // Read humidity from sensor
     int16_t humidity = sensor.readHumidity();
-
+  
     // Print temperature
     Serial.print(F("Temperature: "));
     Serial.print(temperature / 10);
     Serial.print(F("."));
     Serial.print(temperature % 10);
     Serial.println(F(" *C"));
-
+  
     // Print humidity
     Serial.print(F("Humidity: "));
     Serial.print(humidity / 10);
@@ -123,13 +123,13 @@ void loop()
 
 ```
 DHT22 temperature and humidity sensor example
-
+  
 Temperature: 17.7 *C
 Humidity: 41.0 %
-
+  
 Temperature: 17.8 *C
 Humidity: 41.1 %
-
+  
 ...
 ```
 

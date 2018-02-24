@@ -53,6 +53,7 @@
   #define DEBUG_PRINTLN(...) {}
 #endif
 
+//! DHT22 sensor class
 class DHT22
 {
 public:
