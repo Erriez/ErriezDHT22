@@ -22,9 +22,10 @@
  * SOFTWARE.
  */
 
-/* DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
- *
- * Source: https://github.com/Erriez/ErriezDHT22
+/*!
+ * \brief DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
+ * \details Source: https://github.com/Erriez/ErriezDHT22
+ * \file DHT22.cpp
  */
 
 #include "DHT22.h"

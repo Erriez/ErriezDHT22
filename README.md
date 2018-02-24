@@ -45,11 +45,11 @@ This is a AM2303 temperature and humidity sensor on a DHT22 breakout.
 - Humidity:
   - Range: 0 .. 99.9 %RH (Relative Humidity)
   - Resolution:  0.1 %RH
-  - Accuracy: +/-2 %RH (at 25 degree celsius)
+  - Accuracy: +/-2 %RH (at 25 degree Celsius)
 - Temperature:
-  - Range: -40 .. +125 degree celsius
-  - Resolution: 0.1 degree celsius
-  - Accuracy: +/- 0.4 degree celsius
+  - Range: -40 .. +125 degree Celsius
+  - Resolution: 0.1 degree Celsius
+  - Accuracy: +/- 0.4 degree Celsius
 - Minimum read interval: 2000 ms
 
 

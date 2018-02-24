@@ -22,9 +22,10 @@
  * SOFTWARE.
  */
 
-/* DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
- *
- * Source: https://github.com/Erriez/ErriezDHT22
+/*!
+ * \brief DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
+ * \details Source: https://github.com/Erriez/ErriezDHT22
+ * \file DHT22.h
  */
 
 #ifndef DHT22_H__
@@ -46,7 +47,7 @@
 //!   1 Byte: Parity
 #define DHT22_NUM_DATA_BITS         (5 * 8)
 
-// Debug print configuration
+//! Debug print configuration
 #ifdef DEBUG_PRINT
   #define DEBUG_PRINTLN(...) { Serial.println(__VA_ARGS__); }
 #else

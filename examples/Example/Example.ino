@@ -61,7 +61,7 @@ void loop()
     Serial.print(F("."));
     Serial.print(temperature % 10);
 
-    // Print degree celsius symbols
+    // Print degree Celsius symbols
     // Choose if (1) for normal or if (0) for extended ASCII degree symbol
     if (1) {
       // Print *C characters which are displayed correctly in the serial
