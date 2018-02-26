@@ -39,26 +39,26 @@ endif()
 set(PROJECT_NAME        ErriezDHT22)
 
 # Set library directory
-set(ROTARY_SRC_DIR      ${SKETCHBOOK_DIR}/libraries/${PROJECT_NAME}/src)
+set(LIB_SRC_DIR      ${SKETCHBOOK_DIR}/libraries/${PROJECT_NAME}/src)
 
 # Configure project
 project(${PROJECT_NAME})
 
 # Configure include directories
-include_directories(${ROTARY_SRC_DIR})
+include_directories(${LIB_SRC_DIR})
 
 # Generate library
 generate_arduino_library(
-        DHT22Lib
+        ${PROJECT_NAME}Lib
         SRCS
-            ${ROTARY_SRC_DIR}/DHT22.cpp
+            ${LIB_SRC_DIR}/DHT22.cpp
         HDRS
-            ${ROTARY_SRC_DIR}/DHT22.h
+            ${LIB_SRC_DIR}/DHT22.h
 )
 
 # Configure project
 set(${CMAKE_PROJECT_NAME}_SKETCH    ${SKETCH})
-set(${CMAKE_PROJECT_NAME}_LIBS      DHT22Lib)
+set(${CMAKE_PROJECT_NAME}_LIBS      ${PROJECT_NAME}Lib)
 set(${CMAKE_PROJECT_NAME}_BOARD     ${BOARD})
 set(${CMAKE_PROJECT_NAME}_PORT      ${SERIAL_PORT})
 generate_arduino_firmware(${CMAKE_PROJECT_NAME})
