@@ -66,7 +66,7 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
 
 ## Supported Arduino Boards
 
-- All ATMega328P MCU:
+- All ATMega328P MCU's:
   - Arduino UNO
   - Arduino Nano
 - All ATMega32U4 MCU's:
@@ -177,4 +177,3 @@ Humidity: 41.1 %
   
 ...
 ```
-
