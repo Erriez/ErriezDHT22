@@ -1,6 +1,6 @@
 # DHT22 temperature and humidity sensor library for Arduino
 
-This is a AM2303 temperature and humidity sensor on a DHT22 breakout.
+This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
 
 ![AM2302 DHT22 sensor](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png)
 
@@ -11,27 +11,6 @@ This is a AM2303 temperature and humidity sensor on a DHT22 breakout.
 - Synchronous 16-bit temperature read
 - Synchronous 16-bit humidity read
 
-
-
-## Hardware
-
-![Schematic DHT22 and Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png)
-
-**Connection DHT22 - Arduino UNO**
-
-| DHT22 | Arduino UNO  |
-| :---: | :----------: |
-|  GND  |     GND      |
-|  VCC  | 5V (or 3.3V) |
-|  DAT  |      D2      |
-
-
-
-## Documentation
-
-[AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
-
-[DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
 
 
 
@@ -54,11 +33,77 @@ This is a AM2303 temperature and humidity sensor on a DHT22 breakout.
 
 
 
+## Hardware
+
+![Schematic DHT22 and Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png)
+
+**Connection DHT22 - Arduino**
+
+| DHT22 | Arduino UNO/Nano/Leonardo/Mega2560 |
+| :---: | :--------------------------------: |
+|  GND  |                GND                 |
+|  VCC  |            5V (or 3.3V)            |
+|  DAT  |                 D2                 |
+
+**Connection DHT22 - ESP8266**
+
+| DHT22 | ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU |
+| :---: | ---------------------------------------- |
+|  GND  | GND                                      |
+|  VCC  | 3.3V                                     |
+|  DAT  | Arduino pin 2 -> GPIO4 = D4              |
+
+**Note:** Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. Make sure you're using the right pin.
+
+
+**Connection DHT22 - Lolin32**
+
+| DHT22 | WeMos Lolin32 |
+| :---: | ------------- |
+|  GND  | GND           |
+|  VCC  | 3.3V          |
+|  DAT  | 2             |
+
+## Supported Arduino Boards
+
+- All ATMega328P MCU:
+  - Arduino UNO
+  - Arduino Nano
+- All ATMega32U4 MCU's:
+  - Arduino Leonardo
+  - Pro Micro
+- All ATMega2560 MCU's:
+  - Arduino Mega2560
+- All ESP8266 boards:
+  - WeMos D1 R2
+  - NodeMCU
+- All Lolin32 boards:
+  - WeMos Lolin32
+
+
+- Other MCU's may work, but are not tested.
+
+
+
+## Library dependencies
+
+* None
+
+
+
+## Documentation
+
+[Doxygen](https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf)
+
+[AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
+
+[DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
+
+
+
 ## Examples
 
-Examples | ErriezDH22:
-
-* [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
+Examples | ErriezDH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
 
 
 

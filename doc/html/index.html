@@ -68,7 +68,7 @@ $(function() {
 <div class="title"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> temperature and humidity sensor library for Arduino </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is a AM2303 temperature and humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout.</p>
+<div class="textblock"><p>This is an optimized AM2303 temperature and humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout.</p>
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png" alt="AM2302 DHT22 sensor"/>
 </div>
@@ -77,24 +77,6 @@ $(function() {
 <li>Synchronous 16-bit temperature read</li>
 <li>Synchronous 16-bit humidity read</li>
 </ul>
-<h2>Hardware</h2>
-<div class="image">
-<img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png" alt="Schematic DHT22 and Arduino UNO"/>
-</div>
-<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Arduino UNO</b></p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadCenter">Arduino UNO   </th></tr>
-<tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyCenter">GND   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyCenter">5V (or 3.3V)   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyCenter">D2   </td></tr>
-</table>
-<h2>Documentation</h2>
-<p><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></p>
-<p><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></p>
 <h2>AM2303 specifications</h2>
 <ul>
 <li>Voltage: 3.3 .. 5V</li>
@@ -118,11 +100,81 @@ $(function() {
 </li>
 <li>Minimum read interval: 2000 ms</li>
 </ul>
-<h2>Examples</h2>
-<p>Examples | ErriezDH22:</p>
+<h2>Hardware</h2>
+<div class="image">
+<img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png" alt="Schematic DHT22 and Arduino UNO"/>
+</div>
+<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Arduino</b></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadCenter">Arduino UNO/Nano/Leonardo/Mega2560   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyCenter">GND   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyCenter">5V (or 3.3V)   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyCenter">D2   </td></tr>
+</table>
+<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - ESP8266</b></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadNone">ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyNone">GND   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyNone">3.3V   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">Arduino pin 2 -&gt; GPIO4 = D4   </td></tr>
+</table>
+<p><b>Note:</b> Some ESP8266 boards uses Arduino pin 2 -&gt; GPIO4 which is D4 text on the board. Make sure you're using the right pin.</p>
+<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Lolin32</b></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadNone">WeMos Lolin32   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyNone">GND   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyNone">3.3V   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">2   </td></tr>
+</table>
+<h2>Supported Arduino Boards</h2>
 <ul>
-<li><a href="https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino">Example</a></li>
+<li>All ATMega328P MCU:<ul>
+<li>Arduino UNO</li>
+<li>Arduino Nano</li>
 </ul>
+</li>
+<li>All ATMega32U4 MCU's:<ul>
+<li>Arduino Leonardo</li>
+<li>Pro Micro</li>
+</ul>
+</li>
+<li>All ATMega2560 MCU's:<ul>
+<li>Arduino Mega2560</li>
+</ul>
+</li>
+<li>All ESP8266 boards:<ul>
+<li>WeMos D1 R2</li>
+<li>NodeMCU</li>
+</ul>
+</li>
+<li>All Lolin32 boards:<ul>
+<li>WeMos Lolin32</li>
+</ul>
+</li>
+<li>Other MCU's may work, but are not tested.</li>
+</ul>
+<h2>Library dependencies</h2>
+<ul>
+<li>None</li>
+</ul>
+<h2>Documentation</h2>
+<p><a href="https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf">Doxygen</a></p>
+<p><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></p>
+<p><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></p>
+<h2>Examples</h2>
+<p>Examples | ErriezDH22 | <a href="https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino">Example</a></p>
 <h2>Usage</h2>
 <p><b>Initialization</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;DHT22.h&gt;</div><div class="line"></div><div class="line">// Connect DTH22 data pin to Arduino DIGITAL pin</div><div class="line">#define DHT22_PIN   2</div><div class="line"></div><div class="line">DHT22 sensor = DHT22(DHT22_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize serial port</div><div class="line">    Serial.begin(115200);</div><div class="line">    Serial.println(F(&quot;DHT22 temperature and humidity sensor example\n&quot;));</div><div class="line"></div><div class="line">    // Initialize sensor</div><div class="line">    sensor.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Read temperature and humidity</b></p>
