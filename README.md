@@ -1,26 +1,26 @@
-# DHT22 temperature and humidity sensor library for Arduino
+# DHT22 - AM2303 temperature and humidity sensor library for Arduino
 
-This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
+This is an optimized AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
 
 ![AM2302 DHT22 sensor](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png)
 
 
-
 ## Library features
 
-- Synchronous 16-bit temperature read
-- Synchronous 16-bit humidity read
+- Read 16-bit temperature (synchronous blocking)
+- Read 16-bit relative humidity (synchronous blocking)
 
 
-
-
-## AM2303 specifications
+## AM2303 sensor specifications
 
 - Voltage: 3.3 .. 5V
 - Ultra-low power:
   - Typical 15uA dormancy
   - Typical 500uA measuring
-- Single wire serial interface
+- Single wire digital serial interface
+- Calibrated digital signal
+- Outstanding long term stability
+- No additional electronic components needed
 - Humidity:
   - Range: 0 .. 99.9 %RH (Relative Humidity)
   - Resolution:  0.1 %RH
@@ -30,7 +30,7 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
   - Resolution: 0.1 degree Celsius
   - Accuracy: +/- 0.4 degree Celsius
 - Minimum read interval: 2000 ms
-
+- 31ms to synchronous read humidity and temperature data from sensor
 
 
 ## Hardware
@@ -47,14 +47,13 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
 
 **Connection DHT22 - ESP8266**
 
+Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. Make sure you're using the right pin.
+
 | DHT22 | ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU |
 | :---: | ---------------------------------------- |
 |  GND  | GND                                      |
 |  VCC  | 3.3V                                     |
 |  DAT  | Arduino pin 2 -> GPIO4 = D4              |
-
-**Note:** Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. Make sure you're using the right pin.
-
 
 **Connection DHT22 - Lolin32**
 
@@ -63,6 +62,7 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
 |  GND  | GND           |
 |  VCC  | 3.3V          |
 |  DAT  | 2             |
+
 
 ## Supported Arduino Boards
 
@@ -79,10 +79,7 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
   - NodeMCU
 - All Lolin32 boards:
   - WeMos Lolin32
-
-
 - Other MCU's may work, but are not tested.
-
 
 
 ## Library dependencies
@@ -90,21 +87,18 @@ This is an optimized AM2303 temperature and humidity sensor on a DHT22 breakout.
 * None
 
 
-
 ## Documentation
 
-[Doxygen](https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf)
+[Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf) (Documentation source code)
 
 [AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
 
 [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
 
 
-
 ## Examples
 
 Examples | ErriezDH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
-
 
 
 ## Usage
@@ -131,37 +125,47 @@ void setup()
 ```
 
 
-
 **Read temperature and humidity**
 
 ```c++
 void loop()
 {
-  // Check minimum interval of 2000 ms between sensor reads
-  if (sensor.available()) {
-    // Read temperature from sensor
-    int16_t temperature = sensor.readTemperature();
+	// Check minimum interval of 2000 ms between sensor reads
+  	if (sensor.available()) {
+    	// Read temperature from sensor
+    	int16_t temperature = sensor.readTemperature();
   
-    // Read humidity from sensor
-    int16_t humidity = sensor.readHumidity();
+    	// Read humidity from sensor
+    	int16_t humidity = sensor.readHumidity();
   
-    // Print temperature
-    Serial.print(F("Temperature: "));
-    Serial.print(temperature / 10);
-    Serial.print(F("."));
-    Serial.print(temperature % 10);
-    Serial.println(F(" *C"));
+        if (temperature == ~0) {
+            // Print error (Check hardware connection)
+			Serial.print(F("Temperature: Error"));
+        } else {
+            // Print temperature
+            Serial.print(F("Temperature: "));
+            Serial.print(temperature / 10);
+            Serial.print(F("."));
+            Serial.print(temperature % 10);
+            Serial.println(F(" *C"));
+        }
   
-    // Print humidity
-    Serial.print(F("Humidity: "));
-    Serial.print(humidity / 10);
-    Serial.print(F("."));
-    Serial.print(humidity % 10);
-    Serial.println(F(" %\n"));
+        if (humidity == ~0) {
+            // Print error (Check hardware connection)
+			Serial.print(F("Humidity: Error"));
+        } else {
+            // Print humidity
+            Serial.print(F("Humidity: "));
+            Serial.print(humidity / 10);
+            Serial.print(F("."));
+            Serial.print(humidity % 10);
+            Serial.println(F(" %"));
+        }
+        
+        Serial.println();
   }
 }
 ```
-
 
 
 **Serial output**

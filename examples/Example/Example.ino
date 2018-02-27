@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-/* DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
+/* DHT22 - AM2303 temperature and relative humidity sensor example for Arduino
  *
- * Required libraries:
+ * Required library:
  *   https://github.com/Erriez/ErriezDHT22
  */
 
@@ -33,7 +33,12 @@
 // Connect DTH22 data pin to Arduino DIGITAL pin
 #define DHT22_PIN   2
 
+// Create DHT22 sensor object
 DHT22 sensor = DHT22(DHT22_PIN);
+
+// Function prototypes
+void printTemperature(int16_t temperature);
+void printHumidity(int16_t humidity);
 
 void setup()
 {
@@ -49,12 +54,27 @@ void loop()
 {
   // Check minimum interval of 2000 ms between sensor reads
   if (sensor.available()) {
-    // Read temperature from sensor
+    // Read temperature from sensor (blocking)
     int16_t temperature = sensor.readTemperature();
 
-    // Read humidity from sensor
+    // Read humidity from sensor (blocking)
     int16_t humidity = sensor.readHumidity();
 
+    // Print temperature
+    printTemperature(temperature);
+
+    // Print humidity
+    printHumidity(humidity);
+  }
+}
+
+void printTemperature(int16_t temperature)
+{
+  // Check valid temperature value
+  if (temperature == ~0) {
+    // Temperature error (Check hardware connection)
+    Serial.println(F("Temperature: Error"));
+  } else {
     // Print temperature
     Serial.print(F("Temperature: "));
     Serial.print(temperature / 10);
@@ -76,12 +96,23 @@ void loop()
       snprintf_P(buf, sizeof(buf), PSTR(" %cC"), 248);
       Serial.println(buf);
     }
+  }
+}
 
+void printHumidity(int16_t humidity)
+{
+  // Check valid humidity value
+  if (humidity == ~0) {
+    // Humidity error (Check hardware connection)
+    Serial.println(F("Humidity: Error"));
+  } else {
     // Print humidity
     Serial.print(F("Humidity: "));
     Serial.print(humidity / 10);
     Serial.print(F("."));
     Serial.print(humidity % 10);
-    Serial.println(F(" %\n"));
+    Serial.println(F(" %"));
   }
+
+  Serial.println();
 }

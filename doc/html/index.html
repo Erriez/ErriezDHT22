@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DHT22 library for Arduino: DHT22 temperature and humidity sensor library for Arduino</title>
+<title>DHT22 library for Arduino: DHT22 - AM2303 temperature and humidity sensor library for Arduino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,19 +65,19 @@ $(function() {
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> temperature and humidity sensor library for Arduino </div>  </div>
+<div class="title"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - AM2303 temperature and humidity sensor library for Arduino </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is an optimized AM2303 temperature and humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout.</p>
+<div class="textblock"><p>This is an optimized AM2303 digital temperature and relative humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB.</p>
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png" alt="AM2302 DHT22 sensor"/>
 </div>
 <h2>Library features</h2>
 <ul>
-<li>Synchronous 16-bit temperature read</li>
-<li>Synchronous 16-bit humidity read</li>
+<li>Read 16-bit temperature (synchronous blocking)</li>
+<li>Read 16-bit relative humidity (synchronous blocking)</li>
 </ul>
-<h2>AM2303 specifications</h2>
+<h2>AM2303 sensor specifications</h2>
 <ul>
 <li>Voltage: 3.3 .. 5V</li>
 <li>Ultra-low power:<ul>
@@ -85,7 +85,10 @@ $(function() {
 <li>Typical 500uA measuring</li>
 </ul>
 </li>
-<li>Single wire serial interface</li>
+<li>Single wire digital serial interface</li>
+<li>Calibrated digital signal</li>
+<li>Outstanding long term stability</li>
+<li>No additional electronic components needed</li>
 <li>Humidity:<ul>
 <li>Range: 0 .. 99.9 RH (Relative Humidity)</li>
 <li>Resolution: 0.1 RH</li>
@@ -99,6 +102,7 @@ $(function() {
 </ul>
 </li>
 <li>Minimum read interval: 2000 ms</li>
+<li>31ms to synchronous read humidity and temperature data from sensor</li>
 </ul>
 <h2>Hardware</h2>
 <div class="image">
@@ -116,6 +120,7 @@ $(function() {
 <td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyCenter">D2   </td></tr>
 </table>
 <p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - ESP8266</b></p>
+<p>Some ESP8266 boards uses Arduino pin 2 -&gt; GPIO4 which is D4 text on the board. Make sure you're using the right pin.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadNone">ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU   </th></tr>
@@ -126,7 +131,6 @@ $(function() {
 <tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">Arduino pin 2 -&gt; GPIO4 = D4   </td></tr>
 </table>
-<p><b>Note:</b> Some ESP8266 boards uses Arduino pin 2 -&gt; GPIO4 which is D4 text on the board. Make sure you're using the right pin.</p>
 <p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Lolin32</b></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -170,7 +174,7 @@ $(function() {
 <li>None</li>
 </ul>
 <h2>Documentation</h2>
-<p><a href="https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf">Doxygen</a></p>
+<p><a href="https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf">Doxygen PDF</a> (Documentation source code)</p>
 <p><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></p>
 <p><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></p>
 <h2>Examples</h2>
@@ -178,7 +182,7 @@ $(function() {
 <h2>Usage</h2>
 <p><b>Initialization</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;DHT22.h&gt;</div><div class="line"></div><div class="line">// Connect DTH22 data pin to Arduino DIGITAL pin</div><div class="line">#define DHT22_PIN   2</div><div class="line"></div><div class="line">DHT22 sensor = DHT22(DHT22_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize serial port</div><div class="line">    Serial.begin(115200);</div><div class="line">    Serial.println(F(&quot;DHT22 temperature and humidity sensor example\n&quot;));</div><div class="line"></div><div class="line">    // Initialize sensor</div><div class="line">    sensor.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Read temperature and humidity</b></p>
-<div class="fragment"><div class="line">{c++}</div><div class="line">void loop()</div><div class="line">{</div><div class="line">  // Check minimum interval of 2000 ms between sensor reads</div><div class="line">  if (sensor.available()) {</div><div class="line">    // Read temperature from sensor</div><div class="line">    int16_t temperature = sensor.readTemperature();</div><div class="line"></div><div class="line">    // Read humidity from sensor</div><div class="line">    int16_t humidity = sensor.readHumidity();</div><div class="line"></div><div class="line">    // Print temperature</div><div class="line">    Serial.print(F(&quot;Temperature: &quot;));</div><div class="line">    Serial.print(temperature / 10);</div><div class="line">    Serial.print(F(&quot;.&quot;));</div><div class="line">    Serial.print(temperature % 10);</div><div class="line">    Serial.println(F(&quot; *C&quot;));</div><div class="line"></div><div class="line">    // Print humidity</div><div class="line">    Serial.print(F(&quot;Humidity: &quot;));</div><div class="line">    Serial.print(humidity / 10);</div><div class="line">    Serial.print(F(&quot;.&quot;));</div><div class="line">    Serial.print(humidity % 10);</div><div class="line">    Serial.println(F(&quot; %\n&quot;));</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><p><b>Serial output</b></p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">void loop()</div><div class="line">{</div><div class="line">    // Check minimum interval of 2000 ms between sensor reads</div><div class="line">    if (sensor.available()) {</div><div class="line">        // Read temperature from sensor</div><div class="line">        int16_t temperature = sensor.readTemperature();</div><div class="line"></div><div class="line">        // Read humidity from sensor</div><div class="line">        int16_t humidity = sensor.readHumidity();</div><div class="line"></div><div class="line">        if (temperature == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Temperature: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print temperature</div><div class="line">            Serial.print(F(&quot;Temperature: &quot;));</div><div class="line">            Serial.print(temperature / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(temperature % 10);</div><div class="line">            Serial.println(F(&quot; *C&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        if (humidity == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Humidity: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print humidity</div><div class="line">            Serial.print(F(&quot;Humidity: &quot;));</div><div class="line">            Serial.print(humidity / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(humidity % 10);</div><div class="line">            Serial.println(F(&quot; %&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        Serial.println();</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><p><b>Serial output</b></p>
 <div class="fragment"><div class="line">DHT22 temperature and humidity sensor example</div><div class="line"></div><div class="line">Temperature: 17.7 *C</div><div class="line">Humidity: 41.0 %</div><div class="line"></div><div class="line">Temperature: 17.8 *C</div><div class="line">Humidity: 41.1 %</div><div class="line"></div><div class="line">...</div></div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
