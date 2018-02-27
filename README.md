@@ -130,17 +130,17 @@ void setup()
 ```c++
 void loop()
 {
-	// Check minimum interval of 2000 ms between sensor reads
-  	if (sensor.available()) {
-    	// Read temperature from sensor
-    	int16_t temperature = sensor.readTemperature();
+    // Check minimum interval of 2000 ms between sensor reads
+    if (sensor.available()) {
+        // Read temperature from sensor
+        int16_t temperature = sensor.readTemperature();
   
-    	// Read humidity from sensor
-    	int16_t humidity = sensor.readHumidity();
+        // Read humidity from sensor
+        int16_t humidity = sensor.readHumidity();
   
         if (temperature == ~0) {
             // Print error (Check hardware connection)
-			Serial.print(F("Temperature: Error"));
+            Serial.print(F("Temperature: Error"));
         } else {
             // Print temperature
             Serial.print(F("Temperature: "));
@@ -152,7 +152,7 @@ void loop()
   
         if (humidity == ~0) {
             // Print error (Check hardware connection)
-			Serial.print(F("Humidity: Error"));
+            Serial.print(F("Humidity: Error"));
         } else {
             // Print humidity
             Serial.print(F("Humidity: "));
@@ -163,7 +163,7 @@ void loop()
         }
         
         Serial.println();
-  }
+      }
 }
 ```
 
