@@ -1,6 +1,6 @@
 # DHT22 - AM2303 temperature and humidity sensor library for Arduino
 
-This is an optimized AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
+This is a calibrated AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
 
 ![AM2302 DHT22 sensor](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png)
 
@@ -30,7 +30,7 @@ This is an optimized AM2303 digital temperature and relative humidity sensor on 
   - Resolution: 0.1 degree Celsius
   - Accuracy: +/- 0.4 degree Celsius
 - Minimum read interval: 2000 ms
-- 31ms to synchronous read humidity and temperature data from sensor
+- ~31ms to synchronous read humidity, temperature and parity data from sensor (5 Bytes)
 
 
 ## Hardware
@@ -98,7 +98,7 @@ Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. M
 
 ## Examples
 
-Examples | ErriezDH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
+Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
 
 
 ## Usage
