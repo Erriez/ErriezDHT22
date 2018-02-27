@@ -1,4 +1,5 @@
 # DHT22 - AM2303 temperature and humidity sensor library for Arduino
+[![Build Status](https://travis-ci.org/Erriez/ErriezDHT22.svg?branch=master)](https://travis-ci.org/Erriez/ErriezDHT22)
 
 This is a calibrated AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
 
