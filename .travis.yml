@@ -25,9 +25,13 @@ python:
 
 sudo: false
 
+cache:
+   directories:
+       - "~/.platformio"
+
 install:
    - pip install -U platformio
    - platformio update
 
 script:
-   - platformio ci --lib="." --project-conf=platformio.ini examples/Example/Example.ino
+   - platformio ci --lib="." --project-conf=platformio/platformio.ini examples/Example/Example.ino
