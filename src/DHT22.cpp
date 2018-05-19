@@ -36,19 +36,19 @@
  */
 DHT22::DHT22(uint8_t pin)
 {
-  // Store data pin
-  _pin = pin;
+    // Store data pin
+    _pin = pin;
 
-  // For AVR targets only:
-  // Calculate bit and port register for faster pin reads and writes instead
-  // of using the slow digitalRead() function
+    // For AVR targets only:
+    // Calculate bit and port register for faster pin reads and writes instead
+    // of using the slow digitalRead() function
 #ifdef __AVR
-  _bit = digitalPinToBitMask(pin);
-  _port = digitalPinToPort(pin);
+    _bit = digitalPinToBitMask(pin);
+    _port = digitalPinToPort(pin);
 #endif
 
-  // 1 ms timeout for reading data from DHT22 sensor
-  _maxCycles = microsecondsToClockCycles(1000);
+    // 1 ms timeout for reading data from DHT22 sensor
+    _maxCycles = microsecondsToClockCycles(1000);
 }
 
 /*!
@@ -58,13 +58,13 @@ DHT22::DHT22(uint8_t pin)
  */
 void DHT22::begin()
 {
-  // Enable internal pin pull-up
-  // Note: This is not available on some chips
-  pinMode(_pin, INPUT_PULLUP);
+    // Enable internal pin pull-up
+    // Note: This is not available on some chips
+    pinMode(_pin, INPUT_PULLUP);
 
-  // Initialize last measurement timestamp with negative interval to allow
-  // a new measurement
-  _lastMeasurementTimestamp = (uint32_t)-DHT22_MIN_READ_INTERVAL;
+    // Initialize last measurement timestamp with negative interval to allow
+    // a new measurement
+    _lastMeasurementTimestamp = (uint32_t)-DHT22_MIN_READ_INTERVAL;
 }
 
 /*!
@@ -78,13 +78,13 @@ void DHT22::begin()
  */
 bool DHT22::available()
 {
-  if ((millis() - _lastMeasurementTimestamp) < 2000) {
-    // Interval between sensor reads too short
-    return false;
-  }
+    if ((millis() - _lastMeasurementTimestamp) < 2000) {
+        // Interval between sensor reads too short
+        return false;
+    }
 
-  // Ready to readSensorData humidity and temperature
-  return true;
+    // Ready to readSensorData humidity and temperature
+    return true;
 }
 
 /*!
@@ -98,18 +98,18 @@ bool DHT22::available()
  */
 int16_t DHT22::readTemperature()
 {
-  int16_t temperature = ~0;
+    int16_t temperature = ~0;
 
-  // Read data from sensor
-  if (readSensorData()) {
-    // Calculate signed temperature
-    temperature = ((_data[2] & 0x7F) << 8) | _data[3];
-    if (_data[2] & 0x80) {
-      temperature *= -1;
+    // Read data from sensor
+    if (readSensorData()) {
+        // Calculate signed temperature
+        temperature = ((_data[2] & 0x7F) << 8) | _data[3];
+        if (_data[2] & 0x80) {
+            temperature *= -1;
+        }
     }
-  }
 
-  return temperature;
+    return temperature;
 }
 
 /*!
@@ -120,15 +120,15 @@ int16_t DHT22::readTemperature()
  */
 int16_t DHT22::readHumidity()
 {
-  int16_t humidity = ~0;
+    int16_t humidity = ~0;
 
-  // Read data from sensor
-  if (readSensorData()) {
-    // Calculate humidity
-    humidity = (_data[0] << 8) | _data[1];
-  }
+    // Read data from sensor
+    if (readSensorData()) {
+        // Calculate humidity
+        humidity = (_data[0] << 8) | _data[1];
+    }
 
-  return humidity;
+    return humidity;
 }
 
 //------------------------------------------------------------------------------
@@ -145,39 +145,39 @@ int16_t DHT22::readHumidity()
  */
 bool DHT22::readSensorData()
 {
-  if (available() == false) {
-    // Return last measurement status
+    if (available() == false) {
+        // Return last measurement status
+        return _statusLastMeasurement;
+    }
+
+    // Store last conversion timestamp
+    _lastMeasurementTimestamp = millis();
+
+    // Mark current measurement as invalid
+    _statusLastMeasurement = false;
+
+    // Generate sensor start pulse
+    if (generateStart() != true) {
+        DEBUG_PRINTLN(F("DHT22: Start error"));
+        return false;
+    }
+
+    // Read 5 Bytes data from sensor
+    if (readBytes() != true) {
+        DEBUG_PRINTLN(F("DHT22: Read error"));
+        return false;
+    }
+
+    // Check data parity
+    if (((_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) != _data[4]) {
+        DEBUG_PRINTLN(F("DHT22: Parity error"));
+        return false;
+    }
+
+    // Mark measurement as successful
+    _statusLastMeasurement = true;
+
     return _statusLastMeasurement;
-  }
-
-  // Store last conversion timestamp
-  _lastMeasurementTimestamp = millis();
-
-  // Mark current measurement as invalid
-  _statusLastMeasurement = false;
-
-  // Generate sensor start pulse
-  if (generateStart() != true) {
-    DEBUG_PRINTLN(F("DHT22: Start error"));
-    return false;
-  }
-
-  // Read 5 Bytes data from sensor
-  if (readBytes() != true) {
-    DEBUG_PRINTLN(F("DHT22: Read error"));
-    return false;
-  }
-
-  // Check data parity
-  if (((_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) != _data[4]) {
-    DEBUG_PRINTLN(F("DHT22: Parity error"));
-    return false;
-  }
-
-  // Mark measurement as successful
-  _statusLastMeasurement = true;
-
-  return _statusLastMeasurement;
 }
 
 /*!
@@ -188,33 +188,33 @@ bool DHT22::readSensorData()
  */
 bool DHT22::generateStart()
 {
-  // Data pin high (pull-up)
-  digitalWrite(_pin, HIGH);
-  delay(10);
+    // Data pin high (pull-up)
+    digitalWrite(_pin, HIGH);
+    delay(10);
 
-  // Change data pin to output, low, followed by high
-  pinMode(_pin, OUTPUT);
-  digitalWrite(_pin, LOW);
-  delay(20);
-  digitalWrite(_pin, HIGH);
-  delayMicroseconds(40);
+    // Change data pin to output, low, followed by high
+    pinMode(_pin, OUTPUT);
+    digitalWrite(_pin, LOW);
+    delay(20);
+    digitalWrite(_pin, HIGH);
+    delayMicroseconds(40);
 
-  // Data pin to input
-  pinMode(_pin, INPUT_PULLUP);
-  delayMicroseconds(10);
+    // Data pin to input
+    pinMode(_pin, INPUT_PULLUP);
+    delayMicroseconds(10);
 
-  // Check data pin timing low
-  if (measurePulseWidth(LOW) == 0) {
-    return false;
-  }
+    // Check data pin timing low
+    if (measurePulseWidth(LOW) == 0) {
+        return false;
+    }
 
-  // Check data pin timing high
-  if (measurePulseWidth(HIGH) == 0) {
-    return false;
-  }
+    // Check data pin timing high
+    if (measurePulseWidth(HIGH) == 0) {
+        return false;
+    }
 
-  // Sensor start successfully generated
-  return true;
+    // Sensor start successfully generated
+    return true;
 }
 
 /*!
@@ -228,42 +228,42 @@ bool DHT22::generateStart()
  */
 bool DHT22::readBytes()
 {
-  // Disable interrupts during data transfer
-  noInterrupts();
+    // Disable interrupts during data transfer
+    noInterrupts();
 
-  // Measure and store pulse width of each bit
-  for (int i = 0; i < (DHT22_NUM_DATA_BITS * 2); i += 2) {
-    cycles[i]   = measurePulseWidth(LOW);
-    cycles[i+1] = measurePulseWidth(HIGH);
-  }
-
-  // Enable interrupts
-  interrupts();
-
-  // Clear data buffer
-  memset(_data, 0, sizeof(_data));
-
-  // Convert pulse width to data bit
-  for (int i = 0; i < DHT22_NUM_DATA_BITS; ++i) {
-    uint32_t lowCycles  = cycles[2 * i];
-    uint32_t highCycles = cycles[(2 * i) + 1];
-
-    // Check valid bit timing
-    if ((lowCycles == 0) || (highCycles == 0)) {
-      return false;
+    // Measure and store pulse width of each bit
+    for (int i = 0; i < (DHT22_NUM_DATA_BITS * 2); i += 2) {
+        cycles[i] = measurePulseWidth(LOW);
+        cycles[i + 1] = measurePulseWidth(HIGH);
     }
 
-    // Calculate byte index in data array
-    int byteIndex = i / 8;
+    // Enable interrupts
+    interrupts();
 
-    // Store bit
-    _data[byteIndex] <<= 1;
-    if (highCycles > lowCycles) {
-      _data[byteIndex] |= 1;
+    // Clear data buffer
+    memset(_data, 0, sizeof(_data));
+
+    // Convert pulse width to data bit
+    for (int i = 0; i < DHT22_NUM_DATA_BITS; ++i) {
+        uint32_t lowCycles = cycles[2 * i];
+        uint32_t highCycles = cycles[(2 * i) + 1];
+
+        // Check valid bit timing
+        if ((lowCycles == 0) || (highCycles == 0)) {
+            return false;
+        }
+
+        // Calculate byte index in data array
+        int byteIndex = i / 8;
+
+        // Store bit
+        _data[byteIndex] <<= 1;
+        if (highCycles > lowCycles) {
+            _data[byteIndex] |= 1;
+        }
     }
-  }
 
-  return true;
+    return true;
 }
 
 /*!
@@ -275,24 +275,24 @@ bool DHT22::readBytes()
  */
 uint32_t DHT22::measurePulseWidth(uint8_t level)
 {
-  uint32_t count = 0;
+    uint32_t count = 0;
 
 #ifdef __AVR
-  while ((*portInputRegister(_port) & _bit) == (level ? _bit : 0)) {
-    if (count++ >= _maxCycles) {
-      // Timeout
-      return 0;
-    }
-  }
-
-#else
-  while (digitalRead(_pin) == level) {
+    while ((*portInputRegister(_port) & _bit) == (level ? _bit : 0)) {
       if (count++ >= _maxCycles) {
         // Timeout
         return 0;
       }
     }
+
+#else
+    while (digitalRead(_pin) == level) {
+        if (count++ >= _maxCycles) {
+            // Timeout
+            return 0;
+        }
+    }
 #endif
 
-  return count;
+    return count;
 }
