@@ -66,7 +66,7 @@ Use pin 0 to prevent flash problems.
 | :---: | ------------- |
 |  GND  | GND           |
 |  VCC  | 3.3V          |
-|  DAT  | 2             |
+|  DAT  | 0             |
 
 Other MCU's may work, but are not tested.
 
