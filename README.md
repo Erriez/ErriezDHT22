@@ -40,11 +40,11 @@ This is a calibrated AM2303 digital temperature and relative humidity sensor on 
 
 **Connection DHT22 - Arduino**
 
-| DHT22 | Arduino UNO/Nano/Leonardo/Mega2560 |
-| :---: | :--------------------------------: |
-|  GND  |                GND                 |
-|  VCC  |            5V (or 3.3V)            |
-|  DAT  |                 D2                 |
+| DHT22 | Arduino UNO / Nano / Pro Mini / Leonardo / Mega2560 |
+| :---: | :-------------------------------------------------- |
+|  GND  | GND                                                 |
+|  VCC  | 5V (or 3.3V)                                        |
+|  DAT  | 2 (DIGITAL pin)                                     |
 
 **Connection DHT22 - ESP8266**
 
@@ -54,9 +54,13 @@ Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. M
 | :---: | ---------------------------------------- |
 |  GND  | GND                                      |
 |  VCC  | 3.3V                                     |
-|  DAT  | Arduino pin 2 -> GPIO4 = D4              |
+|  DAT  | D4                                       |
 
-**Connection DHT22 - Lolin32**
+**Connection DHT22 - WeMos LOLIN32**
+
+WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.
+
+Use pin 0 to prevent flash problems.
 
 | DHT22 | WeMos Lolin32 |
 | :---: | ------------- |
@@ -64,42 +68,12 @@ Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. M
 |  VCC  | 3.3V          |
 |  DAT  | 2             |
 
-
-## Supported Arduino Boards
-
-- All ATMega328P MCU's:
-  - Arduino UNO
-  - Arduino Nano
-- All ATMega32U4 MCU's:
-  - Arduino Leonardo
-  - Pro Micro
-- All ATMega2560 MCU's:
-  - Arduino Mega2560
-- All ESP8266 boards:
-  - WeMos D1 R2
-  - NodeMCU
-- All Lolin32 boards:
-  - WeMos Lolin32
-- Other MCU's may work, but are not tested.
-
-
-## Library dependencies
-
-* None
-
-
-## Documentation
-
-[Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf) (Documentation source code)
-
-[AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
-
-[DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
+Other MCU's may work, but are not tested.
 
 
 ## Examples
 
-Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
+* Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
 
 
 ## Usage
@@ -109,8 +83,14 @@ Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/ma
 ```c++
 #include <DHT22.h>
   
-// Connect DTH22 data pin to Arduino DIGITAL pin
-#define DHT22_PIN   2
+// Connect DTH22 DAT pin to Arduino board
+
+// Arduino DIGITAL pin
+#define DHT22_PIN      2
+// Some ESP8266 boards uses D2 instead of 2
+// #define DHT22_PIN   D2
+// LOLIN32 uses another pin
+// #define DHT22_PIN   0
   
 DHT22 sensor = DHT22(DHT22_PIN);
   
@@ -182,3 +162,21 @@ Humidity: 41.1 %
   
 ...
 ```
+
+
+## Documentation
+
+* [Doxygen online HTML](https://erriez.github.io/ErriezDHT22)
+* [Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/master/docs/latex/refman.pdf)
+* [AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
+* [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
+
+
+## Library dependencies
+
+* None
+
+
+## Library installation
+
+Please refer to the [Wiki](https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki) page.

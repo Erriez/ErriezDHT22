@@ -112,13 +112,13 @@ $(function() {
 <p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Arduino</b></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadCenter">Arduino UNO/Nano/Leonardo/Mega2560   </th></tr>
+<th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadLeft">Arduino UNO / Nano / Pro Mini / Leonardo / Mega2560   </th></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyCenter">GND   </td></tr>
+<td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyLeft">GND   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyCenter">5V (or 3.3V)   </td></tr>
+<td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyLeft">5V (or 3.3V)   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyCenter">D2   </td></tr>
+<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyLeft">2 (DIGITAL pin)   </td></tr>
 </table>
 <p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - ESP8266</b></p>
 <p>Some ESP8266 boards uses Arduino pin 2 -&gt; GPIO4 which is D4 text on the board. Make sure you're using the right pin.</p>
@@ -130,9 +130,11 @@ $(function() {
 <tr class="markdownTableBody" class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyNone">3.3V   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">Arduino pin 2 -&gt; GPIO4 = D4   </td></tr>
+<td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">D4   </td></tr>
 </table>
-<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Lolin32</b></p>
+<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - WeMos LOLIN32</b></p>
+<p>WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.</p>
+<p>Use pin 0 to prevent flash problems.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a>  </th><th class="markdownTableHeadNone">WeMos Lolin32   </th></tr>
@@ -143,48 +145,29 @@ $(function() {
 <tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">DAT  </td><td class="markdownTableBodyNone">2   </td></tr>
 </table>
-<h2>Supported Arduino Boards</h2>
+<p>Other MCU's may work, but are not tested.</p>
+<h2>Examples</h2>
 <ul>
-<li>All ATMega328P MCU's:<ul>
-<li>Arduino UNO</li>
-<li>Arduino Nano</li>
+<li>Examples | Erriez DH22 | <a href="https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino">Example</a></li>
 </ul>
-</li>
-<li>All ATMega32U4 MCU's:<ul>
-<li>Arduino Leonardo</li>
-<li>Pro Micro</li>
-</ul>
-</li>
-<li>All ATMega2560 MCU's:<ul>
-<li>Arduino Mega2560</li>
-</ul>
-</li>
-<li>All ESP8266 boards:<ul>
-<li>WeMos D1 R2</li>
-<li>NodeMCU</li>
-</ul>
-</li>
-<li>All Lolin32 boards:<ul>
-<li>WeMos Lolin32</li>
-</ul>
-</li>
-<li>Other MCU's may work, but are not tested.</li>
+<h2>Usage</h2>
+<p><b>Initialization</b></p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;DHT22.h&gt;</div><div class="line"></div><div class="line">// Connect DTH22 DAT pin to Arduino board</div><div class="line"></div><div class="line">// Arduino DIGITAL pin</div><div class="line">#define DHT22_PIN      2</div><div class="line">// Some ESP8266 boards uses D2 instead of 2</div><div class="line">// #define DHT22_PIN   D2</div><div class="line">// LOLIN32 uses another pin</div><div class="line">// #define DHT22_PIN   0</div><div class="line"></div><div class="line">DHT22 sensor = DHT22(DHT22_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize serial port</div><div class="line">    Serial.begin(115200);</div><div class="line">    Serial.println(F(&quot;DHT22 temperature and humidity sensor example\n&quot;));</div><div class="line"></div><div class="line">    // Initialize sensor</div><div class="line">    sensor.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Read temperature and humidity</b></p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">void loop()</div><div class="line">{</div><div class="line">    // Check minimum interval of 2000 ms between sensor reads</div><div class="line">    if (sensor.available()) {</div><div class="line">        // Read temperature from sensor</div><div class="line">        int16_t temperature = sensor.readTemperature();</div><div class="line"></div><div class="line">        // Read humidity from sensor</div><div class="line">        int16_t humidity = sensor.readHumidity();</div><div class="line"></div><div class="line">        if (temperature == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Temperature: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print temperature</div><div class="line">            Serial.print(F(&quot;Temperature: &quot;));</div><div class="line">            Serial.print(temperature / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(temperature % 10);</div><div class="line">            Serial.println(F(&quot; *C&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        if (humidity == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Humidity: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print humidity</div><div class="line">            Serial.print(F(&quot;Humidity: &quot;));</div><div class="line">            Serial.print(humidity / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(humidity % 10);</div><div class="line">            Serial.println(F(&quot; %&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        Serial.println();</div><div class="line">      }</div><div class="line">}</div></div><!-- fragment --><p><b>Serial output</b></p>
+<div class="fragment"><div class="line">DHT22 temperature and humidity sensor example</div><div class="line"></div><div class="line">Temperature: 17.7 *C</div><div class="line">Humidity: 41.0 %</div><div class="line"></div><div class="line">Temperature: 17.8 *C</div><div class="line">Humidity: 41.1 %</div><div class="line"></div><div class="line">...</div></div><!-- fragment --><h2>Documentation</h2>
+<ul>
+<li><a href="https://erriez.github.io/ErriezDHT22">Doxygen online HTML</a></li>
+<li><a href="https://github.com/Erriez/ErriezDHT22/raw/master/docs/latex/refman.pdf">Doxygen PDF</a></li>
+<li><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></li>
+<li><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></li>
 </ul>
 <h2>Library dependencies</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2>Documentation</h2>
-<p><a href="https://github.com/Erriez/ErriezDHT22/raw/master/doc/latex/refman.pdf">Doxygen PDF</a> (Documentation source code)</p>
-<p><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></p>
-<p><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></p>
-<h2>Examples</h2>
-<p>Examples | Erriez DH22 | <a href="https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino">Example</a></p>
-<h2>Usage</h2>
-<p><b>Initialization</b></p>
-<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;DHT22.h&gt;</div><div class="line"></div><div class="line">// Connect DTH22 data pin to Arduino DIGITAL pin</div><div class="line">#define DHT22_PIN   2</div><div class="line"></div><div class="line">DHT22 sensor = DHT22(DHT22_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize serial port</div><div class="line">    Serial.begin(115200);</div><div class="line">    Serial.println(F(&quot;DHT22 temperature and humidity sensor example\n&quot;));</div><div class="line"></div><div class="line">    // Initialize sensor</div><div class="line">    sensor.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Read temperature and humidity</b></p>
-<div class="fragment"><div class="line">{c++}</div><div class="line">void loop()</div><div class="line">{</div><div class="line">    // Check minimum interval of 2000 ms between sensor reads</div><div class="line">    if (sensor.available()) {</div><div class="line">        // Read temperature from sensor</div><div class="line">        int16_t temperature = sensor.readTemperature();</div><div class="line"></div><div class="line">        // Read humidity from sensor</div><div class="line">        int16_t humidity = sensor.readHumidity();</div><div class="line"></div><div class="line">        if (temperature == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Temperature: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print temperature</div><div class="line">            Serial.print(F(&quot;Temperature: &quot;));</div><div class="line">            Serial.print(temperature / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(temperature % 10);</div><div class="line">            Serial.println(F(&quot; *C&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        if (humidity == ~0) {</div><div class="line">            // Print error (Check hardware connection)</div><div class="line">            Serial.print(F(&quot;Humidity: Error&quot;));</div><div class="line">        } else {</div><div class="line">            // Print humidity</div><div class="line">            Serial.print(F(&quot;Humidity: &quot;));</div><div class="line">            Serial.print(humidity / 10);</div><div class="line">            Serial.print(F(&quot;.&quot;));</div><div class="line">            Serial.print(humidity % 10);</div><div class="line">            Serial.println(F(&quot; %&quot;));</div><div class="line">        }</div><div class="line"></div><div class="line">        Serial.println();</div><div class="line">      }</div><div class="line">}</div></div><!-- fragment --><p><b>Serial output</b></p>
-<div class="fragment"><div class="line">DHT22 temperature and humidity sensor example</div><div class="line"></div><div class="line">Temperature: 17.7 *C</div><div class="line">Humidity: 41.0 %</div><div class="line"></div><div class="line">Temperature: 17.8 *C</div><div class="line">Humidity: 41.1 %</div><div class="line"></div><div class="line">...</div></div><!-- fragment --> </div></div><!-- contents -->
+<h2>Library installation</h2>
+<p>Please refer to the <a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki">Wiki</a> page. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
