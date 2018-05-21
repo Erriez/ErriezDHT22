@@ -30,8 +30,17 @@
 
 #include <DHT22.h>
 
-// Connect DTH22 data pin to Arduino DIGITAL pin
-#define DHT22_PIN   2
+// Connect DTH22 DAT pin to Arduino DIGITAL pin
+#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_NANO) || defined(ARDUINO_AVR_MICRO) || \
+    defined(ARDUINO_AVR_PRO) || defined(ARDUINO_AVR_MEGA2560) || defined(ARDUINO_AVR_LEONARDO)
+#define DHT22_PIN      2
+#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
+#define DHT22_PIN      D2
+#elif defined(ARDUINO_LOLIN32)
+#define DHT22_PIN      0
+#else
+#error "May work, but not tested on this target"
+#endif
 
 // Create DHT22 sensor object
 DHT22 sensor = DHT22(DHT22_PIN);
