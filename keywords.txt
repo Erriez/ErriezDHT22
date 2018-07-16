@@ -6,22 +6,22 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-DHT22					KEYWORD1
+DHT22	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin					KEYWORD2
-available				KEYWORD2
-readTemperature			KEYWORD2
-readHumidity			KEYWORD2
+begin	KEYWORD2
+available	KEYWORD2
+readTemperature	KEYWORD2
+readHumidity	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
 
-sensor					KEYWORD2
+sensor	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
