@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
 <p>Check if new temperature or humidity read is allowed. </p>
 <p>The application should call this function and check if a new temperature and humidity can be read to prevent too fast sensor reads. </p><dl class="section return"><dt>Returns</dt><dd>true: Available, interval between sensor reads &gt;= 2000 ms. false: Not available, interval between sensor reads too short. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00079">79</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00086">86</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -175,9 +175,24 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialize sensor. </p>
-<p>Call this function from setup(). </p>
+<p>Call this function from setup().<br />
+</p><ul>
+<li>Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:<br />
+<ul>
+<li>using a AM2302 sensor without a DT22 breakout PCB<br />
+ AND<br />
+</li>
+<li>the MCU IO pin has no built-in or external pull-up resistor.<br />
+</li>
+</ul>
+</li>
+<li>The <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.<br />
+</li>
+<li>Please refer to the MCU datasheet or board schematic for more information about IO pin<br />
+ pull-up resistors. </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00059">59</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00067">67</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +214,7 @@ Public Member Functions</h2></td></tr>
 <p>Read humidity from sensor. </p>
 <dl class="section return"><dt>Returns</dt><dd>Signed humidity with last digit after the point. ~0: An error occurred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00121">121</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00128">128</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -221,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <p>Read temperature from sensor. </p>
 <p>Returns the actual temperature, or a cached temperature when read interval is too short. </p><dl class="section return"><dt>Returns</dt><dd>Signed temperature with last digit after the point ~0: An error occurred </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00099">99</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_d_h_t22_8cpp_source.html#l00106">106</a> of file <a class="el" href="_d_h_t22_8cpp_source.html">DHT22.cpp</a>.</p>
 
 </div>
 </div>

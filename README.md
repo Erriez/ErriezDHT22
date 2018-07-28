@@ -38,6 +38,17 @@ This is a calibrated AM2303 digital temperature and relative humidity sensor on 
 
 ![Schematic DHT22 and Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png)
 
+**Pull-up resistor DAT pin**
+
+* Connect an external ```3k3..10k``` pull-up resistor between the ```DAT``` and ```VCC``` pins only when:
+  * Using a AM2302 sensor without a DT22 breakout PCB **and** the MCU IO pin has no built-in or external pull-up resistor.
+* The DHT22 breakout PCB contains a ```3k3``` pull-up resistor between ```DAT``` and ```VCC```.
+* Please refer to the MCU datasheet or board schematic for more information about IO pin pull-up resistors.
+
+**External capacitor**
+
+* Tip: Connect a ```100nF``` capacitor between the sensor pins ```VCC``` and ```GND``` when read errors occurs. This may stabilize the power supply.
+
 **Connection DHT22 - Arduino**
 
 | DHT22 | Arduino UNO / Nano / Pro Mini / Leonardo / Mega2560 |

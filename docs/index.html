@@ -109,6 +109,19 @@ $(function() {
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png" alt="Schematic DHT22 and Arduino UNO"/>
 </div>
+<p><b>Pull-up resistor DAT pin</b></p>
+<ul>
+<li>Connect an external <code>3k3..10k</code> pull-up resistor between the <code>DAT</code> and <code>VCC</code> pins only when:<ul>
+<li>Using a AM2302 sensor without a DT22 breakout PCB <b>and</b> the MCU IO pin has no built-in or external pull-up resistor.</li>
+</ul>
+</li>
+<li>The <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB contains a <code>3k3</code> pull-up resistor between <code>DAT</code> and <code>VCC</code>.</li>
+<li>Please refer to the MCU datasheet or board schematic for more information about IO pin pull-up resistors.</li>
+</ul>
+<p><b>External capacitor</b></p>
+<ul>
+<li>Tip: Connect a <code>100nF</code> capacitor between the sensor pins <code>VCC</code> and <code>GND</code> when read errors occurs. This may stabilize the power supply.</li>
+</ul>
 <p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Arduino</b></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -166,7 +179,11 @@ $(function() {
 <li>None</li>
 </ul>
 <h2>Library installation</h2>
-<p>Please refer to the <a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki">Wiki</a> page. </p>
+<p>Please refer to the <a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki">Wiki</a> page.</p>
+<h2>Other Arduino Libraries and Sketches from Erriez</h2>
+<ul>
+<li><a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches">Erriez Libraries and Sketches</a> </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

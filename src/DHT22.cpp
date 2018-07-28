@@ -54,12 +54,19 @@ DHT22::DHT22(uint8_t pin)
 /*!
  * \brief Initialize sensor.
  * \details
- *      Call this function from setup().
+ *      Call this function from setup().\n
+ *
+ *      - Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:\n
+ *          - using a AM2302 sensor without a DT22 breakout PCB\n
+ *             AND\n
+ *          - the MCU IO pin has no built-in or external pull-up resistor.\n
+ *      - The DHT22 breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.\n
+ *      - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
+ *        pull-up resistors.
  */
 void DHT22::begin()
 {
-    // Enable internal pin pull-up
-    // Note: This is not available on some chips
+    // Try to enable internal pin pull-up resistor when available
     pinMode(_pin, INPUT_PULLUP);
 
     // Initialize last measurement timestamp with negative interval to allow
