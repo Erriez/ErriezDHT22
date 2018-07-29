@@ -206,12 +206,10 @@ bool DHT22::generateStart()
     pinMode(_pin, OUTPUT);
     digitalWrite(_pin, LOW);
     delay(20);
-    digitalWrite(_pin, HIGH);
-    delayMicroseconds(40);
 
-    // Data pin to input
+    // Data pin to input (pull-up)
     pinMode(_pin, INPUT_PULLUP);
-    delayMicroseconds(10);
+    delayMicroseconds(30);
 
     // Check data pin timing low
     if (measurePulseWidth(LOW) == 0) {
