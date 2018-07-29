@@ -23,9 +23,10 @@
  */
 
 /*!
- * \brief DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
- * \details Source: https://github.com/Erriez/ErriezDHT22
  * \file DHT22.cpp
+ * \brief DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
+ * \details
+ *      Source: https://github.com/Erriez/ErriezDHT22
  */
 
 #include "DHT22.h"
@@ -69,19 +70,19 @@ void DHT22::begin()
     // Try to enable internal pin pull-up resistor when available
     pinMode(_pin, INPUT_PULLUP);
 
-    // Initialize last measurement timestamp with negative interval to allow
-    // a new measurement
+    // Initialize last measurement timestamp with negative interval to allow a new measurement
     _lastMeasurementTimestamp = (uint32_t)-DHT22_MIN_READ_INTERVAL;
 }
 
 /*!
  * \brief Check if new temperature or humidity read is allowed.
  * \details
- *      The application should call this function and check if a new temperature
- *      and humidity can be read to prevent too fast sensor reads.
- * \return
- *      true:  Available, interval between sensor reads >= 2000 ms.
- *      false: Not available, interval between sensor reads too short.
+ *      The application should call this function and check if a new temperature and humidity can be
+ *      read to prevent too fast sensor reads.
+ * \retval true
+ *      Available, interval between sensor reads >= 2000 ms.
+ * \retval false
+ *      Not available, interval between sensor reads too short.
  */
 bool DHT22::available()
 {
@@ -97,11 +98,11 @@ bool DHT22::available()
 /*!
  * \brief Read temperature from sensor.
  * \details
- *      Returns the actual temperature, or a cached temperature when read
- *      interval is too short.
- * \return
- *      Signed temperature with last digit after the point
- *      ~0: An error occurred
+ *      Returns the actual temperature, or a cached temperature when read interval is too short.
+ * \retval Temperature
+ *      Signed temperature with last digit after the point.
+ * \retval ~0
+ *      An error occurred.
  */
 int16_t DHT22::readTemperature()
 {
@@ -121,9 +122,10 @@ int16_t DHT22::readTemperature()
 
 /*!
  * \brief Read humidity from sensor.
- * \return
+ * \retval Humidity
  *      Signed humidity with last digit after the point.
- *      ~0: An error occurred
+ * \retval ~0
+ *      An error occurred.
  */
 int16_t DHT22::readHumidity()
 {
@@ -138,17 +140,17 @@ int16_t DHT22::readHumidity()
     return humidity;
 }
 
-//------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 // Private functions
-//------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 /*!
  * \brief Read data from sensor.
  * \details
- *      5 sensor bytes will be read when interval between previous read
- *      >= 2000 ms.
- * \return
- *      true:  Last conversion was successful.
- *      false: Last conversion was unsuccessful.
+ *      5 sensor bytes will be read when interval between previous read >= 2000 ms.
+ * \retval true
+ *      Last conversion was successful.
+ * \retval false
+ *      Last conversion was unsuccessful.
  */
 bool DHT22::readSensorData()
 {
@@ -189,9 +191,10 @@ bool DHT22::readSensorData()
 
 /*!
  * \brief Generate start pulses to start data read.
- * \return
- *      true:  Success, continue with reading temperature and humidity bytes.
- *      false: Failure, the sensor did not respond.
+ * \retval true
+ *      Success, continue with reading temperature and humidity bytes.
+ * \retval false
+ *      Failure, the sensor did not respond.
  */
 bool DHT22::generateStart()
 {
@@ -227,11 +230,12 @@ bool DHT22::generateStart()
 /*!
  * \brief Read humidity, temperature and parity bytes from sensor.
  * \details
- *      Global interrupts are disabled during pin measurement, because the
- *      timing in micro seconds is very critical.
- * \return
- *      true:  Success
- *      false: Incorrect timing sensor data pin received.
+ *      Global interrupts are disabled during pin measurement, because the timing in micro seconds
+ *      is very critical.
+ * \retval true
+ *      Read bytes successful.
+ * \retval false
+ *      Incorrect timing sensor data pin received.
  */
 bool DHT22::readBytes()
 {
@@ -276,9 +280,10 @@ bool DHT22::readBytes()
 /*!
  * \brief Measure data pin pulse width.
  * \param level Measure data signal low or high.
- * \return
+ * \retval Pin timing
  *      Sensor data pin timing in us.
- *      0: Timeout
+ * \retal 0
+ *      Timeout
  */
 uint32_t DHT22::measurePulseWidth(uint8_t level)
 {
