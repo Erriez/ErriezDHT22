@@ -34,6 +34,13 @@ This is a calibrated AM2303 digital temperature and relative humidity sensor on 
 - ~31ms to synchronous read humidity, temperature and parity data from sensor (5 Bytes)
 
 
+## Safety warning
+
+According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not be
+used in safety critical applications, emergency stop devices or any other occasion that failure of
+AM2303 may cause personal injury.
+
+
 ## Hardware
 
 ![Schematic DHT22 and Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png)

@@ -24,7 +24,7 @@
 
 /*!
  * \file DHT22.h
- * \brief DHT22 (AM2303) Humidity and Temperature sensor example for Arduino
+ * \brief DHT22 (AM2303) Humidity and Temperature sensor library for Arduino
  * \details
  *      Source: https://github.com/Erriez/ErriezDHT22
  */
@@ -55,7 +55,27 @@
   #define DEBUG_PRINTLN(...) {}
 #endif
 
-//! DHT22 sensor class
+/*!
+ * \brief DHT22 sensor class
+ * \details
+ *      According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not
+ *      be used in safety critical applications, emergency stop devices or any other occasion that
+ *      failure of AM2303 may cause personal injury.
+ *
+ *      The AM2303 is factory calibrated. However, deviation may occur with aging.
+ *
+ *      The temperature/humidity read interval in this library is cached for 2 seconds to prevent
+ *      heating-up the internal chip with continues reading.
+ *
+ *      Global interrupts are disabled during a synchronous sensor read transfer. This is required
+ *      to sample the data bit lengths at maximum speed on low-end devices without any application
+ *      interrupts. The read calls are protected with a timeout.
+ *
+ *      The application is responsible for checking ~0 values after a read which means that the
+ *      read failed or a timeout occurred. Multiple reads by the application with an average
+ *      calculation is recommended.
+ *
+ */
 class DHT22
 {
 public:
