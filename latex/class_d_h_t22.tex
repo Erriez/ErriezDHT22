@@ -1,0 +1,170 @@
+\hypertarget{class_d_h_t22}{}\section{D\+H\+T22 Class Reference}
+\label{class_d_h_t22}\index{D\+H\+T22@{D\+H\+T22}}
+
+
+\hyperlink{class_d_h_t22}{D\+H\+T22} sensor class.  
+
+
+
+
+{\ttfamily \#include $<$D\+H\+T22.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_d_h_t22_a6983635331e939d679888b4a936e0f53}{D\+H\+T22} (uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Constructor \hyperlink{class_d_h_t22}{D\+H\+T22} sensor. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}{begin} ()
+\begin{DoxyCompactList}\small\item\em Initialize sensor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}{available} ()
+\begin{DoxyCompactList}\small\item\em Check if new temperature or humidity read is allowed. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{class_d_h_t22_aeed4f98e419ffb07d3e4c09ebc10162c}{read\+Temperature} ()
+\begin{DoxyCompactList}\small\item\em Read temperature from sensor. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}{read\+Humidity} ()
+\begin{DoxyCompactList}\small\item\em Read humidity from sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_d_h_t22}{D\+H\+T22} sensor class. 
+
+According to the datasheet, the A\+M2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2303 may cause personal injury.
+
+The A\+M2303 is factory calibrated. However, deviation may occur with aging.
+
+The temperature/humidity read interval in this library is cached for 2 seconds to prevent heating-\/up the internal chip with continues reading.
+
+Global interrupts are disabled during a synchronous sensor read transfer. This is required to sample the data bit lengths at maximum speed on low-\/end devices without any application interrupts. The read calls are protected with a timeout.
+
+The application is responsible for checking $\sim$0 values after a read which means that the read failed or a timeout occurred. Multiple reads by the application with an average calculation is recommended. 
+
+Definition at line 80 of file D\+H\+T22.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{D\+H\+T22@{D\+H\+T22}!D\+H\+T22@{D\+H\+T22}}
+\index{D\+H\+T22@{D\+H\+T22}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{D\+H\+T22(uint8\+\_\+t pin)}{DHT22(uint8_t pin)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+H\+T22\+::\+D\+H\+T22 (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{pin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{class_d_h_t22_a6983635331e939d679888b4a936e0f53}{}\label{class_d_h_t22_a6983635331e939d679888b4a936e0f53}
+
+
+Constructor \hyperlink{class_d_h_t22}{D\+H\+T22} sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Data pin sensor. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file D\+H\+T22.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{D\+H\+T22@{D\+H\+T22}!available@{available}}
+\index{available@{available}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{available()}{available()}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+H\+T22\+::available (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}{}\label{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}
+
+
+Check if new temperature or humidity read is allowed. 
+
+The application should call this function and check if a new temperature and humidity can be read to prevent too fast sensor reads. 
+\begin{DoxyRetVals}{Return values}
+{\em true} & Available, interval between sensor reads $>$= 2000 ms. \\
+\hline
+{\em false} & Not available, interval between sensor reads too short. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 88 of file D\+H\+T22.\+cpp.
+
+\index{D\+H\+T22@{D\+H\+T22}!begin@{begin}}
+\index{begin@{begin}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{begin()}{begin()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+H\+T22\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}{}\label{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}
+
+
+Initialize sensor. 
+
+Call this function from setup().~\newline
+
+\begin{DoxyItemize}
+\item Connect an external 3k3..10k pull-\/up resistor between the D\+AT and V\+CC pins only when\+:~\newline
+
+\begin{DoxyItemize}
+\item using a A\+M2302 sensor without a D\+T22 breakout P\+CB~\newline
+ A\+ND~\newline
+
+\item the M\+CU IO pin has no built-\/in or external pull-\/up resistor.~\newline
+
+\end{DoxyItemize}
+\item The \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB contains a 3k3 pull-\/up resistor between D\+AT and V\+CC.~\newline
+
+\item Please refer to the M\+CU datasheet or board schematic for more information about IO pin~\newline
+ pull-\/up resistors. 
+\end{DoxyItemize}
+
+Definition at line 69 of file D\+H\+T22.\+cpp.
+
+\index{D\+H\+T22@{D\+H\+T22}!read\+Humidity@{read\+Humidity}}
+\index{read\+Humidity@{read\+Humidity}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{read\+Humidity()}{readHumidity()}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t D\+H\+T22\+::read\+Humidity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}{}\label{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}
+
+
+Read humidity from sensor. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em Humidity} & Signed humidity with last digit after the point. \\
+\hline
+{\em $\sim$0} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 131 of file D\+H\+T22.\+cpp.
+
+\index{D\+H\+T22@{D\+H\+T22}!read\+Temperature@{read\+Temperature}}
+\index{read\+Temperature@{read\+Temperature}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{read\+Temperature()}{readTemperature()}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t D\+H\+T22\+::read\+Temperature (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_aeed4f98e419ffb07d3e4c09ebc10162c}{}\label{class_d_h_t22_aeed4f98e419ffb07d3e4c09ebc10162c}
+
+
+Read temperature from sensor. 
+
+Returns the actual temperature, or a cached temperature when read interval is too short. 
+\begin{DoxyRetVals}{Return values}
+{\em Temperature} & Signed temperature with last digit after the point. \\
+\hline
+{\em $\sim$0} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 108 of file D\+H\+T22.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_d_h_t22_8h}{D\+H\+T22.\+h}\item 
+\hyperlink{_d_h_t22_8cpp}{D\+H\+T22.\+cpp}\end{DoxyCompactItemize}

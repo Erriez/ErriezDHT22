@@ -1,0 +1,254 @@
+\href{https://travis-ci.org/Erriez/ErriezDHT22}{\tt }
+
+This is a calibrated A\+M2303 digital temperature and relative humidity sensor on a \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB.
+
+
+
+\subsection*{Library features}
+
+
+\begin{DoxyItemize}
+\item Read 16-\/bit temperature (synchronous blocking)
+\item Read 16-\/bit relative humidity (synchronous blocking)
+\end{DoxyItemize}
+
+\subsection*{A\+M2303 sensor specifications}
+
+
+\begin{DoxyItemize}
+\item Voltage\+: 3.\+3 .. 5V
+\item Ultra-\/low power\+:
+\begin{DoxyItemize}
+\item Typical 15uA dormancy
+\item Typical 500uA measuring
+\end{DoxyItemize}
+\item Single wire digital serial interface
+\item Calibrated digital signal
+\item Outstanding long term stability
+\item No additional electronic components needed
+\item Humidity\+:
+\begin{DoxyItemize}
+\item Range\+: 0 .. 99.\+9 RH (Relative Humidity)
+\item Resolution\+: 0.\+1 RH
+\item Accuracy\+: +/-\/2 RH (at 25 degree Celsius)
+\end{DoxyItemize}
+\item Temperature\+:
+\begin{DoxyItemize}
+\item Range\+: -\/40 .. +125 degree Celsius
+\item Resolution\+: 0.\+1 degree Celsius
+\item Accuracy\+: +/-\/ 0.\+4 degree Celsius
+\end{DoxyItemize}
+\item Minimum read interval\+: 2000 ms
+\item $\sim$31ms to synchronous read humidity, temperature and parity data from sensor (5 Bytes)
+\end{DoxyItemize}
+
+\subsection*{Safety warning}
+
+According to the datasheet, the A\+M2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2303 may cause personal injury.
+
+\subsection*{Hardware}
+
+
+
+{\bfseries Pull-\/up resistor D\+AT pin}
+
+
+\begin{DoxyItemize}
+\item Connect an external {\ttfamily 3k3..10k} pull-\/up resistor between the {\ttfamily D\+AT} and {\ttfamily V\+CC} pins only when\+:
+\begin{DoxyItemize}
+\item Using a A\+M2302 sensor without a D\+T22 breakout P\+CB {\bfseries and} the M\+CU IO pin has no built-\/in or external pull-\/up resistor.
+\end{DoxyItemize}
+\item The \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB contains a {\ttfamily 3k3} pull-\/up resistor between {\ttfamily D\+AT} and {\ttfamily V\+CC}.
+\item Please refer to the M\+CU datasheet or board schematic for more information about IO pin pull-\/up resistors.
+\end{DoxyItemize}
+
+{\bfseries External capacitor}
+
+
+\begin{DoxyItemize}
+\item Tip\+: Connect a {\ttfamily 100nF} capacitor between the sensor pins {\ttfamily V\+CC} and {\ttfamily G\+ND} when read errors occurs. This may stabilize the power supply.
+\end{DoxyItemize}
+
+{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ Arduino}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf Arduino U\+NO / Nano / Pro Mini / Leonardo / Mega2560  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf Arduino U\+NO / Nano / Pro Mini / Leonardo / Mega2560  }\\\cline{1-2}
+\endhead
+\PBS\centering G\+ND &G\+ND \\\cline{1-2}
+\PBS\centering V\+CC &5V (or 3.\+3V) \\\cline{1-2}
+\PBS\centering D\+AT &2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-2}
+\end{longtabu}
+{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ E\+S\+P8266}
+
+Some E\+S\+P8266 boards uses Arduino pin 2 -\/$>$ G\+P\+I\+O4 which is D4 text on the board. Make sure you\textquotesingle{}re using the right pin.
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf E\+S\+P8266 / We\+Mos D1 R2 / E\+S\+P12E / Node\+M\+CU  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf E\+S\+P8266 / We\+Mos D1 R2 / E\+S\+P12E / Node\+M\+CU  }\\\cline{1-2}
+\endhead
+\PBS\centering G\+ND &G\+ND \\\cline{1-2}
+\PBS\centering V\+CC &3.\+3V \\\cline{1-2}
+\PBS\centering D\+AT &D4 \\\cline{1-2}
+\end{longtabu}
+{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ We\+Mos L\+O\+L\+I\+N32}
+
+We\+Mos L\+O\+L\+I\+N32 requires an additional 100nF capacitor over the G\+ND -\/ V\+CC pins to prevent parity errors.
+
+Use pin 0 to prevent flash problems.
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf We\+Mos Lolin32  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf We\+Mos Lolin32  }\\\cline{1-2}
+\endhead
+\PBS\centering G\+ND &G\+ND \\\cline{1-2}
+\PBS\centering V\+CC &3.\+3V \\\cline{1-2}
+\PBS\centering D\+AT &0 \\\cline{1-2}
+\end{longtabu}
+Other M\+CU\textquotesingle{}s may work, but are not tested.
+
+\subsection*{Examples}
+
+
+\begin{DoxyItemize}
+\item Examples $\vert$ Erriez D\+H22 $\vert$ \href{https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino}{\tt Example}
+\end{DoxyItemize}
+
+\subsection*{Documentation}
+
+
+\begin{DoxyItemize}
+\item \href{https://erriez.github.io/ErriezDHT22}{\tt Doxygen online H\+T\+ML}
+\item \href{https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf}{\tt Doxygen P\+DF}
+\item \href{http://www.aosong.com/asp_bin/Products/en/AM2303.pdf}{\tt A\+M2303 datasheet}
+\item \href{https://www.google.com/search?q=DHT22+datasheet}{\tt D\+H\+T22 datasheet}
+\end{DoxyItemize}
+
+\subsection*{Usage}
+
+{\bfseries Initialization}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 #include <DHT22.h>
+3 
+4 // Connect DTH22 DAT pin to Arduino board
+5 
+6 // Arduino DIGITAL pin
+7 #define DHT22\_PIN      2
+8 // Some ESP8266 boards uses D2 instead of 2
+9 // #define DHT22\_PIN   D2
+10 // LOLIN32 uses another pin
+11 // #define DHT22\_PIN   0
+12 
+13 DHT22 sensor = DHT22(DHT22\_PIN);
+14 
+15 void setup()
+16 \{
+17     // Initialize serial port
+18     Serial.begin(115200);
+19     Serial.println(F("DHT22 temperature and humidity sensor example\(\backslash\)n"));
+20 
+21     // Initialize sensor
+22     sensor.begin();
+23 \}
+\end{DoxyCode}
+
+
+{\bfseries Read temperature and humidity}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 void loop()
+3 \{
+4     // Check minimum interval of 2000 ms between sensor reads
+5     if (sensor.available()) \{
+6         // Read temperature from sensor
+7         int16\_t temperature = sensor.readTemperature();
+8 
+9         // Read humidity from sensor
+10         int16\_t humidity = sensor.readHumidity();
+11 
+12         if (temperature == ~0) \{
+13             // Print error (Check hardware connection)
+14             Serial.print(F("Temperature: Error"));
+15         \} else \{
+16             // Print temperature
+17             Serial.print(F("Temperature: "));
+18             Serial.print(temperature / 10);
+19             Serial.print(F("."));
+20             Serial.print(temperature % 10);
+21             Serial.println(F(" *C"));
+22         \}
+23 
+24         if (humidity == ~0) \{
+25             // Print error (Check hardware connection)
+26             Serial.print(F("Humidity: Error"));
+27         \} else \{
+28             // Print humidity
+29             Serial.print(F("Humidity: "));
+30             Serial.print(humidity / 10);
+31             Serial.print(F("."));
+32             Serial.print(humidity % 10);
+33             Serial.println(F(" %"));
+34         \}
+35 
+36         Serial.println();
+37       \}
+38 \}
+\end{DoxyCode}
+
+
+{\bfseries Serial output}
+
+
+\begin{DoxyCode}
+1 DHT22 temperature and humidity sensor example
+2 
+3 Temperature: 17.7 *C
+4 Humidity: 41.0 %
+5 
+6 Temperature: 17.8 *C
+7 Humidity: 41.1 %
+8 
+9 ...
+\end{DoxyCode}
+
+
+\subsection*{Library dependencies}
+
+
+\begin{DoxyItemize}
+\item None
+\end{DoxyItemize}
+
+\subsection*{Library installation}
+
+Please refer to the \href{https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki}{\tt Wiki} page.
+
+\subsection*{Other Arduino Libraries and Sketches from Erriez}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/Erriez/ErriezArduinoLibrariesAndSketches}{\tt Erriez Libraries and Sketches} 
+\end{DoxyItemize}
