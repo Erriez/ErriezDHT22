@@ -91,7 +91,9 @@ Other MCU's may work, but are not tested.
 
 ## Examples
 
-* Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
+Arduino IDE | Examples | Erriez DH22 Temperature & Humidity:
+
+* [DHT22](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22/DHT22.ino)
 
 
 ## Documentation
