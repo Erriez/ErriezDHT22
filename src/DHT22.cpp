@@ -26,7 +26,8 @@
  * \file DHT22.cpp
  * \brief DHT22 (AM2303) Humidity and Temperature sensor library for Arduino
  * \details
- *      Source: https://github.com/Erriez/ErriezDHT22
+ *      Source:         https://github.com/Erriez/ErriezDHT22
+ *      Documentation:  https://erriez.github.io/ErriezDHT22
  */
 
 #include "DHT22.h"

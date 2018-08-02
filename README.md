@@ -94,6 +94,14 @@ Other MCU's may work, but are not tested.
 * Examples | Erriez DH22 | [Example](https://github.com/Erriez/ErriezDHT22/blob/master/examples/Example/Example.ino)
 
 
+## Documentation
+
+* [Doxygen online HTML](https://erriez.github.io/ErriezDHT22)
+* [Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf)
+* [AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
+* [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
+
+
 ## Usage
 
 **Initialization**
@@ -180,14 +188,6 @@ Humidity: 41.1 %
   
 ...
 ```
-
-
-## Documentation
-
-* [Doxygen online HTML](https://erriez.github.io/ErriezDHT22)
-* [Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/master/docs/latex/refman.pdf)
-* [AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
-* [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
 
 
 ## Library dependencies
