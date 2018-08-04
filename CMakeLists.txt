@@ -51,9 +51,9 @@ include_directories(${LIB_SRC_DIR})
 generate_arduino_library(
         ${PROJECT_NAME}Lib
         SRCS
-            ${LIB_SRC_DIR}/DHT22.cpp
+            ${LIB_SRC_DIR}/ErriezDHT22.cpp
         HDRS
-            ${LIB_SRC_DIR}/DHT22.h
+            ${LIB_SRC_DIR}/ErriezDHT22.h
 )
 
 # Configure project

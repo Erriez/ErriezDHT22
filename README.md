@@ -109,8 +109,8 @@ Arduino IDE | Examples | Erriez DH22 Temperature & Humidity:
 **Initialization**
 
 ```c++
-#include <DHT22.h>
-  
+#include <ErriezDHT22.h>
+
 // Connect DTH22 DAT pin to Arduino board
 
 // Arduino DIGITAL pin

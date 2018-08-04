@@ -30,7 +30,7 @@
  *      Documentation:  https://erriez.github.io/ErriezDHT22
  */
 
-#include <DHT22.h>
+#include <ErriezDHT22.h>
 
 // Connect DTH22 DAT pin to Arduino DIGITAL pin
 #if defined(ARDUINO_ARCH_AVR)

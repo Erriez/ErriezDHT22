@@ -10,6 +10,6 @@ rem git fetch
 rem git pull
 
 rem Build example(s)
-platformio ci --lib=".." --project-conf=platformio.ini ../examples/Example/Example.ino
+platformio ci --lib=".." --project-conf=platformio.ini ../examples/DHT22/DHT22.ino
 
 @pause

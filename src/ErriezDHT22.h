@@ -23,15 +23,15 @@
  */
 
 /*!
- * \file DHT22.h
+ * \file ErriezErriezDHT22.h
  * \brief DHT22 (AM2303) Humidity and Temperature sensor library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDHT22
  *      Documentation:  https://erriez.github.io/ErriezDHT22
  */
 
-#ifndef DHT22_H__
-#define DHT22_H__
+#ifndef ERRIEZ_DHT22_H_
+#define ERRIEZ_DHT22_H_
 
 #include <Arduino.h>
 
@@ -117,4 +117,4 @@ private:
     uint32_t measurePulseWidth(uint8_t level);
 };
 
-#endif // DHT22_H__
+#endif // ERRIEZ_DHT22_H_
