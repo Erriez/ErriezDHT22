@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.4)  4 AUG 2018 09:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.4)  4 AUG 2018 12:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1149,7 +1149,12 @@ LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 
 ]
 Chapter 3.
-(./files.tex) [7] [8
+(./files.tex
+
+LaTeX Warning: Reference `_erriez_d_h_t22_8h' on page 7 undefined on input line
+ 4.
+
+) [7] [8
 
 ]
 Chapter 4.
@@ -1208,82 +1213,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
 ]
 Chapter 5.
-(./_d_h_t22_8cpp.tex
+(./_erriez_d_h_t22_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-) (./_d_h_t22_8h.tex
-Underfull \hbox (badness 7504) in paragraph at lines 14--1
+)
+Underfull \hbox (badness 7504) in paragraph at lines 14--151
 []\T1/phv/m/n/10 Source[]: [][]\T1/pcr/m/n/10 https[]://github.[]com/[]Erriez/[
 ]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/m/n/10 https
 []://erriez.[]
  []
 
+[13] [14
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-
- []
-
-
-Underfull \hbox (badness 7504) in paragraph at lines 29--30
-[]\T1/phv/m/n/10 Source[]: [][]\T1/pcr/m/n/10 https[]://github.[]com/[]Erriez/[
-]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/m/n/10 https
-[]://erriez.[]
- []
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 34.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 34.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 34.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 45.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 45.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 45.
-
-) [14] (./refman.ind [15
-
+] (./refman.ind [15
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: A05E5E23B24BCA48384137843914CB52;4586.
+(rerunfilecheck)             Checksum: 4B0B2944AF5EC5DF52CC9150A6A65CAF;3563.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
  ) 
 Here is how much of TeX's memory you used:
- 14738 strings out of 495028
- 208954 string characters out of 6181498
- 302777 words of memory out of 5000000
- 17626 multiletter control sequences out of 15000+600000
+ 14717 strings out of 495028
+ 208468 string characters out of 6181498
+ 302479 words of memory out of 5000000
+ 17618 multiletter control sequences out of 15000+600000
  61881 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,2640b,623s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,15n,92p,599b,623s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
@@ -1294,10 +1266,10 @@ hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (19 pages, 119134 bytes).
+Output written on refman.pdf (19 pages, 114340 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 332 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
- 193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 279 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 153 words of extra memory for PDF output out of 10000 (max. 10000000)
 
