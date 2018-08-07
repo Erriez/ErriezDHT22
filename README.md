@@ -72,7 +72,7 @@ Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. M
 | :---: | ---------------------------------------- |
 |  GND  | GND                                      |
 |  VCC  | 3.3V                                     |
-|  DAT  | D4                                       |
+|  DAT  | D2                                       |
 
 **Connection DHT22 - WeMos LOLIN32**
 
