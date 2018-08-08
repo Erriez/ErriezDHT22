@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Erriez DHT22 library for Arduino: DHT22 - AM2303 temperature and humidity sensor library for Arduino</title>
+<title>Erriez DHT22 library for Arduino: DHT22 - AM2302/AM2303 temperature and humidity sensor library for Arduino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
    <div id="projectname">Erriez DHT22 library for Arduino
    &#160;<span id="projectnumber">1.0.1</span>
    </div>
-   <div id="projectbrief">AM2303 DHT22 temperature and humidity sensor library for Arduino</div>
+   <div id="projectbrief">AM2302/AM2303 DHT22 temperature and humidity sensor library for Arduino</div>
   </td>
  </tr>
  </tbody>
@@ -78,20 +78,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - AM2303 temperature and humidity sensor library for Arduino </div>  </div>
+<div class="title"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - AM2302/AM2303 temperature and humidity sensor library for Arduino </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="https://travis-ci.org/Erriez/ErriezDHT22"></a></p>
-<p>This is a calibrated AM2303 digital temperature and relative humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB.</p>
+<p>This is a calibrated AM2302/AM2303 digital temperature and relative humidity sensor on a <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB.</p>
 <div class="image">
-<img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png"  alt="AM2302 DHT22 sensor"/>
+<img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png"  alt="DHT22 temperature and humidity sensor"/>
 </div>
 <h2>Library features</h2>
 <ul>
 <li>Read 16-bit temperature (synchronous blocking)</li>
 <li>Read 16-bit relative humidity (synchronous blocking)</li>
 </ul>
-<h2>AM2303 sensor specifications</h2>
+<h2>AM2302/AM2303 sensor specifications</h2>
 <ul>
 <li>Voltage: 3.3 .. 5V</li>
 <li>Ultra-low power:<ul>
@@ -119,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>~31ms to synchronous read humidity, temperature and parity data from sensor (5 Bytes)</li>
 </ul>
 <h2>Safety warning</h2>
-<p>According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of AM2303 may cause personal injury.</p>
+<p>According to the datasheet, the AM2302/AM2303 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of AM2302/AM2303 may cause personal injury.</p>
 <h2>Hardware</h2>
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/DHT22_Arduino_UNO.png"  alt="Schematic DHT22 and Arduino UNO"/>
@@ -127,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><b>Pull-up resistor DAT pin</b></p>
 <ul>
 <li>Connect an external <code>3k3..10k</code> pull-up resistor between the <code>DAT</code> and <code>VCC</code> pins only when:<ul>
-<li>Using a AM2302 sensor without a DT22 breakout PCB <b>and</b> the MCU IO pin has no built-in or external pull-up resistor.</li>
+<li>Using a AM2302/AM2303 sensor without a DT22 breakout PCB <b>and</b> the MCU IO pin has no built-in or external pull-up resistor.</li>
 </ul>
 </li>
 <li>The <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB contains a <code>3k3</code> pull-up resistor between <code>DAT</code> and <code>VCC</code>.</li>
@@ -183,7 +183,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li><a href="https://erriez.github.io/ErriezDHT22">Doxygen online HTML</a></li>
 <li><a href="https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf">Doxygen PDF</a></li>
-<li><a href="http://www.aosong.com/asp_bin/Products/en/AM2303.pdf">AM2303 datasheet</a></li>
+<li><a href="https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2303_datasheet.pdf">AM2303 datasheet</a></li>
 <li><a href="https://www.google.com/search?q=DHT22+datasheet">DHT22 datasheet</a></li>
 </ul>
 <h2>Usage</h2>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.7)  7 AUG 2018 18:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.8)  8 AUG 2018 18:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1269,7 +1269,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 401C9265BB8418AD12ABCC14BB6A6684;4646.
+(rerunfilecheck)             Checksum: FE973652DA50FAFB834A1DEB41FA92D4;4681.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1279,7 +1279,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
 Here is how much of TeX's memory you used:
  14738 strings out of 495028
  209052 string characters out of 6181498
- 302791 words of memory out of 5000000
+ 302800 words of memory out of 5000000
  17626 multiletter control sequences out of 15000+600000
  61881 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1294,7 +1294,7 @@ hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (19 pages, 119230 bytes).
+Output written on refman.pdf (19 pages, 119304 bytes).
 PDF statistics:
  382 PDF objects out of 1000 (max. 8388607)
  332 compressed objects within 4 object streams

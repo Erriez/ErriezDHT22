@@ -1,6 +1,6 @@
 \href{https://travis-ci.org/Erriez/ErriezDHT22}{\tt }
 
-This is a calibrated A\+M2303 digital temperature and relative humidity sensor on a \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB.
+This is a calibrated A\+M2302/\+A\+M2303 digital temperature and relative humidity sensor on a \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB.
 
 
 
@@ -12,7 +12,7 @@ This is a calibrated A\+M2303 digital temperature and relative humidity sensor o
 \item Read 16-\/bit relative humidity (synchronous blocking)
 \end{DoxyItemize}
 
-\subsection*{A\+M2303 sensor specifications}
+\subsection*{A\+M2302/\+A\+M2303 sensor specifications}
 
 
 \begin{DoxyItemize}
@@ -44,7 +44,7 @@ This is a calibrated A\+M2303 digital temperature and relative humidity sensor o
 
 \subsection*{Safety warning}
 
-According to the datasheet, the A\+M2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2303 may cause personal injury.
+According to the datasheet, the A\+M2302/\+A\+M2303 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2302/\+A\+M2303 may cause personal injury.
 
 \subsection*{Hardware}
 
@@ -56,7 +56,7 @@ According to the datasheet, the A\+M2302 is a low cost consumer temperature sens
 \begin{DoxyItemize}
 \item Connect an external {\ttfamily 3k3..10k} pull-\/up resistor between the {\ttfamily D\+AT} and {\ttfamily V\+CC} pins only when\+:
 \begin{DoxyItemize}
-\item Using a A\+M2302 sensor without a D\+T22 breakout P\+CB {\bfseries and} the M\+CU IO pin has no built-\/in or external pull-\/up resistor.
+\item Using a A\+M2302/\+A\+M2303 sensor without a D\+T22 breakout P\+CB {\bfseries and} the M\+CU IO pin has no built-\/in or external pull-\/up resistor.
 \end{DoxyItemize}
 \item The \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB contains a {\ttfamily 3k3} pull-\/up resistor between {\ttfamily D\+AT} and {\ttfamily V\+CC}.
 \item Please refer to the M\+CU datasheet or board schematic for more information about IO pin pull-\/up resistors.
@@ -140,7 +140,7 @@ Arduino I\+DE $\vert$ Examples $\vert$ Erriez D\+H22 Temperature \& Humidity\+:
 \begin{DoxyItemize}
 \item \href{https://erriez.github.io/ErriezDHT22}{\tt Doxygen online H\+T\+ML}
 \item \href{https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf}{\tt Doxygen P\+DF}
-\item \href{http://www.aosong.com/asp_bin/Products/en/AM2303.pdf}{\tt A\+M2303 datasheet}
+\item \href{https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2303_datasheet.pdf}{\tt A\+M2303 datasheet}
 \item \href{https://www.google.com/search?q=DHT22+datasheet}{\tt D\+H\+T22 datasheet}
 \end{DoxyItemize}
 

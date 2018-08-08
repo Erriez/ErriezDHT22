@@ -27,9 +27,9 @@ int16\+\_\+t \hyperlink{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}{read\+H
 \subsection{Detailed Description}
 \hyperlink{class_d_h_t22}{D\+H\+T22} sensor class. 
 
-According to the datasheet, the A\+M2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2303 may cause personal injury.
+According to the datasheet, the A\+M2302/\+A\+M2303 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of A\+M2302/\+A\+M2303 may cause personal injury.
 
-The A\+M2303 is factory calibrated. However, deviation may occur with aging.
+The A\+M2302/\+A\+M2303 is factory calibrated. However, deviation may occur with aging.
 
 The temperature/humidity read interval in this library is cached for 2 seconds to prevent heating-\/up the internal chip with continues reading.
 
@@ -104,7 +104,7 @@ Call this function from setup().~\newline
 \item Connect an external 3k3..10k pull-\/up resistor between the D\+AT and V\+CC pins only when\+:~\newline
 
 \begin{DoxyItemize}
-\item using a A\+M2302 sensor without a D\+T22 breakout P\+CB~\newline
+\item using a A\+M2302/\+A\+M2303 sensor without a D\+T22 breakout P\+CB~\newline
  A\+ND~\newline
 
 \item the M\+CU IO pin has no built-\/in or external pull-\/up resistor.~\newline

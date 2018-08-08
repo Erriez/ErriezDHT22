@@ -27,7 +27,7 @@
    <div id="projectname">Erriez DHT22 library for Arduino
    &#160;<span id="projectnumber">1.0.1</span>
    </div>
-   <div id="projectbrief">AM2303 DHT22 temperature and humidity sensor library for Arduino</div>
+   <div id="projectbrief">AM2302/AM2303 DHT22 temperature and humidity sensor library for Arduino</div>
   </td>
  </tr>
  </tbody>
@@ -117,8 +117,8 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> sensor class. </p>
-<p>According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of AM2303 may cause personal injury.</p>
-<p>The AM2303 is factory calibrated. However, deviation may occur with aging.</p>
+<p>According to the datasheet, the AM2302/AM2303 is a low cost consumer temperature sensor. It may not be used in safety critical applications, emergency stop devices or any other occasion that failure of AM2302/AM2303 may cause personal injury.</p>
+<p>The AM2302/AM2303 is factory calibrated. However, deviation may occur with aging.</p>
 <p>The temperature/humidity read interval in this library is cached for 2 seconds to prevent heating-up the internal chip with continues reading.</p>
 <p>Global interrupts are disabled during a synchronous sensor read transfer. This is required to sample the data bit lengths at maximum speed on low-end devices without any application interrupts. The read calls are protected with a timeout.</p>
 <p>The application is responsible for checking ~0 values after a read which means that the read failed or a timeout occurred. Multiple reads by the application with an average calculation is recommended. </p>
@@ -204,7 +204,7 @@ Public Member Functions</h2></td></tr>
 </p><ul>
 <li>Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:<br />
 <ul>
-<li>using a AM2302 sensor without a DT22 breakout PCB<br />
+<li>using a AM2302/AM2303 sensor without a DT22 breakout PCB<br />
  AND<br />
 </li>
 <li>the MCU IO pin has no built-in or external pull-up resistor.<br />
