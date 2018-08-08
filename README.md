@@ -48,7 +48,7 @@ AM2303 may cause personal injury.
 **Pull-up resistor DAT pin**
 
 * Connect an external ```3k3..10k``` pull-up resistor between the ```DAT``` and ```VCC``` pins only when:
-  * Using a AM2302 sensor without a DT22 breakout PCB **and** the MCU IO pin has no built-in or external pull-up resistor.
+  * Using a AM2302/AM2303 sensor without a DT22 breakout PCB **and** the MCU IO pin has no built-in or external pull-up resistor.
 * The DHT22 breakout PCB contains a ```3k3``` pull-up resistor between ```DAT``` and ```VCC```.
 * Please refer to the MCU datasheet or board schematic for more information about IO pin pull-up resistors.
 
@@ -100,7 +100,7 @@ Arduino IDE | Examples | Erriez DH22 Temperature & Humidity:
 
 * [Doxygen online HTML](https://erriez.github.io/ErriezDHT22)
 * [Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf)
-* [AM2303 datasheet](http://www.aosong.com/asp_bin/Products/en/AM2303.pdf)
+* [AM2303 datasheet](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2303_datasheet.pdf)
 * [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
 
 
