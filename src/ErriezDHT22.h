@@ -24,7 +24,7 @@
 
 /*!
  * \file ErriezDHT22.h
- * \brief DHT22 (AM2303) Humidity and Temperature sensor library for Arduino
+ * \brief DHT22 (AM2302/AM2303) Humidity and Temperature sensor library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDHT22
  *      Documentation:  https://erriez.github.io/ErriezDHT22
@@ -59,11 +59,11 @@
 /*!
  * \brief DHT22 sensor class
  * \details
- *      According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not
- *      be used in safety critical applications, emergency stop devices or any other occasion that
- *      failure of AM2303 may cause personal injury.
+ *      According to the datasheet, the AM2302/AM2303 is a low cost consumer temperature sensor. It
+ *      may not be used in safety critical applications, emergency stop devices or any other
+ *      occasion that failure of AM2302/AM2303 may cause personal injury.
  *
- *      The AM2303 is factory calibrated. However, deviation may occur with aging.
+ *      The AM2302/AM2303 is factory calibrated. However, deviation may occur with aging.
  *
  *      The temperature/humidity read interval in this library is cached for 2 seconds to prevent
  *      heating-up the internal chip with continues reading.

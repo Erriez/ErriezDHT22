@@ -1,9 +1,9 @@
-# DHT22 - AM2303 temperature and humidity sensor library for Arduino
+# DHT22 - AM2302/AM2303 temperature and humidity sensor library for Arduino
 [![Build Status](https://travis-ci.org/Erriez/ErriezDHT22.svg?branch=master)](https://travis-ci.org/Erriez/ErriezDHT22)
 
-This is a calibrated AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
+This is a calibrated AM2302/AM2303 digital temperature and relative humidity sensor on a DHT22 breakout PCB.
 
-![AM2302 DHT22 sensor](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png)
+![DHT22 temperature and humidity sensor](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2302_DHT22_sensor.png)
 
 
 ## Library features
@@ -12,7 +12,7 @@ This is a calibrated AM2303 digital temperature and relative humidity sensor on 
 - Read 16-bit relative humidity (synchronous blocking)
 
 
-## AM2303 sensor specifications
+## AM2302/AM2303 sensor specifications
 
 - Voltage: 3.3 .. 5V
 - Ultra-low power:
@@ -36,9 +36,9 @@ This is a calibrated AM2303 digital temperature and relative humidity sensor on 
 
 ## Safety warning
 
-According to the datasheet, the AM2302 is a low cost consumer temperature sensor. It may not be
-used in safety critical applications, emergency stop devices or any other occasion that failure of
-AM2303 may cause personal injury.
+According to the datasheet, the AM2302/AM2303 is a low cost consumer temperature sensor. It may not
+be used in safety critical applications, emergency stop devices or any other occasion that failure
+of AM2302/AM2303 may cause personal injury.
 
 
 ## Hardware

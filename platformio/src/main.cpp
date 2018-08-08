@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-/* DHT22 - AM2303 temperature and relative humidity sensor example for Arduino
+/* DHT22 - AM2302/AM2303 temperature and relative humidity sensor example for Arduino
  *
  * Required library:
  *   https://github.com/Erriez/ErriezDHT22
