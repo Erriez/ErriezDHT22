@@ -13,6 +13,7 @@ endif()
 
 # Configure one sketch
 set(SKETCH examples/DHT22/DHT22.ino)
+# set(SKETCH examples/DHT22DurationTest/DHT22DurationTest.ino)
 
 # Configure board, default Arduino UNO
 set(BOARD       uno)

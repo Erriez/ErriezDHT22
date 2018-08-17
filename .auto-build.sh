@@ -18,3 +18,4 @@ set -e
 
 # Build sources
 platformio ci --lib="." --project-conf=platformio/platformio.ini examples/DHT22/DHT22.ino
+platformio ci --lib="." --project-conf=platformio/platformio.ini examples/DHT22DurationTest/DHT22DurationTest.ino
