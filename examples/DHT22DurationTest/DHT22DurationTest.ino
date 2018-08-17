@@ -82,7 +82,7 @@ void EEPROM_Write(const void *buf, uint8_t bufLength)
             EEPROM.write(i, ((uint8_t *)buf)[i]);
 
 #if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
-            // Write cached RAM to flash is only needed for ESP8266 and ESP32
+            // Write cached RAM to EEPROM is only needed for ESP8266 and ESP32
             EEPROM.commit();
 #endif
         }
