@@ -80,6 +80,11 @@ void EEPROM_Write(const void *buf, uint8_t bufLength)
             Serial.print(F(": "));
             Serial.println(((uint8_t *)buf)[i]);
             EEPROM.write(i, ((uint8_t *)buf)[i]);
+
+#if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
+            // Write cached RAM to flash is only needed for ESP8266 and ESP32
+            EEPROM.commit();
+#endif
         }
     }
 }
@@ -89,6 +94,10 @@ void EEPROM_Read(void *buf, uint8_t bufLength)
     // Read buffer from EEPROM
     for (uint8_t i = 0; i < bufLength; i++) {
         ((uint8_t *)buf)[i] = EEPROM.read(i);
+        Serial.print(F("R "));
+        Serial.print(i);
+        Serial.print(F(": "));
+        Serial.println(((uint8_t *)buf)[i]);
     }
 }
 
@@ -100,6 +109,11 @@ void setup()
         ;
     }
     Serial.println(F("DHT22 temperature and humidity sensor duration test\n"));
+
+#if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
+    // EEPROM initialize is only needed for ESP8622 and ESP32
+    EEPROM.begin(sizeof(SensorData));
+#endif
 
     // Initialize sensor
     sensor.begin();
@@ -130,7 +144,7 @@ void loop()
 {
     int16_t temperature;
     int16_t humidity;
-    
+
     // Check minimum interval of 2000 ms between sensor reads
     if (sensor.available()) {
         sensorData.numReads++;
@@ -154,7 +168,7 @@ void loop()
 int16_t readTemperature()
 {
     int16_t temperature;
-    
+
     // Read temperature from sensor (blocking)
     temperature = sensor.readTemperature();
 
@@ -183,7 +197,7 @@ int16_t readTemperature()
 int16_t readHumidity()
 {
     int16_t humidity;
-    
+
     // Read humidity from sensor (blocking)
     humidity = sensor.readHumidity();
 
@@ -191,7 +205,7 @@ int16_t readHumidity()
     if (humidity == ~0) {
         // Increment humidity error counter
         sensorData.humidityErrors++;
-      
+
         // Humidity error (Check hardware connection)
         Serial.println(F("Humidity read error"));
     } else {
@@ -274,4 +288,3 @@ void printStatus(int16_t temperature, int16_t humidity)
 
     Serial.println();
 }
-
