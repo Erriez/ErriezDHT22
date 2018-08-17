@@ -36,7 +36,7 @@
 
 // Connect DTH22 DAT pin to Arduino DIGITAL pin
 #if defined(ARDUINO_ARCH_AVR)
-#define DHT22_PIN      5
+#define DHT22_PIN      2
 #elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
 #define DHT22_PIN      D2
 #elif defined(ARDUINO_LOLIN32)
