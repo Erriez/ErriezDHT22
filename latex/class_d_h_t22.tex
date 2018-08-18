@@ -14,7 +14,7 @@
 \item 
 \hyperlink{class_d_h_t22_a6983635331e939d679888b4a936e0f53}{D\+H\+T22} (uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Constructor \hyperlink{class_d_h_t22}{D\+H\+T22} sensor. \end{DoxyCompactList}\item 
-void \hyperlink{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}{begin} (uint8\+\_\+t max\+Read\+Retries=2)
+void \hyperlink{class_d_h_t22_ac33c0371f23ea0172934b5a04fc2dbfd}{begin} (uint8\+\_\+t max\+Read\+Retries=2, uint8\+\_\+t num\+Samples=0)
 \begin{DoxyCompactList}\small\item\em Initialize sensor. \end{DoxyCompactList}\item 
 bool \hyperlink{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}{available} ()
 \begin{DoxyCompactList}\small\item\em Check if new temperature or humidity read is allowed. \end{DoxyCompactList}\item 
@@ -87,22 +87,25 @@ The application should call this function and check if a new temperature and hum
 \end{DoxyRetVals}
 
 
-Definition at line 95 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 109 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!begin@{begin}}
 \index{begin@{begin}!D\+H\+T22@{D\+H\+T22}}
-\subsubsection[{\texorpdfstring{begin(uint8\+\_\+t max\+Read\+Retries=2)}{begin(uint8_t maxReadRetries=2)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+H\+T22\+::begin (
+\subsubsection[{\texorpdfstring{begin(uint8\+\_\+t max\+Read\+Retries=2, uint8\+\_\+t num\+Samples=0)}{begin(uint8_t maxReadRetries=2, uint8_t numSamples=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+H\+T22\+::begin (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{max\+Read\+Retries = {\ttfamily 2}}
+\item[{uint8\+\_\+t}]{max\+Read\+Retries = {\ttfamily 2}, }
+\item[{uint8\+\_\+t}]{num\+Samples = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)}\hypertarget{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}{}\label{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}
+)}\hypertarget{class_d_h_t22_ac33c0371f23ea0172934b5a04fc2dbfd}{}\label{class_d_h_t22_ac33c0371f23ea0172934b5a04fc2dbfd}
 
 
 Initialize sensor. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em max\+Read\+Retries} & Maximum number of sensor read retries after a sensor read error. Set max\+Read\+Retries to 0 to read data from sensor once. Default value\+: 2\\
+{\em max\+Read\+Retries} & Maximum number of sensor read retries after a sensor read error. Set max\+Read\+Retries to 0 to read data from sensor once. Default value\+: 2 \\
+\hline
+{\em num\+Samples} & Number of samples to calculate temperature and humidity average. This allocates sizeof(int16\+\_\+t) $\ast$ number of samples. Value 0 (default) will disable average calculation.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyVerb} Call this function from setup().\n
@@ -116,7 +119,7 @@ Initialize sensor.
    pull-up resistors.\end{DoxyVerb}
  
 
-Definition at line 73 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 80 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!get\+Num\+Retries\+Last\+Conversion@{get\+Num\+Retries\+Last\+Conversion}}
 \index{get\+Num\+Retries\+Last\+Conversion@{get\+Num\+Retries\+Last\+Conversion}!D\+H\+T22@{D\+H\+T22}}
@@ -134,7 +137,7 @@ Number of retries during sensor read. Value 0 is one successful read without ret
 \end{DoxyReturn}
 
 
-Definition at line 158 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 208 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Humidity@{read\+Humidity}}
 \index{read\+Humidity@{read\+Humidity}!D\+H\+T22@{D\+H\+T22}}
@@ -156,7 +159,7 @@ Read humidity from sensor.
 \end{DoxyRetVals}
 
 
-Definition at line 140 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 172 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Temperature@{read\+Temperature}}
 \index{read\+Temperature@{read\+Temperature}!D\+H\+T22@{D\+H\+T22}}
@@ -178,7 +181,7 @@ Returns the actual temperature, or a cached temperature when read interval is to
 \end{DoxyRetVals}
 
 
-Definition at line 116 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 130 of file Erriez\+D\+H\+T22.\+cpp.
 
 
 

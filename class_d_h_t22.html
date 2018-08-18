@@ -102,9 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6983635331e939d679888b4a936e0f53"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a6983635331e939d679888b4a936e0f53">DHT22</a> (uint8_t pin)</td></tr>
 <tr class="memdesc:a6983635331e939d679888b4a936e0f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> sensor.  <a href="#a6983635331e939d679888b4a936e0f53">More...</a><br /></td></tr>
 <tr class="separator:a6983635331e939d679888b4a936e0f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#aefd9abeac99adbf54a7ce9d0bd6e786e">begin</a> (uint8_t maxReadRetries=2)</td></tr>
-<tr class="memdesc:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sensor.  <a href="#aefd9abeac99adbf54a7ce9d0bd6e786e">More...</a><br /></td></tr>
-<tr class="separator:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac33c0371f23ea0172934b5a04fc2dbfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#ac33c0371f23ea0172934b5a04fc2dbfd">begin</a> (uint8_t maxReadRetries=2, uint8_t numSamples=0)</td></tr>
+<tr class="memdesc:ac33c0371f23ea0172934b5a04fc2dbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sensor.  <a href="#ac33c0371f23ea0172934b5a04fc2dbfd">More...</a><br /></td></tr>
+<tr class="separator:ac33c0371f23ea0172934b5a04fc2dbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b4c57d73f985e715bd523f15ccae25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a70b4c57d73f985e715bd523f15ccae25">available</a> ()</td></tr>
 <tr class="memdesc:a70b4c57d73f985e715bd523f15ccae25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new temperature or humidity read is allowed.  <a href="#a70b4c57d73f985e715bd523f15ccae25">More...</a><br /></td></tr>
 <tr class="separator:a70b4c57d73f985e715bd523f15ccae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,11 +185,11 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00095">95</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00109">109</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aefd9abeac99adbf54a7ce9d0bd6e786e"></a>
+<a class="anchor" id="ac33c0371f23ea0172934b5a04fc2dbfd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -197,8 +197,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void DHT22::begin </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>maxReadRetries</em> = <code>2</code></td><td>)</td>
+          <td class="paramname"><em>maxReadRetries</em> = <code>2</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>numSamples</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -206,7 +216,8 @@ Public Member Functions</h2></td></tr>
 <p>Initialize sensor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">maxReadRetries</td><td>Maximum number of sensor read retries after a sensor read error. Set maxReadRetries to 0 to read data from sensor once. Default value: 2</td></tr>
+    <tr><td class="paramname">maxReadRetries</td><td>Maximum number of sensor read retries after a sensor read error. Set maxReadRetries to 0 to read data from sensor once. Default value: 2 </td></tr>
+    <tr><td class="paramname">numSamples</td><td>Number of samples to calculate temperature and humidity average. This allocates sizeof(int16_t) * number of samples. Value 0 (default) will disable average calculation.</td></tr>
   </table>
   </dd>
 </dl>
@@ -219,7 +230,7 @@ Public Member Functions</h2></td></tr>
  - The DHT22 breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.\n
  - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
    pull-up resistors.</pre> 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00073">73</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00080">80</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -239,7 +250,7 @@ Public Member Functions</h2></td></tr>
 <p>Get number of retries during last conversion. </p>
 <dl class="section return"><dt>Returns</dt><dd>Number of retries during sensor read. Value 0 is one successful read without retries. </dd></dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00158">158</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00208">208</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,7 +276,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00140">140</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00172">172</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,7 +302,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00116">116</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00130">130</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
