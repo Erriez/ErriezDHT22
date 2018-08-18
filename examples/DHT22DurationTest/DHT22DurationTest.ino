@@ -69,38 +69,6 @@ SensorData sensorData;
 const bool eraseEEPROM = false;
 
 
-void EEPROM_Write(const void *buf, uint8_t bufLength)
-{
-    // Write buffer to EEPROM
-    for (uint8_t i = 0; i < bufLength; i++) {
-        // Check if Byte is changed to increase EEPROM lifetime
-        if (EEPROM.read(i) != ((uint8_t *)buf)[i]) {
-            Serial.print(F("W "));
-            Serial.print(i);
-            Serial.print(F(": "));
-            Serial.println(((uint8_t *)buf)[i]);
-            EEPROM.write(i, ((uint8_t *)buf)[i]);
-
-#if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
-            // Write cached RAM to EEPROM is only needed for ESP8266 and ESP32
-            EEPROM.commit();
-#endif
-        }
-    }
-}
-
-void EEPROM_Read(void *buf, uint8_t bufLength)
-{
-    // Read buffer from EEPROM
-    for (uint8_t i = 0; i < bufLength; i++) {
-        ((uint8_t *)buf)[i] = EEPROM.read(i);
-        Serial.print(F("R "));
-        Serial.print(i);
-        Serial.print(F(": "));
-        Serial.println(((uint8_t *)buf)[i]);
-    }
-}
-
 void setup()
 {
     // Initialize serial port
@@ -162,6 +130,38 @@ void loop()
 
         // Print status
         printStatus(temperature, humidity);
+    }
+}
+
+void EEPROM_Write(const void *buf, uint8_t bufLength)
+{
+    // Write buffer to EEPROM
+    for (uint8_t i = 0; i < bufLength; i++) {
+        // Check if Byte is changed to increase EEPROM lifetime
+        if (EEPROM.read(i) != ((uint8_t *)buf)[i]) {
+            Serial.print(F("W "));
+            Serial.print(i);
+            Serial.print(F(": "));
+            Serial.println(((uint8_t *)buf)[i]);
+            EEPROM.write(i, ((uint8_t *)buf)[i]);
+
+#if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
+            // Write cached RAM to EEPROM is only needed for ESP8266 and ESP32
+            EEPROM.commit();
+#endif
+        }
+    }
+}
+
+void EEPROM_Read(void *buf, uint8_t bufLength)
+{
+    // Read buffer from EEPROM
+    for (uint8_t i = 0; i < bufLength; i++) {
+        ((uint8_t *)buf)[i] = EEPROM.read(i);
+        Serial.print(F("R "));
+        Serial.print(i);
+        Serial.print(F(": "));
+        Serial.println(((uint8_t *)buf)[i]);
     }
 }
 
