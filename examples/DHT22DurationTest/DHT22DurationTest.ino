@@ -68,6 +68,15 @@ SensorData sensorData;
 // Set to true to reset EEPROM statistics
 const bool eraseEEPROM = false;
 
+// Function prototypes
+void EEPROM_Write(const void *buf, uint8_t bufLength);
+void EEPROM_Read(void *buf, uint8_t bufLength);
+int16_t readTemperature();
+int16_t readHumidity();
+void printTemperature(int16_t temperature);
+void printHumidity(int16_t humidity);
+void printStatus(int16_t temperature, int16_t humidity);
+
 
 void setup()
 {
