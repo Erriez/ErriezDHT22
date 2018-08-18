@@ -59,8 +59,14 @@
 // Create DHT22 sensor object
 DHT22 sensor = DHT22(DHT22_PIN);
 
-#define DHT22_DATA_SIGNATURE  "DHT22"
-#define DHT22_MAX_READ_RETRIES     2
+// EEPROM sensor data signature
+#define DHT22_DATA_SIGNATURE        "DHT22"
+
+// Number of retries after a read error
+#define DHT22_MAX_READ_RETRIES      2
+
+// Number of temperature and humidity samples for average calculation
+#define DHT22_NUM_SAMPLES           10
 
 typedef struct {
     char     signature[6];
@@ -106,7 +112,7 @@ void setup()
 #endif
 
     // Initialize sensor
-    sensor.begin(DHT22_MAX_READ_RETRIES);
+    sensor.begin(DHT22_MAX_READ_RETRIES, DHT22_NUM_SAMPLES);
 
     // Read status from EEPROM
     EEPROM_Read(&sensorData, sizeof(sensorData));
