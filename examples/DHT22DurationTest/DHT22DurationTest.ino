@@ -31,6 +31,7 @@
  *      Example output:
  *          Temperature: 23.8 *C
  *          Humidity: 57.9 %
+ *          Read retries: 0
  *          Num reads: 124649
  *          Temp errors: 0
  *          Humidity errors: 0
@@ -59,6 +60,7 @@
 DHT22 sensor = DHT22(DHT22_PIN);
 
 #define DHT22_DATA_SIGNATURE  "DHT22"
+#define DHT22_MAX_READ_RETRIES     2
 
 typedef struct {
     char     signature[6];
@@ -104,7 +106,7 @@ void setup()
 #endif
 
     // Initialize sensor
-    sensor.begin();
+    sensor.begin(DHT22_MAX_READ_RETRIES);
 
     // Read status from EEPROM
     EEPROM_Read(&sensorData, sizeof(sensorData));
@@ -285,6 +287,10 @@ void printStatus(int16_t temperature, int16_t humidity)
     // Print humidity
     Serial.print(F("Humidity: "));
     printHumidity(humidity);
+
+    // Print number of retries during last conversion
+    Serial.print(F("Read retries: "));
+    Serial.println(sensor.getNumRetriesLastConversion());
 
     // Print number of conversions and error counters
     Serial.print(F("Num reads: "));

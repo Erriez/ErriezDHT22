@@ -36,7 +36,7 @@
  * \brief Constructor DHT22 sensor.
  * \param pin Data pin sensor.
  */
-DHT22::DHT22(uint8_t pin)
+DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
 {
     // Store data pin
     _pin = pin;
@@ -55,6 +55,10 @@ DHT22::DHT22(uint8_t pin)
 
 /*!
  * \brief Initialize sensor.
+ * \param maxReadRetries
+ *      Maximum number of sensor read retries after a sensor read error.
+ *      Set maxReadRetries to 0 to read data from sensor once.
+ *      Default value: 2
  * \details
  *      Call this function from setup().\n
  *
@@ -66,8 +70,11 @@ DHT22::DHT22(uint8_t pin)
  *      - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
  *        pull-up resistors.
  */
-void DHT22::begin()
+void DHT22::begin(uint8_t maxReadRetries)
 {
+    // Store number of retries when read errors occurs
+    _maxReadRetries = maxReadRetries;
+
     // Try to enable internal pin pull-up resistor when available
     pinMode(_pin, INPUT_PULLUP);
 
@@ -103,7 +110,8 @@ bool DHT22::available()
  * \retval Temperature
  *      Signed temperature with last digit after the point.
  * \retval ~0
- *      An error occurred.
+ *      Invalid conversion: Sensor read occurred.
+ *      Use getNumRetriesLastConversion() to get number of read retries.
  */
 int16_t DHT22::readTemperature()
 {
@@ -126,7 +134,8 @@ int16_t DHT22::readTemperature()
  * \retval Humidity
  *      Signed humidity with last digit after the point.
  * \retval ~0
- *      An error occurred.
+ *      Invalid conversion: Sensor read error occured.
+ *      Use getNumRetriesLastConversion() to get number of read retries.
  */
 int16_t DHT22::readHumidity()
 {
@@ -141,13 +150,30 @@ int16_t DHT22::readHumidity()
     return humidity;
 }
 
+/*!
+ * \brief Get number of retries during last conversion
+ * \return
+ *      Number of retries during sensor read. Value 0 is one successful read without retries.
+ */
+uint8_t DHT22::getNumRetriesLastConversion()
+{
+    return _numReadRetries;
+}
+
 //--------------------------------------------------------------------------------------------------
 // Private functions
 //--------------------------------------------------------------------------------------------------
 /*!
  * \brief Read data from sensor.
  * \details
- *      5 sensor bytes will be read when interval between previous read >= 2000 ms.
+ *      5 Bytes data will be read when interval between previous read >= 2000 ms.
+ *
+ *      The sensor data is read until a valid conversion has been performed, or limited to the
+ *      maximum number of read retries as specified with begin(numRetries). A valid conversion
+ *      consists of:
+ *      - A valid start condition
+ *      - A successful sensor read (5 Bytes data)
+ *      - A correct checksum
  * \retval true
  *      Last conversion was successful.
  * \retval false
@@ -163,29 +189,44 @@ bool DHT22::readSensorData()
     // Store last conversion timestamp
     _lastMeasurementTimestamp = millis();
 
-    // Mark current measurement as invalid
-    _statusLastMeasurement = false;
+    // Read data from sensor until valid data has been read or maximum number of retries
+    for (_numReadRetries = 0; _numReadRetries <= _maxReadRetries; _numReadRetries++) {
+        // Mark current measurement as successful
+        _statusLastMeasurement = true;
 
-    // Generate sensor start pulse
-    if (generateStart() != true) {
-        DEBUG_PRINTLN(F("DHT22: Start error"));
-        return false;
+        // Generate sensor start pulse
+        if (generateStart() != true) {
+            DEBUG_PRINTLN(F("DHT22: Start error"));
+            // Mark measurement as invalid
+            _statusLastMeasurement = false;
+        }
+
+        // Read 5 Bytes data from sensor
+        if (_statusLastMeasurement) {
+            if (readBytes() != true) {
+                DEBUG_PRINTLN(F("DHT22: Read error"));
+                // Mark measurement as invalid
+                _statusLastMeasurement = false;
+            }
+        }
+
+        // Check data parity
+        if (_statusLastMeasurement) {
+            if (((_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) != _data[4]) {
+                DEBUG_PRINTLN(F("DHT22: Parity error"));
+                // Mark measurement as invalid
+                _statusLastMeasurement = false;
+            }
+        }
+
+        // Check valid conversion
+        if (_statusLastMeasurement == true) {
+            break;
+        }
     }
 
-    // Read 5 Bytes data from sensor
-    if (readBytes() != true) {
-        DEBUG_PRINTLN(F("DHT22: Read error"));
-        return false;
-    }
-
-    // Check data parity
-    if (((_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) != _data[4]) {
-        DEBUG_PRINTLN(F("DHT22: Parity error"));
-        return false;
-    }
-
-    // Mark measurement as successful
-    _statusLastMeasurement = true;
+    // Fix number of retries when exceeding max reads in for loop
+    _numReadRetries = min(_numReadRetries, _maxReadRetries);
 
     return _statusLastMeasurement;
 }

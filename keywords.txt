@@ -16,6 +16,7 @@ begin	KEYWORD2
 available	KEYWORD2
 readTemperature	KEYWORD2
 readHumidity	KEYWORD2
+getNumRetriesLastConversion	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
