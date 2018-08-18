@@ -27,8 +27,18 @@
  * \details
  *      Source:         https://github.com/Erriez/ErriezDHT22
  *      Documentation:  https://erriez.github.io/ErriezDHT22
+ *
+ *      Example output:
+ *          Temperature: 23.8 *C
+ *          Humidity: 57.9 %
+ *          Num reads: 124649
+ *          Temp errors: 0
+ *          Humidity errors: 0
+ *          Temp min: 22.1 *C
+ *          Temp max: 24.4 *C
+ *          Humidity min: 50.8 %
+ *          Humidity max: 59.3 %
  */
-
 
 #include <EEPROM.h>
 
