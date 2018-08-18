@@ -124,7 +124,7 @@ void loop()
         humidity = readHumidity();
 
         // Write statistics to EEPROM once a while to increase EEPROM lifetime
-        if ((sensorData.numReads % 100 == 0)) {
+        if (((sensorData.numReads % 100) == 0)) {
             EEPROM_Write(&sensorData, sizeof(sensorData));
         }
 
