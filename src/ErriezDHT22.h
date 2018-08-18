@@ -81,7 +81,7 @@ class DHT22
 {
 public:
     explicit DHT22(uint8_t pin);
-    void begin(uint8_t maxReadRetries=2);
+    void begin(uint8_t maxReadRetries=2, uint8_t numSamples=0);
     bool available();
     int16_t readTemperature();
     int16_t readHumidity();
@@ -105,6 +105,23 @@ private:
     uint8_t _maxReadRetries;
     //! Number of sensor read retries during last conversion
     uint8_t _numReadRetries;
+
+    //! Number of samples for temperature and humidity caluculation
+    uint8_t _numSamples;
+
+    //! Temperature samples, allocated with malloc
+    int16_t *_temperatureSamples;
+    //! Temperature index in the samples buffer
+    uint8_t _temperatureSampleIndex;
+    //! Number of temperature samples
+    uint8_t _numTemperatureSamples;
+
+    //! Humidity samples, allocated with malloc
+    int16_t *_humiditySamples;
+    //! Humidity index in the samples buffer
+    uint8_t _humiditySampleIndex;
+    //! Number of humidity samples
+    uint8_t _numHumiditySamples;
 
     //! Sensor data pin
     uint8_t _pin;

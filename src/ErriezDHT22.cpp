@@ -36,7 +36,10 @@
  * \brief Constructor DHT22 sensor.
  * \param pin Data pin sensor.
  */
-DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
+DHT22::DHT22(uint8_t pin) :
+        _numReadRetries(0),
+        _temperatureSampleIndex(0), _numTemperatureSamples(0),
+        _humiditySampleIndex(0), _numHumiditySamples(0)
 {
     // Store data pin
     _pin = pin;
@@ -59,6 +62,10 @@ DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
  *      Maximum number of sensor read retries after a sensor read error.
  *      Set maxReadRetries to 0 to read data from sensor once.
  *      Default value: 2
+ * \param numSamples
+ *      Number of samples to calculate temperature and humidity average. This allocates
+ *      sizeof(int16_t) * number of samples.
+ *      Value 0 (default) will disable average calculation.
  * \details
  *      Call this function from setup().\n
  *
@@ -70,10 +77,17 @@ DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
  *      - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
  *        pull-up resistors.
  */
-void DHT22::begin(uint8_t maxReadRetries)
+void DHT22::begin(uint8_t maxReadRetries, uint8_t numSamples)
 {
     // Store number of retries when read errors occurs
     _maxReadRetries = maxReadRetries;
+
+    // Number of samples for average temperature and humidity calculation
+    _numSamples = numSamples;
+    if (_numSamples) {
+        _temperatureSamples = (int16_t *)malloc(numSamples * sizeof(int16_t));
+        _humiditySamples = (int16_t *)malloc(numSamples * sizeof(int16_t));
+    }
 
     // Try to enable internal pin pull-up resistor when available
     pinMode(_pin, INPUT_PULLUP);
@@ -126,6 +140,24 @@ int16_t DHT22::readTemperature()
         }
     }
 
+    // Calculate temperature average
+    if ((_temperatureSamples != NULL) && (temperature != ~0)) {
+        // Store temperature sample
+        _temperatureSamples[_temperatureSampleIndex++ % _numSamples] = temperature;
+
+        // Increment number of samples
+        if (_numTemperatureSamples < _numSamples) {
+            _numTemperatureSamples++;
+        }
+
+        // Calculate average temperature
+        temperature = 0;
+        for (uint8_t i = 0; i < _numTemperatureSamples; i++) {
+            temperature += _temperatureSamples[i];
+        }
+        temperature /= _numTemperatureSamples;
+    }
+
     return temperature;
 }
 
@@ -145,6 +177,24 @@ int16_t DHT22::readHumidity()
     if (readSensorData()) {
         // Calculate humidity
         humidity = (_data[0] << 8) | _data[1];
+    }
+
+    // Calculate temperature average
+    if ((_humiditySamples != NULL) && (humidity != ~0)) {
+        // Store humidity sample
+        _humiditySamples[_humiditySampleIndex++ % _numSamples] = humidity;
+
+        // Increment number of samples
+        if (_numHumiditySamples < _numSamples) {
+            _numHumiditySamples++;
+        }
+
+        // Calculate average humidity
+        humidity = 0;
+        for (uint8_t i = 0; i < _numHumiditySamples; i++) {
+            humidity += _humiditySamples[i];
+        }
+        humidity /= _numHumiditySamples;
     }
 
     return humidity;
