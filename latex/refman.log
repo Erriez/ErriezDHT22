@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.18)  18 AUG 2018 10:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.18)  18 AUG 2018 13:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1165,46 +1165,41 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.29996pt on input line 16.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 51.
+(Font)              scaled to size 8.99994pt on input line 53.
+ [9]
 LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <10> not available
-(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 51.
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 53.
 LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
-(Font)              scaled to size 8.99994pt on input line 51.
+(Font)              scaled to size 8.99994pt on input line 53.
 
 
 LaTeX Font Warning: Font shape `T1/pcr/bc/n' undefined
-(Font)              using `T1/pcr/m/n' instead on input line 51.
+(Font)              using `T1/pcr/m/n' instead on input line 53.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 51.
+(hyperref)                removing `subscript' on input line 53.
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
+LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <7> not available
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 98.
+LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
+(Font)              scaled to size 6.29996pt on input line 98.
 
+LaTeX Font Warning: Font shape `T1/pcr/bc/it' undefined
+(Font)              using `T1/pcr/bc/n' instead on input line 98.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 98.
+
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 108.
+[10]
+Underfull \hbox (badness 10000) detected at line 132
+[][][]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--105
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 107--109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
-
- []
-
-[10]) [11] [12
+) [11] [12
 
 ]
 Chapter 5.
@@ -1215,9 +1210,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
 ) (./_erriez_d_h_t22_8h.tex
 Underfull \hbox (badness 7504) in paragraph at lines 14--1
-[]\T1/phv/m/n/10 Source[]: [][]\T1/pcr/m/n/10 https[]://github.[]com/[]Erriez/[
-]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/m/n/10 https
-[]://erriez.[]
+[]\T1/phv/m/n/10 Source[]: [][]\T1/pcr/bc/n/10 https[]://github.[]com/[]Erriez/
+[]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/bc/n/10 htt
+ps[]://erriez.[]
  []
 
 
@@ -1227,9 +1222,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
 
 Underfull \hbox (badness 7504) in paragraph at lines 29--30
-[]\T1/phv/m/n/10 Source[]: [][]\T1/pcr/m/n/10 https[]://github.[]com/[]Erriez/[
-]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/m/n/10 https
-[]://erriez.[]
+[]\T1/phv/m/n/10 Source[]: [][]\T1/pcr/bc/n/10 https[]://github.[]com/[]Erriez/
+[]Erriez[]D[]H[]T22[][] \T1/phv/m/n/10 Documentation[]: [][]\T1/pcr/bc/n/10 htt
+ps[]://erriez.[]
  []
 
 [13]
@@ -1269,7 +1264,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: FE973652DA50FAFB834A1DEB41FA92D4;4681.
+(rerunfilecheck)             Checksum: B7A7A081EAD1E366FA0D9055541AA040;5065.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1277,13 +1272,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 14738 strings out of 495028
- 209052 string characters out of 6181497
- 302800 words of memory out of 5000000
- 17626 multiletter control sequences out of 15000+600000
- 61881 words of font info for 67 fonts, out of 8000000 for 9000
+ 14751 strings out of 495028
+ 209293 string characters out of 6181497
+ 302997 words of memory out of 5000000
+ 17635 multiletter control sequences out of 15000+600000
+ 65935 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,2640b,623s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,15n,92p,2640b,564s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
@@ -1294,10 +1289,10 @@ hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (19 pages, 119406 bytes).
+Output written on refman.pdf (19 pages, 123266 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 334 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
- 193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 399 PDF objects out of 1000 (max. 8388607)
+ 345 compressed objects within 4 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

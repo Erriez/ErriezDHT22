@@ -14,14 +14,16 @@
 \item 
 \hyperlink{class_d_h_t22_a6983635331e939d679888b4a936e0f53}{D\+H\+T22} (uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Constructor \hyperlink{class_d_h_t22}{D\+H\+T22} sensor. \end{DoxyCompactList}\item 
-void \hyperlink{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}{begin} ()
+void \hyperlink{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}{begin} (uint8\+\_\+t max\+Read\+Retries=2)
 \begin{DoxyCompactList}\small\item\em Initialize sensor. \end{DoxyCompactList}\item 
 bool \hyperlink{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}{available} ()
 \begin{DoxyCompactList}\small\item\em Check if new temperature or humidity read is allowed. \end{DoxyCompactList}\item 
 int16\+\_\+t \hyperlink{class_d_h_t22_aeed4f98e419ffb07d3e4c09ebc10162c}{read\+Temperature} ()
 \begin{DoxyCompactList}\small\item\em Read temperature from sensor. \end{DoxyCompactList}\item 
 int16\+\_\+t \hyperlink{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}{read\+Humidity} ()
-\begin{DoxyCompactList}\small\item\em Read humidity from sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Read humidity from sensor. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_h_t22_a2a6202258c0705df3499b65a74a85067}{get\+Num\+Retries\+Last\+Conversion} ()
+\begin{DoxyCompactList}\small\item\em Get number of retries during last conversion. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -85,38 +87,54 @@ The application should call this function and check if a new temperature and hum
 \end{DoxyRetVals}
 
 
-Definition at line 88 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 95 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!begin@{begin}}
 \index{begin@{begin}!D\+H\+T22@{D\+H\+T22}}
-\subsubsection[{\texorpdfstring{begin()}{begin()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+H\+T22\+::begin (
+\subsubsection[{\texorpdfstring{begin(uint8\+\_\+t max\+Read\+Retries=2)}{begin(uint8_t maxReadRetries=2)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+H\+T22\+::begin (
 \begin{DoxyParamCaption}
-{}
+\item[{uint8\+\_\+t}]{max\+Read\+Retries = {\ttfamily 2}}
 \end{DoxyParamCaption}
-)}\hypertarget{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}{}\label{class_d_h_t22_a1391c4ada47bb35408a45d349747be5c}
+)}\hypertarget{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}{}\label{class_d_h_t22_aefd9abeac99adbf54a7ce9d0bd6e786e}
 
 
 Initialize sensor. 
 
-Call this function from setup().~\newline
 
-\begin{DoxyItemize}
-\item Connect an external 3k3..10k pull-\/up resistor between the D\+AT and V\+CC pins only when\+:~\newline
+\begin{DoxyParams}{Parameters}
+{\em max\+Read\+Retries} & Maximum number of sensor read retries after a sensor read error. Set max\+Read\+Retries to 0 to read data from sensor once. Default value\+: 2\\
+\hline
+\end{DoxyParams}
+\begin{DoxyVerb} Call this function from setup().\n
 
-\begin{DoxyItemize}
-\item using a A\+M2302/\+A\+M2303 sensor without a D\+T22 breakout P\+CB~\newline
- A\+ND~\newline
+ - Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:\n
+     - using a AM2302/AM2303 sensor without a DT22 breakout PCB\n
+        AND\n
+     - the MCU IO pin has no built-in or external pull-up resistor.\n
+ - The DHT22 breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.\n
+ - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
+   pull-up resistors.\end{DoxyVerb}
+ 
 
-\item the M\+CU IO pin has no built-\/in or external pull-\/up resistor.~\newline
+Definition at line 73 of file Erriez\+D\+H\+T22.\+cpp.
 
-\end{DoxyItemize}
-\item The \hyperlink{class_d_h_t22}{D\+H\+T22} breakout P\+CB contains a 3k3 pull-\/up resistor between D\+AT and V\+CC.~\newline
+\index{D\+H\+T22@{D\+H\+T22}!get\+Num\+Retries\+Last\+Conversion@{get\+Num\+Retries\+Last\+Conversion}}
+\index{get\+Num\+Retries\+Last\+Conversion@{get\+Num\+Retries\+Last\+Conversion}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{get\+Num\+Retries\+Last\+Conversion()}{getNumRetriesLastConversion()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+H\+T22\+::get\+Num\+Retries\+Last\+Conversion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_a2a6202258c0705df3499b65a74a85067}{}\label{class_d_h_t22_a2a6202258c0705df3499b65a74a85067}
 
-\item Please refer to the M\+CU datasheet or board schematic for more information about IO pin~\newline
- pull-\/up resistors. 
-\end{DoxyItemize}
 
-Definition at line 69 of file Erriez\+D\+H\+T22.\+cpp.
+Get number of retries during last conversion. 
+
+\begin{DoxyReturn}{Returns}
+Number of retries during sensor read. Value 0 is one successful read without retries. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Humidity@{read\+Humidity}}
 \index{read\+Humidity@{read\+Humidity}!D\+H\+T22@{D\+H\+T22}}
@@ -133,12 +151,12 @@ Read humidity from sensor.
 \begin{DoxyRetVals}{Return values}
 {\em Humidity} & Signed humidity with last digit after the point. \\
 \hline
-{\em $\sim$0} & An error occurred. \\
+{\em $\sim$0} & Invalid conversion\+: Sensor read error occured. Use \hyperlink{class_d_h_t22_a2a6202258c0705df3499b65a74a85067}{get\+Num\+Retries\+Last\+Conversion()} to get number of read retries. \\
 \hline
 \end{DoxyRetVals}
 
 
-Definition at line 131 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 140 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Temperature@{read\+Temperature}}
 \index{read\+Temperature@{read\+Temperature}!D\+H\+T22@{D\+H\+T22}}
@@ -155,12 +173,12 @@ Returns the actual temperature, or a cached temperature when read interval is to
 \begin{DoxyRetVals}{Return values}
 {\em Temperature} & Signed temperature with last digit after the point. \\
 \hline
-{\em $\sim$0} & An error occurred. \\
+{\em $\sim$0} & Invalid conversion\+: Sensor read occurred. Use \hyperlink{class_d_h_t22_a2a6202258c0705df3499b65a74a85067}{get\+Num\+Retries\+Last\+Conversion()} to get number of read retries. \\
 \hline
 \end{DoxyRetVals}
 
 
-Definition at line 108 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 116 of file Erriez\+D\+H\+T22.\+cpp.
 
 
 

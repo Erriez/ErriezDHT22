@@ -102,9 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6983635331e939d679888b4a936e0f53"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a6983635331e939d679888b4a936e0f53">DHT22</a> (uint8_t pin)</td></tr>
 <tr class="memdesc:a6983635331e939d679888b4a936e0f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> sensor.  <a href="#a6983635331e939d679888b4a936e0f53">More...</a><br /></td></tr>
 <tr class="separator:a6983635331e939d679888b4a936e0f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1391c4ada47bb35408a45d349747be5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a1391c4ada47bb35408a45d349747be5c">begin</a> ()</td></tr>
-<tr class="memdesc:a1391c4ada47bb35408a45d349747be5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sensor.  <a href="#a1391c4ada47bb35408a45d349747be5c">More...</a><br /></td></tr>
-<tr class="separator:a1391c4ada47bb35408a45d349747be5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#aefd9abeac99adbf54a7ce9d0bd6e786e">begin</a> (uint8_t maxReadRetries=2)</td></tr>
+<tr class="memdesc:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sensor.  <a href="#aefd9abeac99adbf54a7ce9d0bd6e786e">More...</a><br /></td></tr>
+<tr class="separator:aefd9abeac99adbf54a7ce9d0bd6e786e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b4c57d73f985e715bd523f15ccae25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a70b4c57d73f985e715bd523f15ccae25">available</a> ()</td></tr>
 <tr class="memdesc:a70b4c57d73f985e715bd523f15ccae25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new temperature or humidity read is allowed.  <a href="#a70b4c57d73f985e715bd523f15ccae25">More...</a><br /></td></tr>
 <tr class="separator:a70b4c57d73f985e715bd523f15ccae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,6 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ff2d9fac4b8ecf1d72f71bb861c8dcf"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a4ff2d9fac4b8ecf1d72f71bb861c8dcf">readHumidity</a> ()</td></tr>
 <tr class="memdesc:a4ff2d9fac4b8ecf1d72f71bb861c8dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read humidity from sensor.  <a href="#a4ff2d9fac4b8ecf1d72f71bb861c8dcf">More...</a><br /></td></tr>
 <tr class="separator:a4ff2d9fac4b8ecf1d72f71bb861c8dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a6202258c0705df3499b65a74a85067"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a2a6202258c0705df3499b65a74a85067">getNumRetriesLastConversion</a> ()</td></tr>
+<tr class="memdesc:a2a6202258c0705df3499b65a74a85067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of retries during last conversion.  <a href="#a2a6202258c0705df3499b65a74a85067">More...</a><br /></td></tr>
+<tr class="separator:a2a6202258c0705df3499b65a74a85067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> sensor class. </p>
@@ -182,16 +185,50 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00088">88</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00095">95</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1391c4ada47bb35408a45d349747be5c"></a>
+<a class="anchor" id="aefd9abeac99adbf54a7ce9d0bd6e786e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void DHT22::begin </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>maxReadRetries</em> = <code>2</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize sensor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxReadRetries</td><td>Maximum number of sensor read retries after a sensor read error. Set maxReadRetries to 0 to read data from sensor once. Default value: 2</td></tr>
+  </table>
+  </dd>
+</dl>
+<pre class="fragment"> Call this function from setup().\n
+
+ - Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:\n
+     - using a AM2302/AM2303 sensor without a DT22 breakout PCB\n
+        AND\n
+     - the MCU IO pin has no built-in or external pull-up resistor.\n
+ - The DHT22 breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.\n
+ - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
+   pull-up resistors.</pre> 
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00073">73</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a6202258c0705df3499b65a74a85067"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DHT22::getNumRetriesLastConversion </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -199,25 +236,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize sensor. </p>
-<p>Call this function from setup().<br />
-</p><ul>
-<li>Connect an external 3k3..10k pull-up resistor between the DAT and VCC pins only when:<br />
-<ul>
-<li>using a AM2302/AM2303 sensor without a DT22 breakout PCB<br />
- AND<br />
-</li>
-<li>the MCU IO pin has no built-in or external pull-up resistor.<br />
-</li>
-</ul>
-</li>
-<li>The <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> breakout PCB contains a 3k3 pull-up resistor between DAT and VCC.<br />
-</li>
-<li>Please refer to the MCU datasheet or board schematic for more information about IO pin<br />
- pull-up resistors. </li>
-</ul>
+<p>Get number of retries during last conversion. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of retries during sensor read. Value 0 is one successful read without retries. </dd></dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00069">69</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00158">158</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -238,12 +260,12 @@ Public Member Functions</h2></td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Humidity</td><td>Signed humidity with last digit after the point. </td></tr>
-    <tr><td class="paramname">~0</td><td>An error occurred. </td></tr>
+    <tr><td class="paramname">~0</td><td>Invalid conversion: Sensor read error occured. Use <a class="el" href="class_d_h_t22.html#a2a6202258c0705df3499b65a74a85067" title="Get number of retries during last conversion. ">getNumRetriesLastConversion()</a> to get number of read retries. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00131">131</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00140">140</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,12 +286,12 @@ Public Member Functions</h2></td></tr>
 <p>Returns the actual temperature, or a cached temperature when read interval is too short. </p><dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Temperature</td><td>Signed temperature with last digit after the point. </td></tr>
-    <tr><td class="paramname">~0</td><td>An error occurred. </td></tr>
+    <tr><td class="paramname">~0</td><td>Invalid conversion: Sensor read occurred. Use <a class="el" href="class_d_h_t22.html#a2a6202258c0705df3499b65a74a85067" title="Get number of retries during last conversion. ">getNumRetriesLastConversion()</a> to get number of read retries. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00108">108</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00116">116</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
