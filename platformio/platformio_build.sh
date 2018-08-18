@@ -9,4 +9,5 @@
 
 # Build example(s)
 platformio ci --lib=".." --project-conf=platformio.ini ../examples/DHT22/DHT22.ino
+platformio ci --lib=".." --project-conf=platformio.ini ../examples/DHT22Average/DHT22Average.ino
 platformio ci --lib=".." --project-conf=platformio.ini ../examples/DHT22DurationTest/DHT22DurationTest.ino

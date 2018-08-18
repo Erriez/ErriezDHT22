@@ -96,6 +96,7 @@ Other MCU's may work, but are not tested.
 Arduino IDE | Examples | Erriez DHT22 Temperature & Humidity:
 
 * [DHT22](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22/DHT22.ino)
+* [DHT22Average](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22Average/DHT22Average.ino)
 * [DHT22DurationTest](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22DurationTest/DHT22DurationTest.ino)
 
 
