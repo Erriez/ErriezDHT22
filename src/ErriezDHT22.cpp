@@ -36,7 +36,9 @@
  * \brief Constructor DHT22 sensor.
  * \param pin Data pin sensor.
  */
-DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
+DHT22::DHT22(uint8_t pin) :
+        _numReadRetries(0),
+        _temperatureLast(~0), _temperatureThreshold(~0), _temperatureHysteresis(HysteresisUnknown)
 {
     // Store data pin
     _pin = pin;
@@ -59,6 +61,10 @@ DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
  *      Maximum number of sensor read retries after a sensor read error.
  *      Set maxReadRetries to 0 to read data from sensor once.
  *      Default value: 2
+ * \param temperatureHysteresis
+ *      Temperature hysteresis to remove 0.1 degree jitter.
+ *      Set temperatureHysteresis = 0 to disable.
+ *      Default value: 1.
  * \details
  *      Call this function from setup().\n
  *
@@ -70,10 +76,13 @@ DHT22::DHT22(uint8_t pin) : _numReadRetries(0)
  *      - Please refer to the MCU datasheet or board schematic for more information about IO pin\n
  *        pull-up resistors.
  */
-void DHT22::begin(uint8_t maxReadRetries)
+void DHT22::begin(uint8_t maxReadRetries, uint8_t temperatureHysteresis)
 {
     // Store number of retries when read errors occurs
     _maxReadRetries = maxReadRetries;
+
+    // Store temperature hysteresis
+    _temperatureHysteresis = temperatureHysteresis;
 
     // Try to enable internal pin pull-up resistor when available
     pinMode(_pin, INPUT_PULLUP);
@@ -126,7 +135,47 @@ int16_t DHT22::readTemperature()
         }
     }
 
-    return temperature;
+    // Calculate temperature hysteresis
+    if (_temperatureHysteresis) {
+        if (temperature == _temperatureLast) {
+            // Same value as previous value
+            return _temperatureLast;
+        } else if (_temperatureLast == ~0) {
+            // Initial value after startup
+            _temperatureLast = temperature;
+            _temperatureThreshold = temperature;
+        } else {
+            // Check hysteresis up
+            if (temperature > (_temperatureThreshold + _temperatureHysteresis)) {
+                _temperatureDirection = HysteresisUp;
+                _temperatureThreshold = temperature;
+                _temperatureLast = temperature;
+            }
+
+            // Check hysteresis down
+            if (temperature < (_temperatureThreshold - _temperatureHysteresis)) {
+                _temperatureDirection = HysteresisDown;
+                _temperatureThreshold = temperature;
+                _temperatureLast = temperature;
+            }
+
+            // Check if value can be stored
+            if (((temperature - _temperatureLast) > 0) && (_temperatureDirection == HysteresisUp)) {
+                _temperatureLast = temperature;
+            }
+
+            // Check if value can be stored
+            if (((temperature - _temperatureLast) < 0) &&
+                (_temperatureDirection == HysteresisDown)) {
+                _temperatureLast = temperature;
+            }
+        }
+    } else {
+        // Hysteresis disabled
+        _temperatureLast = temperature;
+    }
+
+    return _temperatureLast;
 }
 
 /*!

@@ -56,6 +56,12 @@
   #define DEBUG_PRINTLN(...) {}
 #endif
 
+typedef enum {
+    HysteresisUnknown = 0,
+    HysteresisUp,
+    HysteresisDown,
+} HysteresisDirection;
+
 /*!
  * \brief DHT22 sensor class
  * \details
@@ -81,7 +87,7 @@ class DHT22
 {
 public:
     explicit DHT22(uint8_t pin);
-    void begin(uint8_t maxReadRetries=2);
+    void begin(uint8_t maxReadRetries=2, uint8_t temperatureHysteresis=1);
     bool available();
     int16_t readTemperature();
     int16_t readHumidity();
@@ -101,10 +107,20 @@ private:
     uint8_t _data[5];
     //! Last conversion status (Successful or not)
     bool _statusLastMeasurement;
+
     //! Maximum number of sensor read retries when read errors occurs
     uint8_t _maxReadRetries;
     //! Number of sensor read retries during last conversion
     uint8_t _numReadRetries;
+
+    //! Temperature last for hysteresis
+    int16_t _temperatureLast;
+    //! Temperature threshold for hysteresis
+    int16_t _temperatureThreshold;
+    //! Temperature hysteresis
+    int16_t _temperatureHysteresis;
+    //! Temperature direction for hysteresis
+    HysteresisDirection _temperatureDirection;
 
     //! Sensor data pin
     uint8_t _pin;

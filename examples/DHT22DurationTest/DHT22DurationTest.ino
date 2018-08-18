@@ -59,8 +59,9 @@
 // Create DHT22 sensor object
 DHT22 sensor = DHT22(DHT22_PIN);
 
-#define DHT22_DATA_SIGNATURE  "DHT22"
-#define DHT22_MAX_READ_RETRIES     2
+#define DHT22_DATA_SIGNATURE            "DHT22"
+#define DHT22_MAX_READ_RETRIES          2
+#define DHT22_TEMPERATURE_HYSTERESIS    1
 
 typedef struct {
     char     signature[6];
@@ -106,7 +107,7 @@ void setup()
 #endif
 
     // Initialize sensor
-    sensor.begin(DHT22_MAX_READ_RETRIES);
+    sensor.begin(DHT22_MAX_READ_RETRIES, DHT22_TEMPERATURE_HYSTERESIS);
 
     // Read status from EEPROM
     EEPROM_Read(&sensorData, sizeof(sensorData));
