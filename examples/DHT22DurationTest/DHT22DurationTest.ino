@@ -76,6 +76,7 @@ int16_t readHumidity();
 void printTemperature(int16_t temperature);
 void printHumidity(int16_t humidity);
 void printStatus(int16_t temperature, int16_t humidity);
+void printDec32(uint32_t val);
 
 
 void setup()
@@ -277,7 +278,7 @@ void printStatus(int16_t temperature, int16_t humidity)
 
     // Print number of conversions and error counters
     Serial.print(F("Num reads: "));
-    Serial.println(sensorData.numReads);
+    printDec32(sensorData.numReads);
     Serial.print(F("Temp errors: "));
     Serial.println(sensorData.tempErrors);
     Serial.print(F("Humidity errors: "));
@@ -296,4 +297,14 @@ void printStatus(int16_t temperature, int16_t humidity)
     printHumidity(sensorData.humidityMax);
 
     Serial.println();
+}
+
+void printDec32(uint32_t val)
+{
+    char buf[9];
+
+    // Serial.print() on Arduino AVR can only print 16-bit variables, so use snprintf_P with a small
+    // character buffer instead
+    snprintf_P(buf, sizeof(buf), PSTR("%lu"), val);
+    Serial.println(buf);
 }
