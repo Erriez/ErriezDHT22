@@ -11,6 +11,7 @@ This is an Arduino library for the calibrated AM2302/AM2303 digital temperature 
 - Read 16-bit temperature (synchronous blocking)
 - Read 16-bit relative humidity (synchronous blocking)
 - Configurable number of read retries when a read error occurs (default is 1 read + 2 retries)
+- Configurable temperature hysteresis to remove 0.1 degree jitter (default value is 1)
 - Long time duration example
 
 
