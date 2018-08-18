@@ -42,18 +42,17 @@
 #error "May work, but not tested on this target"
 #endif
 
-#define DHT22_NUM_SAMPLES   4
+// Number of retries after a read error
+#define DHT22_MAX_READ_RETRIES    2
+
+// Number of temperature and humidity samples for average calculation
+#define DHT22_NUM_SAMPLES         10
 
 // Create DHT22 sensor object
 DHT22 sensor = DHT22(DHT22_PIN);
 
-int16_t temperatureSamples[DHT22_NUM_SAMPLES];
-uint8_t temperatureSampleIndex = 0;
-uint8_t numTemperatureSamples = 0;
-
-int16_t humiditySamples[DHT22_NUM_SAMPLES];
-uint8_t humiditySampleIndex = 0;
-uint8_t numHumiditySamples = 0;
+int16_t temperatureLast;
+int16_t humidityLast;
 
 // Function prototypes
 void handleTemperature();
@@ -72,7 +71,7 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor average example\n"));
 
     // Initialize sensor
-    sensor.begin();
+    sensor.begin(DHT22_MAX_READ_RETRIES, DHT22_NUM_SAMPLES);
 }
 
 void loop()
@@ -86,48 +85,30 @@ void loop()
 
 void handleTemperature()
 {
-    int16_t temperatureAverage;
+    int16_t temperature;
 
-    // Store temperature sample
-    temperatureSamples[temperatureSampleIndex++ % DHT22_NUM_SAMPLES] = sensor.readTemperature();
-
-    // Increment number of samples
-    if (numTemperatureSamples < DHT22_NUM_SAMPLES) {
-        numTemperatureSamples++;
-    }
-
-    // Calculate average temperature
-    temperatureAverage = 0;
-    for (uint8_t i = 0; i < numTemperatureSamples; i++) {
-        temperatureAverage += temperatureSamples[i];
-    }
-    temperatureAverage /= numTemperatureSamples;
+    // Read temperature
+    temperature = sensor.readTemperature();
 
     // Print temperature average
-    printTemperature(temperatureAverage);
+    if (temperatureLast != temperature) {
+        temperatureLast = temperature;
+        printTemperature(temperature);
+    }
 }
 
 void handleHumidity()
 {
-    int16_t humidityAverage;
+    int16_t humidity;
 
-    // Store humidity sample
-    humiditySamples[humiditySampleIndex++ % DHT22_NUM_SAMPLES] = sensor.readHumidity();
-
-    // Increment number of samples
-    if (numHumiditySamples < DHT22_NUM_SAMPLES) {
-        numHumiditySamples++;
-    }
-
-    // Calculate average humidity
-    humidityAverage = 0;
-    for (uint8_t i = 0; i < numHumiditySamples; i++) {
-        humidityAverage += humiditySamples[i];
-    }
-    humidityAverage /= numTemperatureSamples;
+    // Read humidity
+    humidity = sensor.readHumidity();
 
     // Print humidity
-    printHumidity(humidityAverage);
+    if (humidityLast != humidity) {
+        humidityLast = humidity;
+        printHumidity(humidity);
+    }
 }
 
 void printTemperature(int16_t temperature)
@@ -175,6 +156,4 @@ void printHumidity(int16_t humidity)
         Serial.print(humidity % 10);
         Serial.println(F(" %"));
     }
-
-    Serial.println();
 }
