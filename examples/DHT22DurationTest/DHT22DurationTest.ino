@@ -168,10 +168,10 @@ void EEPROM_Read(void *buf, uint8_t bufLength)
     // Read buffer from EEPROM
     for (uint8_t i = 0; i < bufLength; i++) {
         ((uint8_t *)buf)[i] = EEPROM.read(i);
-        Serial.print(F("R "));
-        Serial.print(i);
-        Serial.print(F(": "));
-        Serial.println(((uint8_t *)buf)[i]);
+//        Serial.print(F("R "));
+//        Serial.print(i);
+//        Serial.print(F(": "));
+//        Serial.println(((uint8_t *)buf)[i]);
     }
 }
 
