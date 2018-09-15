@@ -69,25 +69,23 @@ of AM2302/AM2303 may cause personal injury.
 
 **Connection DHT22 - ESP8266**
 
-Some ESP8266 boards uses Arduino pin 2 -> GPIO4 which is D4 text on the board. Make sure you're using the right pin.
+Note: GPIO4 uses sketch pin number 4 and is labeled as D2 on some ESP8266 boards.
 
-| DHT22 | ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU |
+| DHT22 | ESP8266 / ESP12E / WeMos D1 R2 / NodeMCU |
 | :---: | ---------------------------------------- |
 |  GND  | GND                                      |
 |  VCC  | 3.3V                                     |
-|  DAT  | D2                                       |
+|  DAT  | GPIO4 (Labeled as D2 on some boards)     |
 
-**Connection DHT22 - WeMos LOLIN32**
+**Connection DHT22 - ESP32**
 
-WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.
+Note: WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.
 
-Use pin 0 to prevent flash problems.
-
-| DHT22 | WeMos Lolin32 |
-| :---: | ------------- |
-|  GND  | GND           |
-|  VCC  | 3.3V          |
-|  DAT  | 0             |
+| DHT22 | ESP32 / WeMos Lolin32 / WeMos LOLIN D32 |
+| :---: | --------------------------------------- |
+|  GND  | GND                                     |
+|  VCC  | 3.3V                                    |
+|  DAT  | GPIO4                                   |
 
 Other MCU's may work, but are not tested.
 
