@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.9.8)  8 SEP 2018 15:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.9.15)  15 SEP 2018 20:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1130,11 +1130,8 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 11.
  [1
 
-]
-Overfull \vbox (4.51254pt too high) has occurred while \output is active []
-
-
-[2] [3]) [4]
+] [2] [3])
+[4]
 Chapter 2.
 (./annotated.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
@@ -1276,13 +1273,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 14751 strings out of 495028
- 209293 string characters out of 6181498
- 303044 words of memory out of 5000000
- 17635 multiletter control sequences out of 15000+600000
+ 14755 strings out of 495028
+ 209334 string characters out of 6181497
+ 308010 words of memory out of 5000000
+ 17641 multiletter control sequences out of 15000+600000
  65935 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,2640b,564s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,15n,92p,2640b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
@@ -1293,10 +1290,10 @@ hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (19 pages, 124225 bytes).
+Output written on refman.pdf (19 pages, 123469 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 383 PDF objects out of 1000 (max. 8388607)
+ 339 compressed objects within 4 object streams
+ 74 named destinations out of 1000 (max. 500000)
  201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

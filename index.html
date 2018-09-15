@@ -140,43 +140,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li>Tip: Connect a <code>100nF</code> capacitor between the sensor pins <code>VCC</code> and <code>GND</code> when read errors occurs. This may stabilize the power supply.</li>
 </ul>
-<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - Arduino</b></p>
 <table class="doxtable">
 <tr>
-<th align="center"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> </th><th align="left">Arduino UNO / Nano / Pro Mini / Leonardo / Mega2560  </th></tr>
+<th>Board - <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> pins </th><th align="center">VCC </th><th align="center">GND </th><th align="center">DAT  </th></tr>
 <tr>
-<td align="center">GND </td><td align="left">GND </td></tr>
+<td>Arduino UNO / Nano / Micro (ATMega328 boards) </td><td align="center">5V (or 3V3) </td><td align="center">GND </td><td align="center">2 (DIGITAL pin) </td></tr>
 <tr>
-<td align="center">VCC </td><td align="left">5V (or 3.3V) </td></tr>
+<td>Arduino Leonardo </td><td align="center">5V (or 3V3) </td><td align="center">GND </td><td align="center">2 (DIGITAL pin) </td></tr>
 <tr>
-<td align="center">DAT </td><td align="left">2 (DIGITAL pin) </td></tr>
+<td>Arduino Mega2560 </td><td align="center">5V (or 3V3) </td><td align="center">GND </td><td align="center">2 (DIGITAL pin) </td></tr>
+<tr>
+<td>Arduino DUE (ATSAM3X8E) </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">2 (DIGITAL pin) </td></tr>
+<tr>
+<td>ESP8266 (ESP12E / WeMos D1 R2 / NodeMCU v2 or v3) </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">GPIO4 (D2) </td></tr>
+<tr>
+<td>ESP32 (WeMos Lolin32 OLED / WeMos LOLIN D32) </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">GPIO4 </td></tr>
 </table>
-<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - ESP8266</b></p>
-<p>Some ESP8266 boards uses Arduino pin 2 -&gt; GPIO4 which is D4 text on the board. Make sure you're using the right pin.</p>
-<table class="doxtable">
-<tr>
-<th align="center"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> </th><th>ESP8266 / WeMos D1 R2 / ESP12E / NodeMCU  </th></tr>
-<tr>
-<td align="center">GND </td><td>GND </td></tr>
-<tr>
-<td align="center">VCC </td><td>3.3V </td></tr>
-<tr>
-<td align="center">DAT </td><td>D2 </td></tr>
-</table>
-<p><b>Connection <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> - WeMos LOLIN32</b></p>
-<p>WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.</p>
-<p>Use pin 0 to prevent flash problems.</p>
-<table class="doxtable">
-<tr>
-<th align="center"><a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> </th><th>WeMos Lolin32  </th></tr>
-<tr>
-<td align="center">GND </td><td>GND </td></tr>
-<tr>
-<td align="center">VCC </td><td>3.3V </td></tr>
-<tr>
-<td align="center">DAT </td><td>0 </td></tr>
-</table>
-<p>Other MCU's may work, but are not tested.</p>
+<p>Notes:</p>
+<ul>
+<li><code>GPIO4</code> uses sketch pin number <code>4</code> and is labeled as <code>D2</code> on some WeMos ESP8266 boards.</li>
+<li>Other MCU's may work, but are not tested.</li>
+</ul>
 <h2>Examples</h2>
 <p>Arduino IDE | Examples | Erriez <a class="el" href="class_d_h_t22.html" title="DHT22 sensor class. ">DHT22</a> Temperature &amp; Humidity:</p>
 <ul>

@@ -72,61 +72,30 @@ According to the datasheet, the A\+M2302/\+A\+M2303 is a low cost consumer tempe
 \item Tip\+: Connect a {\ttfamily 100nF} capacitor between the sensor pins {\ttfamily V\+CC} and {\ttfamily G\+ND} when read errors occurs. This may stabilize the power supply.
 \end{DoxyItemize}
 
-{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ Arduino}
-
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
 \hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf Arduino U\+NO / Nano / Pro Mini / Leonardo / Mega2560  }\\\cline{1-2}
+\rowcolor{\tableheadbgcolor}{\bf Board -\/ \hyperlink{class_d_h_t22}{D\+H\+T22} pins }&\PBS\centering {\bf V\+CC }&\PBS\centering {\bf G\+ND }&\PBS\centering {\bf D\+AT  }\\\cline{1-4}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf Arduino U\+NO / Nano / Pro Mini / Leonardo / Mega2560  }\\\cline{1-2}
+\rowcolor{\tableheadbgcolor}{\bf Board -\/ \hyperlink{class_d_h_t22}{D\+H\+T22} pins }&\PBS\centering {\bf V\+CC }&\PBS\centering {\bf G\+ND }&\PBS\centering {\bf D\+AT  }\\\cline{1-4}
 \endhead
-\PBS\centering G\+ND &G\+ND \\\cline{1-2}
-\PBS\centering V\+CC &5V (or 3.\+3V) \\\cline{1-2}
-\PBS\centering D\+AT &2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-2}
+Arduino U\+NO / Nano / Micro (A\+T\+Mega328 boards) &\PBS\centering 5V (or 3\+V3) &\PBS\centering G\+ND &\PBS\centering 2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-4}
+Arduino Leonardo &\PBS\centering 5V (or 3\+V3) &\PBS\centering G\+ND &\PBS\centering 2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-4}
+Arduino Mega2560 &\PBS\centering 5V (or 3\+V3) &\PBS\centering G\+ND &\PBS\centering 2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-4}
+Arduino D\+UE (A\+T\+S\+A\+M3\+X8E) &\PBS\centering 3\+V3 &\PBS\centering G\+ND &\PBS\centering 2 (D\+I\+G\+I\+T\+AL pin) \\\cline{1-4}
+E\+S\+P8266 (E\+S\+P12E / We\+Mos D1 R2 / Node\+M\+CU v2 or v3) &\PBS\centering 3\+V3 &\PBS\centering G\+ND &\PBS\centering G\+P\+I\+O4 (D2) \\\cline{1-4}
+E\+S\+P32 (We\+Mos Lolin32 O\+L\+ED / We\+Mos L\+O\+L\+IN D32) &\PBS\centering 3\+V3 &\PBS\centering G\+ND &\PBS\centering G\+P\+I\+O4 \\\cline{1-4}
 \end{longtabu}
-{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ E\+S\+P8266}
+Notes\+:
 
-Some E\+S\+P8266 boards uses Arduino pin 2 -\/$>$ G\+P\+I\+O4 which is D4 text on the board. Make sure you\textquotesingle{}re using the right pin.
 
-\tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
-\hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf E\+S\+P8266 / We\+Mos D1 R2 / E\+S\+P12E / Node\+M\+CU  }\\\cline{1-2}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf E\+S\+P8266 / We\+Mos D1 R2 / E\+S\+P12E / Node\+M\+CU  }\\\cline{1-2}
-\endhead
-\PBS\centering G\+ND &G\+ND \\\cline{1-2}
-\PBS\centering V\+CC &3.\+3V \\\cline{1-2}
-\PBS\centering D\+AT &D2 \\\cline{1-2}
-\end{longtabu}
-{\bfseries Connection \hyperlink{class_d_h_t22}{D\+H\+T22} -\/ We\+Mos L\+O\+L\+I\+N32}
-
-We\+Mos L\+O\+L\+I\+N32 requires an additional 100nF capacitor over the G\+ND -\/ V\+CC pins to prevent parity errors.
-
-Use pin 0 to prevent flash problems.
-
-\tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
-\hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf We\+Mos Lolin32  }\\\cline{1-2}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\rowcolor{\tableheadbgcolor}\PBS\centering {\bf \hyperlink{class_d_h_t22}{D\+H\+T22} }&{\bf We\+Mos Lolin32  }\\\cline{1-2}
-\endhead
-\PBS\centering G\+ND &G\+ND \\\cline{1-2}
-\PBS\centering V\+CC &3.\+3V \\\cline{1-2}
-\PBS\centering D\+AT &0 \\\cline{1-2}
-\end{longtabu}
-Other M\+CU\textquotesingle{}s may work, but are not tested.
+\begin{DoxyItemize}
+\item {\ttfamily G\+P\+I\+O4} uses sketch pin number {\ttfamily 4} and is labeled as {\ttfamily D2} on some We\+Mos E\+S\+P8266 boards.
+\item Other M\+CU\textquotesingle{}s may work, but are not tested.
+\end{DoxyItemize}
 
 \subsection*{Examples}
 
