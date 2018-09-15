@@ -32,7 +32,7 @@
 #include <ErriezDHT22.h>
 
 // Connect DTH22 DAT pin to Arduino DIGITAL pin
-#if defined(ARDUINO_ARCH_AVR)
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_SAM_DUE)
 #define DHT22_PIN      2
 #elif defined(ESP8266) || defined(ESP32)
 #define DHT22_PIN      4 // GPIO4 (Labeled as D2 on some ESP8266 boards)

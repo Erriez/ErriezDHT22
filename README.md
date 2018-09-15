@@ -59,35 +59,19 @@ of AM2302/AM2303 may cause personal injury.
 
 * Tip: Connect a ```100nF``` capacitor between the sensor pins ```VCC``` and ```GND``` when read errors occurs. This may stabilize the power supply.
 
-**Connection DHT22 - Arduino**
+| Board - DHT22 pins                                |     VCC     | GND  |       DAT       |
+| ------------------------------------------------- | :---------: | :--: | :-------------: |
+| Arduino UNO / Nano / Micro (ATMega328 boards)     | 5V (or 3V3) | GND  | 2 (DIGITAL pin) |
+| Arduino Leonardo                                  | 5V (or 3V3) | GND  | 2 (DIGITAL pin) |
+| Arduino Mega2560                                  | 5V (or 3V3) | GND  | 2 (DIGITAL pin) |
+| Arduino DUE (ATSAM3X8E)                           |     3V3     | GND  | 2 (DIGITAL pin) |
+| ESP8266 (ESP12E / WeMos D1 R2 / NodeMCU v2 or v3) |     3V3     | GND  |   GPIO4 (D2)    |
+| ESP32 (WeMos Lolin32 OLED / WeMos LOLIN D32)      |     3V3     | GND  |      GPIO4      |
 
-| DHT22 | Arduino UNO / Nano / Pro Mini / Leonardo / Mega2560 |
-| :---: | :-------------------------------------------------- |
-|  GND  | GND                                                 |
-|  VCC  | 5V (or 3.3V)                                        |
-|  DAT  | 2 (DIGITAL pin)                                     |
+Notes: 
 
-**Connection DHT22 - ESP8266**
-
-Note: GPIO4 uses sketch pin number 4 and is labeled as D2 on some ESP8266 boards.
-
-| DHT22 | ESP8266 / ESP12E / WeMos D1 R2 / NodeMCU |
-| :---: | ---------------------------------------- |
-|  GND  | GND                                      |
-|  VCC  | 3.3V                                     |
-|  DAT  | GPIO4 (Labeled as D2 on some boards)     |
-
-**Connection DHT22 - ESP32**
-
-Note: WeMos LOLIN32 requires an additional 100nF capacitor over the GND - VCC pins to prevent parity errors.
-
-| DHT22 | ESP32 / WeMos Lolin32 / WeMos LOLIN D32 |
-| :---: | --------------------------------------- |
-|  GND  | GND                                     |
-|  VCC  | 3.3V                                    |
-|  DAT  | GPIO4                                   |
-
-Other MCU's may work, but are not tested.
+* ```GPIO4``` uses sketch pin number ```4``` and is labeled as ```D2``` on some WeMos ESP8266 boards.
+* Other MCU's may work, but are not tested.
 
 
 ## Examples
