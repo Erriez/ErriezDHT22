@@ -129,24 +129,26 @@ Arduino I\+DE $\vert$ Examples $\vert$ Erriez \hyperlink{class_d_h_t22}{D\+H\+T2
 3 
 4 // Connect DTH22 DAT pin to Arduino board
 5 
-6 // Arduino DIGITAL pin
-7 #define DHT22\_PIN      2
-8 // Some ESP8266 boards uses D2 instead of 2
-9 // #define DHT22\_PIN   D2
-10 // LOLIN32 uses another pin
-11 // #define DHT22\_PIN   0
-12 
-13 DHT22 sensor = DHT22(DHT22\_PIN);
+6 // Connect DTH22 DAT pin to Arduino DIGITAL pin
+7 #if defined(ARDUINO\_ARCH\_AVR) || defined(ARDUINO\_SAM\_DUE)
+8 #define DHT22\_PIN      2
+9 #elif defined(ESP8266) || defined(ESP32)
+10 #define DHT22\_PIN      4 // GPIO4 (Labeled as D2 on some ESP8266 boards)
+11 #else
+12 #error "May work, but not tested on this target"
+13 #endif
 14 
-15 void setup()
-16 \{
-17     // Initialize serial port
-18     Serial.begin(115200);
-19     Serial.println(F("DHT22 temperature and humidity sensor example\(\backslash\)n"));
-20 
-21     // Initialize sensor
-22     sensor.begin();
-23 \}
+15 DHT22 sensor = DHT22(DHT22\_PIN);
+16 
+17 void setup()
+18 \{
+19     // Initialize serial port
+20     Serial.begin(115200);
+21     Serial.println(F("DHT22 temperature and humidity sensor example\(\backslash\)n"));
+22 
+23     // Initialize sensor
+24     sensor.begin();
+25 \}
 \end{DoxyCode}
 
 
