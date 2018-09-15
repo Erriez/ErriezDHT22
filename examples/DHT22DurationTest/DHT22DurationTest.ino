@@ -41,7 +41,8 @@
  *          Humidity max: 59.3 %
  */
 
-#include <EEPROM.h>
+#if !defined(ARDUINO_SAM_DUE)
+#include <EEPROM.h> // EEPROM is not available on DUE
 
 #include <ErriezDHT22.h>
 
@@ -328,3 +329,4 @@ void printDec32(uint32_t val)
     snprintf_P(buf, sizeof(buf), PSTR("%lu"), val);
     Serial.println(buf);
 }
+#endif // !defined(ARDUINO_SAM_DUE)
