@@ -100,12 +100,14 @@ Arduino IDE | Examples | Erriez DHT22 Temperature & Humidity:
 
 // Connect DTH22 DAT pin to Arduino board
 
-// Arduino DIGITAL pin
+// Connect DTH22 DAT pin to Arduino DIGITAL pin
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_SAM_DUE)
 #define DHT22_PIN      2
-// Some ESP8266 boards uses D2 instead of 2
-// #define DHT22_PIN   D2
-// LOLIN32 uses another pin
-// #define DHT22_PIN   0
+#elif defined(ESP8266) || defined(ESP32)
+#define DHT22_PIN      4 // GPIO4 (Labeled as D2 on some ESP8266 boards)
+#else
+#error "May work, but not tested on this target"
+#endif
   
 DHT22 sensor = DHT22(DHT22_PIN);
   
