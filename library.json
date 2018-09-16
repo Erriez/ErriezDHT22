@@ -1,8 +1,8 @@
 {
     "name": "ErriezDHT22",
     "version": "1.1.1",
-    "keywords": "Arduino, Library, DHT22, AM2303, Temperature, Humidity, Sensor, Average, Build scripts, Documentation",
-    "description": "Optimized DHT22 - AM2303 temperature and relative humidity sensor library for Arduino",
+    "keywords": "arduino, library, dht22, am2302, am2303, temperature, humidity, sensor, average, build scripts, documentation, examples",
+    "description": "Optimized DHT22 - AM2302/AM2303 temperature and relative humidity sensor library for Arduino",
     "homepage": "https://github.com/Erriez/ErriezDHT22",
     "license": "MIT",
     "authors": {
