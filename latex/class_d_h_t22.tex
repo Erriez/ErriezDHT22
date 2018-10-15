@@ -18,6 +18,8 @@ void \hyperlink{class_d_h_t22_ac33c0371f23ea0172934b5a04fc2dbfd}{begin} (uint8\+
 \begin{DoxyCompactList}\small\item\em Initialize sensor. \end{DoxyCompactList}\item 
 bool \hyperlink{class_d_h_t22_a70b4c57d73f985e715bd523f15ccae25}{available} ()
 \begin{DoxyCompactList}\small\item\em Check if new temperature or humidity read is allowed. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_h_t22_ab01022d5617b70268fed481f64e560b9}{read\+Sensor\+Data} ()
+\begin{DoxyCompactList}\small\item\em Read data from sensor. \end{DoxyCompactList}\item 
 int16\+\_\+t \hyperlink{class_d_h_t22_aeed4f98e419ffb07d3e4c09ebc10162c}{read\+Temperature} ()
 \begin{DoxyCompactList}\small\item\em Read temperature from sensor. \end{DoxyCompactList}\item 
 int16\+\_\+t \hyperlink{class_d_h_t22_a4ff2d9fac4b8ecf1d72f71bb861c8dcf}{read\+Humidity} ()
@@ -80,9 +82,9 @@ Check if new temperature or humidity read is allowed.
 
 The application should call this function and check if a new temperature and humidity can be read to prevent too fast sensor reads. 
 \begin{DoxyRetVals}{Return values}
-{\em true} & Available, interval between sensor reads $>$= 2000 ms. \\
+{\em true} & Available, interval between sensor reads $>$= 2000 ms and sensor read was successful. \\
 \hline
-{\em false} & Not available, interval between sensor reads too short. \\
+{\em false} & Not available, interval between sensor reads too short, or read failed. \\
 \hline
 \end{DoxyRetVals}
 
@@ -137,7 +139,7 @@ Number of retries during sensor read. Value 0 is one successful read without ret
 \end{DoxyReturn}
 
 
-Definition at line 208 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 212 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Humidity@{read\+Humidity}}
 \index{read\+Humidity@{read\+Humidity}!D\+H\+T22@{D\+H\+T22}}
@@ -159,7 +161,36 @@ Read humidity from sensor.
 \end{DoxyRetVals}
 
 
-Definition at line 172 of file Erriez\+D\+H\+T22.\+cpp.
+Definition at line 174 of file Erriez\+D\+H\+T22.\+cpp.
+
+\index{D\+H\+T22@{D\+H\+T22}!read\+Sensor\+Data@{read\+Sensor\+Data}}
+\index{read\+Sensor\+Data@{read\+Sensor\+Data}!D\+H\+T22@{D\+H\+T22}}
+\subsubsection[{\texorpdfstring{read\+Sensor\+Data()}{readSensorData()}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+H\+T22\+::read\+Sensor\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_h_t22_ab01022d5617b70268fed481f64e560b9}{}\label{class_d_h_t22_ab01022d5617b70268fed481f64e560b9}
+
+
+Read data from sensor. 
+
+5 Bytes data will be read when interval between previous read $>$= 2000 ms.
+
+The sensor data is read until a valid conversion has been performed, or limited to the maximum number of read retries as specified with begin(num\+Retries). A valid conversion consists of\+:
+\begin{DoxyItemize}
+\item A valid start condition
+\item A successful sensor read (5 Bytes data)
+\item A correct checksum 
+\begin{DoxyRetVals}{Return values}
+{\em true} & Last conversion was successful. \\
+\hline
+{\em false} & Last conversion was unsuccessful. \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}
+
+Definition at line 233 of file Erriez\+D\+H\+T22.\+cpp.
 
 \index{D\+H\+T22@{D\+H\+T22}!read\+Temperature@{read\+Temperature}}
 \index{read\+Temperature@{read\+Temperature}!D\+H\+T22@{D\+H\+T22}}

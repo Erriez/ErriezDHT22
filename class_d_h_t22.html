@@ -108,6 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a70b4c57d73f985e715bd523f15ccae25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#a70b4c57d73f985e715bd523f15ccae25">available</a> ()</td></tr>
 <tr class="memdesc:a70b4c57d73f985e715bd523f15ccae25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new temperature or humidity read is allowed.  <a href="#a70b4c57d73f985e715bd523f15ccae25">More...</a><br /></td></tr>
 <tr class="separator:a70b4c57d73f985e715bd523f15ccae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01022d5617b70268fed481f64e560b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#ab01022d5617b70268fed481f64e560b9">readSensorData</a> ()</td></tr>
+<tr class="memdesc:ab01022d5617b70268fed481f64e560b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from sensor.  <a href="#ab01022d5617b70268fed481f64e560b9">More...</a><br /></td></tr>
+<tr class="separator:ab01022d5617b70268fed481f64e560b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeed4f98e419ffb07d3e4c09ebc10162c"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_h_t22.html#aeed4f98e419ffb07d3e4c09ebc10162c">readTemperature</a> ()</td></tr>
 <tr class="memdesc:aeed4f98e419ffb07d3e4c09ebc10162c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read temperature from sensor.  <a href="#aeed4f98e419ffb07d3e4c09ebc10162c">More...</a><br /></td></tr>
 <tr class="separator:aeed4f98e419ffb07d3e4c09ebc10162c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,8 +182,8 @@ Public Member Functions</h2></td></tr>
 <p>Check if new temperature or humidity read is allowed. </p>
 <p>The application should call this function and check if a new temperature and humidity can be read to prevent too fast sensor reads. </p><dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">true</td><td>Available, interval between sensor reads &gt;= 2000 ms. </td></tr>
-    <tr><td class="paramname">false</td><td>Not available, interval between sensor reads too short. </td></tr>
+    <tr><td class="paramname">true</td><td>Available, interval between sensor reads &gt;= 2000 ms and sensor read was successful. </td></tr>
+    <tr><td class="paramname">false</td><td>Not available, interval between sensor reads too short, or read failed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -250,7 +253,7 @@ Public Member Functions</h2></td></tr>
 <p>Get number of retries during last conversion. </p>
 <dl class="section return"><dt>Returns</dt><dd>Number of retries during sensor read. Value 0 is one successful read without retries. </dd></dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00208">208</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00212">212</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +279,39 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00172">172</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00174">174</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab01022d5617b70268fed481f64e560b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DHT22::readSensorData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read data from sensor. </p>
+<p>5 Bytes data will be read when interval between previous read &gt;= 2000 ms.</p>
+<p>The sensor data is read until a valid conversion has been performed, or limited to the maximum number of read retries as specified with begin(numRetries). A valid conversion consists of:</p><ul>
+<li>A valid start condition</li>
+<li>A successful sensor read (5 Bytes data)</li>
+<li>A correct checksum <dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Last conversion was successful. </td></tr>
+    <tr><td class="paramname">false</td><td>Last conversion was unsuccessful. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="_erriez_d_h_t22_8cpp_source.html#l00233">233</a> of file <a class="el" href="_erriez_d_h_t22_8cpp_source.html">ErriezDHT22.cpp</a>.</p>
 
 </div>
 </div>
