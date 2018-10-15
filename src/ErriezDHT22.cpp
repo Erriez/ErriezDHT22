@@ -102,9 +102,9 @@ void DHT22::begin(uint8_t maxReadRetries, uint8_t numSamples)
  *      The application should call this function and check if a new temperature and humidity can be
  *      read to prevent too fast sensor reads.
  * \retval true
- *      Available, interval between sensor reads >= 2000 ms.
+ *      Available, interval between sensor reads >= 2000 ms and sensor read was successful.
  * \retval false
- *      Not available, interval between sensor reads too short.
+ *      Not available, interval between sensor reads too short, or read failed.
  */
 bool DHT22::available()
 {
@@ -113,8 +113,8 @@ bool DHT22::available()
         return false;
     }
 
-    // Ready to readSensorData humidity and temperature
-    return true;
+    // Read sensor data
+    return readSensorData();
 }
 
 /*!
@@ -132,12 +132,14 @@ int16_t DHT22::readTemperature()
     int16_t temperature = ~0;
 
     // Read data from sensor
-    if (readSensorData()) {
-        // Calculate signed temperature
-        temperature = ((_data[2] & 0x7F) << 8) | _data[3];
-        if (_data[2] & 0x80) {
-            temperature *= -1;
-        }
+    if (_statusLastMeasurement != true) {
+        return temperature;
+    }
+
+    // Calculate signed temperature
+    temperature = ((_data[2] & 0x7F) << 8) | _data[3];
+    if (_data[2] & 0x80) {
+        temperature *= -1;
     }
 
     // Calculate temperature average
@@ -174,10 +176,12 @@ int16_t DHT22::readHumidity()
     int16_t humidity = ~0;
 
     // Read data from sensor
-    if (readSensorData()) {
-        // Calculate humidity
-        humidity = (_data[0] << 8) | _data[1];
+    if (_statusLastMeasurement != true) {
+        return humidity;
     }
+
+    // Calculate humidity
+    humidity = (_data[0] << 8) | _data[1];
 
     // Calculate temperature average
     if ((_humiditySamples != NULL) && (humidity != ~0)) {
@@ -210,9 +214,6 @@ uint8_t DHT22::getNumRetriesLastConversion()
     return _numReadRetries;
 }
 
-//--------------------------------------------------------------------------------------------------
-// Private functions
-//--------------------------------------------------------------------------------------------------
 /*!
  * \brief Read data from sensor.
  * \details
@@ -231,11 +232,6 @@ uint8_t DHT22::getNumRetriesLastConversion()
  */
 bool DHT22::readSensorData()
 {
-    if (available() == false) {
-        // Return last measurement status
-        return _statusLastMeasurement;
-    }
-
     // Store last conversion timestamp
     _lastMeasurementTimestamp = millis();
 
@@ -281,6 +277,9 @@ bool DHT22::readSensorData()
     return _statusLastMeasurement;
 }
 
+//--------------------------------------------------------------------------------------------------
+// Private functions
+//--------------------------------------------------------------------------------------------------
 /*!
  * \brief Generate start pulses to start data read.
  * \retval true

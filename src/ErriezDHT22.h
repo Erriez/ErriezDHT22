@@ -83,6 +83,7 @@ public:
     explicit DHT22(uint8_t pin);
     void begin(uint8_t maxReadRetries=2, uint8_t numSamples=0);
     bool available();
+    bool readSensorData();
     int16_t readTemperature();
     int16_t readHumidity();
     uint8_t getNumRetriesLastConversion();
@@ -133,7 +134,6 @@ private:
     uint8_t _port;
 #endif
 
-    bool readSensorData();
     bool generateStart();
     bool readBytes();
     uint32_t measurePulseWidth(uint8_t level);
