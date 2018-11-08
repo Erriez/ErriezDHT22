@@ -40,9 +40,6 @@
 #error "May work, but not tested on this target"
 #endif
 
-// Number of retries after a read error
-#define DHT22_MAX_READ_RETRIES    2
-
 // Number of temperature and humidity samples for average calculation
 #define DHT22_NUM_SAMPLES         10
 
@@ -69,7 +66,7 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor average example\n"));
 
     // Initialize sensor
-    sensor.begin(DHT22_MAX_READ_RETRIES, DHT22_NUM_SAMPLES);
+    sensor.begin(DHT22_NUM_SAMPLES);
 }
 
 void loop()

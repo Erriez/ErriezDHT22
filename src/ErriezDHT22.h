@@ -81,12 +81,11 @@ class DHT22
 {
 public:
     explicit DHT22(uint8_t pin);
-    void begin(uint8_t maxReadRetries=2, uint8_t numSamples=0);
+    void begin(uint8_t numSamples=0);
     bool available();
     bool readSensorData();
     int16_t readTemperature();
     int16_t readHumidity();
-    uint8_t getNumRetriesLastConversion();
 
 private:
     //! Timestamp of the last completed measurement
@@ -102,10 +101,6 @@ private:
     uint8_t _data[5];
     //! Last conversion status (Successful or not)
     bool _statusLastMeasurement;
-    //! Maximum number of sensor read retries when read errors occurs
-    uint8_t _maxReadRetries;
-    //! Number of sensor read retries during last conversion
-    uint8_t _numReadRetries;
 
     //! Number of samples for temperature and humidity caluculation
     uint8_t _numSamples;

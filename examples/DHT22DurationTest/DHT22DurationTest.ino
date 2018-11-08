@@ -61,9 +61,6 @@ DHT22 sensor = DHT22(DHT22_PIN);
 // EEPROM sensor data signature
 #define DHT22_DATA_SIGNATURE        "DHT22"
 
-// Number of retries after a read error
-#define DHT22_MAX_READ_RETRIES      2
-
 // Number of temperature and humidity samples for average calculation
 #define DHT22_NUM_SAMPLES           10
 
@@ -111,7 +108,7 @@ void setup()
 #endif
 
     // Initialize sensor
-    sensor.begin(DHT22_MAX_READ_RETRIES, DHT22_NUM_SAMPLES);
+    sensor.begin(DHT22_NUM_SAMPLES);
 
     // Read status from EEPROM
     EEPROM_Read(&sensorData, sizeof(sensorData));
@@ -292,10 +289,6 @@ void printStatus(int16_t temperature, int16_t humidity)
     // Print humidity
     Serial.print(F("Humidity: "));
     printHumidity(humidity);
-
-    // Print number of retries during last conversion
-    Serial.print(F("Read retries: "));
-    Serial.println(sensor.getNumRetriesLastConversion());
 
     // Print number of conversions and error counters
     Serial.print(F("Num reads: "));
