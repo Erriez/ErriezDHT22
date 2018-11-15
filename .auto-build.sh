@@ -16,7 +16,7 @@ echo 'Setting up the script...'
 # Exit with nonzero exit code if anything fails
 set -e
 
-rem Install library dependency LowPower.h for example DHT22LowPower.ino
+# Install library dependency LowPower.h for example DHT22LowPower.ino
 platformio lib install id=38
 
 # Build sources
