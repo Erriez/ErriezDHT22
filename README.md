@@ -78,9 +78,10 @@ Notes:
 
 Arduino IDE | Examples | Erriez DHT22 Temperature & Humidity:
 
-* [DHT22](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22/DHT22.ino)
-* [DHT22Average](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22Average/DHT22Average.ino)
-* [DHT22DurationTest](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22DurationTest/DHT22DurationTest.ino)
+* [DHT22](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22/DHT22.ino) Getting started example.
+* [DHT22Average](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22Average/DHT22Average.ino) Calculate average temperature and humidity.
+* [DHT22DurationTest](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22DurationTest/DHT22DurationTest.ino) Test reliability connection.
+* [DHT22Logging](https://github.com/Erriez/ErriezDHT22/blob/master/examples/DHT22Logging/DHT22Logging.ino)  Write temperature and humidity every 10 minutes to .CSV file on SD-card with DS3231 RTC.
 
 
 ## Documentation
