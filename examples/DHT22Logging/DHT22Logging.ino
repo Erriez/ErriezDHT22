@@ -22,6 +22,23 @@
  * SOFTWARE.
  */
 
+/*!
+ * \brief DHT22 logging example for Arduino
+ * \details
+ *      This example is optimized for low power usage.
+ *      Write temperature and humidity every 10 minutes to SD-card.
+ *      A low-power Arduino Pro Micro / Pro Mini 3.3V at 8MHz is recommended for low power.
+ *      The DS3231 must wake-up the controller from sleep every minute or longer.
+ *
+ *      Library dependencies:
+ *          - SPI.h             Build-in
+ *          - SD.h              Build-in
+ *          - Wire.h            Build-in
+ *          - LowPower.h:       https://github.com/rocketscream/Low-Power
+ *          - ErriezDHT22.h:    https://github.com/Erriez/ErriezDHT22
+ *          - ErriezDS3231.h:   https://github.com/Erriez/ErriezDS3231
+ */
+
 #include <SPI.h>
 #include <SD.h>
 #include <Wire.h>
