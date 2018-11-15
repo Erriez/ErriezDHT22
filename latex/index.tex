@@ -138,7 +138,7 @@ Arduino I\+DE $\vert$ Examples $\vert$ Erriez \hyperlink{class_d_h_t22}{D\+H\+T2
 12 #error "May work, but not tested on this target"
 13 #endif
 14 
-15 DHT22 sensor = DHT22(DHT22\_PIN);
+15 DHT22 dht22 = DHT22(DHT22\_PIN);
 16 
 17 void setup()
 18 \{
@@ -147,7 +147,7 @@ Arduino I\+DE $\vert$ Examples $\vert$ Erriez \hyperlink{class_d_h_t22}{D\+H\+T2
 21     Serial.println(F("DHT22 temperature and humidity sensor example\(\backslash\)n"));
 22 
 23     // Initialize sensor
-24     sensor.begin();
+24     dht22.begin();
 25 \}
 \end{DoxyCode}
 
@@ -160,12 +160,12 @@ Arduino I\+DE $\vert$ Examples $\vert$ Erriez \hyperlink{class_d_h_t22}{D\+H\+T2
 2 void loop()
 3 \{
 4     // Check minimum interval of 2000 ms between sensor reads
-5     if (sensor.available()) \{
+5     if (dht22.available()) \{
 6         // Read temperature from sensor
-7         int16\_t temperature = sensor.readTemperature();
+7         int16\_t temperature = dht22.readTemperature();
 8 
 9         // Read humidity from sensor
-10         int16\_t humidity = sensor.readHumidity();
+10         int16\_t humidity = dht22.readHumidity();
 11 
 12         if (temperature == ~0) \{
 13             // Print error (Check hardware connection)
