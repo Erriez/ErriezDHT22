@@ -22,7 +22,7 @@ getNumRetriesLastConversion	KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 
-sensor	KEYWORD2
+dht22	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

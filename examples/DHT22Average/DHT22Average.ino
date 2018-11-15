@@ -44,7 +44,7 @@
 #define DHT22_NUM_SAMPLES         10
 
 // Create DHT22 sensor object
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
 
 int16_t temperatureLast;
 int16_t humidityLast;
@@ -66,13 +66,13 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor average example\n"));
 
     // Initialize sensor
-    sensor.begin(DHT22_NUM_SAMPLES);
+    dht22.begin(DHT22_NUM_SAMPLES);
 }
 
 void loop()
 {
     // Check minimum interval of 2000 ms between sensor reads
-    if (sensor.available()) {
+    if (dht22.available()) {
         handleTemperature();
         handleHumidity();
     }
@@ -83,7 +83,7 @@ void handleTemperature()
     int16_t temperature;
 
     // Read temperature
-    temperature = sensor.readTemperature();
+    temperature = dht22.readTemperature();
 
     // Print temperature average
     if (temperatureLast != temperature) {
@@ -97,7 +97,7 @@ void handleHumidity()
     int16_t humidity;
 
     // Read humidity
-    humidity = sensor.readHumidity();
+    humidity = dht22.readHumidity();
 
     // Print humidity
     if (humidityLast != humidity) {

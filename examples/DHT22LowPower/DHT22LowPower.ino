@@ -25,6 +25,11 @@
 /*!
  * \brief DHT22 - AM2302/AM2303 temperature and relative humidity sensor for Arduino
  * \details
+ *      This example works only on low-power AVR targets.
+ *
+ *      Arduino Pro or Pro Mini at 8MHz is recommended with power LED removed. The power consumption
+ *      is around <70uA in sleep.
+ *
  *      Source:         https://github.com/Erriez/ErriezDHT22
  *      Documentation:  https://erriez.github.io/ErriezDHT22
  *      Required libraries: https://github.com/rocketscream/Low-Power
@@ -42,7 +47,7 @@
 #endif
 
 // Create DHT22 sensor object
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
 
 
 void setup()
@@ -55,13 +60,13 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor duration test\n"));
 
     // Initialize sensor
-    sensor.begin();
+    dht22.begin();
 }
 
 void loop()
 {
     // Read temperature and humidity
-    sensor.readSensorData();
+    dht22.readSensorData();
 
     // Print temperature
     printTemperature(readTemperature());
@@ -79,7 +84,7 @@ int16_t readTemperature()
     int16_t temperature;
 
     // Read temperature from sensor (blocking)
-    temperature = sensor.readTemperature();
+    temperature = dht22.readTemperature();
 
     // Check valid temperature value
     if (temperature == ~0) {
@@ -95,7 +100,7 @@ int16_t readHumidity()
     int16_t humidity;
 
     // Read humidity from sensor (blocking)
-    humidity = sensor.readHumidity();
+    humidity = dht22.readHumidity();
 
     // Check valid humidity value
     if (humidity == ~0) {

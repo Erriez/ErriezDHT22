@@ -109,7 +109,7 @@ Arduino IDE | Examples | Erriez DHT22 Temperature & Humidity:
 #error "May work, but not tested on this target"
 #endif
   
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
   
 void setup()
 {
@@ -118,7 +118,7 @@ void setup()
     Serial.println(F("DHT22 temperature and humidity sensor example\n"));
     
     // Initialize sensor
-    sensor.begin();
+    dht22.begin();
 }
 ```
 
@@ -129,12 +129,12 @@ void setup()
 void loop()
 {
     // Check minimum interval of 2000 ms between sensor reads
-    if (sensor.available()) {
+    if (dht22.available()) {
         // Read temperature from sensor
-        int16_t temperature = sensor.readTemperature();
+        int16_t temperature = dht22.readTemperature();
   
         // Read humidity from sensor
-        int16_t humidity = sensor.readHumidity();
+        int16_t humidity = dht22.readHumidity();
   
         if (temperature == ~0) {
             // Print error (Check hardware connection)

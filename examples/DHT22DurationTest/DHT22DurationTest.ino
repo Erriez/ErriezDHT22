@@ -56,7 +56,7 @@
 #endif
 
 // Create DHT22 sensor object
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
 
 // EEPROM sensor data signature
 #define DHT22_DATA_SIGNATURE        "DHT22"
@@ -108,7 +108,7 @@ void setup()
 #endif
 
     // Initialize sensor
-    sensor.begin(DHT22_NUM_SAMPLES);
+    dht22.begin(DHT22_NUM_SAMPLES);
 
     // Read status from EEPROM
     EEPROM_Read(&sensorData, sizeof(sensorData));
@@ -138,7 +138,7 @@ void loop()
     int16_t humidity;
 
     // Check minimum interval of 2000 ms between sensor reads
-    if (sensor.available()) {
+    if (dht22.available()) {
         sensorData.numReads++;
 
         // Read temperature
@@ -194,7 +194,7 @@ int16_t readTemperature()
     int16_t temperature;
 
     // Read temperature from sensor (blocking)
-    temperature = sensor.readTemperature();
+    temperature = dht22.readTemperature();
 
     // Check valid temperature value
     if (temperature == ~0) {
@@ -223,7 +223,7 @@ int16_t readHumidity()
     int16_t humidity;
 
     // Read humidity from sensor (blocking)
-    humidity = sensor.readHumidity();
+    humidity = dht22.readHumidity();
 
     // Check valid humidity value
     if (humidity == ~0) {

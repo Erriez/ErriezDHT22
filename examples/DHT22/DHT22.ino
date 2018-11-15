@@ -41,7 +41,7 @@
 #endif
 
 // Create DHT22 sensor object
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
 
 // Function prototypes
 void printTemperature(int16_t temperature);
@@ -57,19 +57,19 @@ void setup()
     }
     Serial.println(F("DHT22 temperature and humidity sensor example\n"));
 
-    // Initialize sensor
-    sensor.begin();
+    // Initialize DHT22
+    dht22.begin();
 }
 
 void loop()
 {
     // Check minimum interval of 2000 ms between sensor reads
-    if (sensor.available()) {
+    if (dht22.available()) {
         // Read temperature from sensor (blocking)
-        int16_t temperature = sensor.readTemperature();
+        int16_t temperature = dht22.readTemperature();
 
         // Read humidity from sensor (blocking)
-        int16_t humidity = sensor.readHumidity();
+        int16_t humidity = dht22.readHumidity();
 
         // Print temperature
         printTemperature(temperature);
