@@ -22,19 +22,26 @@
  * SOFTWARE.
  */
 
-/* DHT22 - AM2302/AM2303 temperature and relative humidity sensor example for Arduino
- *
- * Required library:
- *   https://github.com/Erriez/ErriezDHT22
+/*!
+ * \brief DHT22 - AM2302/AM2303 temperature and relative humidity sensor example for Arduino
+ * \details
+ *      Source:         https://github.com/Erriez/ErriezDHT22
+ *      Documentation:  https://erriez.github.io/ErriezDHT22
  */
 
 #include <ErriezDHT22.h>
 
-// Connect DTH22 data pin to Arduino DIGITAL pin
-#define DHT22_PIN   2
+// Connect DTH22 DAT pin to Arduino DIGITAL pin
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_SAM_DUE)
+#define DHT22_PIN      2
+#elif defined(ESP8266) || defined(ESP32)
+#define DHT22_PIN      4 // GPIO4 (Labeled as D2 on some ESP8266 boards)
+#else
+#error "May work, but not tested on this target"
+#endif
 
 // Create DHT22 sensor object
-DHT22 sensor = DHT22(DHT22_PIN);
+DHT22 dht22 = DHT22(DHT22_PIN);
 
 // Function prototypes
 void printTemperature(int16_t temperature);
@@ -45,21 +52,24 @@ void setup()
 {
     // Initialize serial port
     Serial.begin(115200);
+    while (!Serial) {
+        ;
+    }
     Serial.println(F("DHT22 temperature and humidity sensor example\n"));
 
-    // Initialize sensor
-    sensor.begin();
+    // Initialize DHT22
+    dht22.begin();
 }
 
 void loop()
 {
     // Check minimum interval of 2000 ms between sensor reads
-    if (sensor.available()) {
+    if (dht22.available()) {
         // Read temperature from sensor (synchronous)
-        int16_t temperature = sensor.readTemperature();
+        int16_t temperature = dht22.readTemperature();
 
         // Read humidity from sensor (synchronous)
-        int16_t humidity = sensor.readHumidity();
+        int16_t humidity = dht22.readHumidity();
 
         // Print temperature
         printTemperature(temperature);
