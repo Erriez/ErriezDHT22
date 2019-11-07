@@ -117,7 +117,6 @@ bool DHT22::available()
  *      Signed temperature with last digit after the point.
  * \retval ~0
  *      Invalid conversion: Sensor read occurred.
- *      Use getNumRetriesLastConversion() to get number of read retries.
  */
 int16_t DHT22::readTemperature()
 {
@@ -161,7 +160,6 @@ int16_t DHT22::readTemperature()
  *      Signed humidity with last digit after the point.
  * \retval ~0
  *      Invalid conversion: Sensor read error occurred.
- *      Use getNumRetriesLastConversion() to get number of read retries.
  */
 int16_t DHT22::readHumidity()
 {
