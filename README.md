@@ -88,7 +88,7 @@ Arduino IDE | Examples | Erriez DHT22 Temperature & Humidity:
 ## Documentation
 
 * [Doxygen online HTML](https://erriez.github.io/ErriezDHT22)
-* [Doxygen PDF](https://github.com/Erriez/ErriezDHT22/raw/gh-pages/latex/ErriezDHT22.pdf)
+* [Doxygen PDF](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/ErriezDHT22.pdf)
 * [AM2303 datasheet](https://raw.githubusercontent.com/Erriez/ErriezDHT22/master/extras/AM2303_datasheet.pdf)
 * [DHT22 datasheet](https://www.google.com/search?q=DHT22+datasheet)
 
