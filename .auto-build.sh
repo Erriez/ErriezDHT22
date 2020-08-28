@@ -21,12 +21,15 @@ function autobuild()
     echo "Installing library dependencies"
     # Install library dependency LowPower.h for example DHT22LowPower.ino
     platformio lib --global install "Low-Power"
+    platformio lib --global install https://github.com/Erriez/ErriezDS3231
+    platformio lib --global install https://github.com/arduino-libraries/SD
 
     echo "Building examples..."
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/DHT22/DHT22.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/DHT22Average/DHT22Average.ino
-    platformio ci --lib="." ${BOARDS_AVR} `# DUE NOT SUPPORTED` ${BOARDS_ESP} examples/DHT22DurationTest/DHT22DurationTest.ino
-    platformio ci --lib="." ${BOARDS_AVR} `# DUE/ESP NOT SUPPORTED` examples/DHT22LowPower/DHT22LowPower.ino
+    platformio ci --lib="." ${BOARDS_AVR} examples/DHT22DurationTest/DHT22DurationTest.ino
+    platformio ci --lib="." ${BOARDS_AVR} examples/DHT22Logging/DHT22Logging.ino
+    platformio ci --lib="." ${BOARDS_AVR} examples/DHT22LowPower/DHT22LowPower.ino
 }
 
 function generate_doxygen()
