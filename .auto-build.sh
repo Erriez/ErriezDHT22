@@ -1,5 +1,10 @@
 #/bin/bash
 
+# Automatic build script
+#
+# To run locally, execute:
+# sudo apt install doxygen graphviz texlive-latex-base texlive-latex-recommended texlive-pictures texlive-latex-extra
+
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
