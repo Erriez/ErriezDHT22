@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018-2020 Erriez
+ * Copyright (c) 2018-2021 Erriez
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,53 +29,48 @@
  *      Write temperature and humidity every 10 minutes to SD-card.
  *      A low-power Arduino Pro Micro / Pro Mini 3.3V at 8MHz is recommended for low power.
  *      The DS3231 must wake-up the controller from sleep every minute or longer.
- *
- *      Library dependencies:
- *          - SPI.h             Build-in
- *          - SD.h              Build-in
- *          - Wire.h            Build-in
- *          - LowPower.h:       https://github.com/rocketscream/Low-Power
- *          - ErriezDHT22.h:    https://github.com/Erriez/ErriezDHT22
- *          - ErriezDS3231.h:   https://github.com/Erriez/ErriezDS3231
  */
 
-#include <SPI.h>
-#include <SD.h>
-#include <Wire.h>
+#include <time.h>             // Built-in
+#include <SPI.h>              // Built-in
+#include <SD.h>               // Built-in
+#include <Wire.h>             // Built-in
 
 #if defined(ARDUINO_ARCH_AVR)
-#include <LowPower.h>
+#include <LowPower.h>         // https://github.com/rocketscream/Low-Power
 #endif
-
-#include <ErriezDHT22.h>
-#include <ErriezDS3231.h>
+#include <ErriezDHT22.h>      // https://github.com/Erriez/ErriezDHT22
+#include <ErriezDS3231.h>     // https://github.com/Erriez/ErriezDS3231
 
 // Connect DTH22 DAT pin to Arduino DIGITAL pin
 #if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_SAM_DUE)
-#define DHT22_PIN      2
+#define DHT22_PIN           2
 #elif defined(ESP8266) || defined(ESP32)
-#define DHT22_PIN      4 // GPIO4 (Labeled as D2 on some ESP8266 boards)
+#define DHT22_PIN           4 // GPIO4 (Labeled as D2 on some ESP8266 boards)
 #else
 #error "May work, but not tested on this target"
 #endif
 
+// Sample interval in minutes
+#define LOG_INTERVAL_MIN    10
+
 // Number of temperature and humidity samples for average calculation
-#define DHT22_NUM_SAMPLES         // 10
+#define DHT22_NUM_SAMPLES   // 10
 
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
 // DUE: Any digital pin
 // Leonardo: pin D7 (INT4)
 // ESP8266 / NodeMCU / WeMos D1&R2: pin D3 (GPIO0)
 #if defined(__AVR_ATmega328P__) || defined(ARDUINO_SAM_DUE)
-#define RTC_INT_PIN     3
+#define RTC_INT_PIN         3
 #elif defined(ARDUINO_AVR_LEONARDO)
-#define RTC_INT_PIN     7
+#define RTC_INT_PIN         7
 #else
-#define RTC_INT_PIN     0 // GPIO0 pin for ESP8266 / ESP32 targets
+#define RTC_INT_PIN         0 // GPIO0 pin for ESP8266 / ESP32 targets
 #endif
 
 // SD-card pin
-#define SD_CARD_CS_PIN    10
+#define SD_CARD_CS_PIN      10
 
 //#define RTC_SET_DATE_TIME
 
@@ -83,49 +78,41 @@
 DHT22 dht22 = DHT22(DHT22_PIN);
 
 // Create DS3231 RTC object
-DS3231 rtc;
+ErriezDS3231 rtc;
 
 // Create date time object (automatically cleared at startup)
-DS3231_DateTime dt = {
-        .second = 0,
-        .minute = 34,
-        .hour = 21,
-        .dayWeek = 4, // 1 = Monday
-        .dayMonth = 15,
-        .month = 11,
-        .year = 2018
-};
+static struct tm dt;
 
 // Define days of the week in flash
+const char day_0[] PROGMEM = "Sunday";
 const char day_1[] PROGMEM = "Monday";
 const char day_2[] PROGMEM = "Tuesday";
 const char day_3[] PROGMEM = "Wednesday";
 const char day_4[] PROGMEM = "Thursday";
 const char day_5[] PROGMEM = "Friday";
 const char day_6[] PROGMEM = "Saturday";
-const char day_7[] PROGMEM = "Sunday";
 
 const char* const day_week_table[] PROGMEM = {
-        day_1, day_2, day_3, day_4, day_5, day_6, day_7
+    day_0, day_1, day_2, day_3, day_4, day_5, day_6
 };
 
 // Define months in flash
-const char month_1[] PROGMEM = "January";
-const char month_2[] PROGMEM = "February";
-const char month_3[] PROGMEM = "March";
-const char month_4[] PROGMEM = "April";
-const char month_5[] PROGMEM = "May";
-const char month_6[] PROGMEM = "June";
-const char month_7[] PROGMEM = "July";
-const char month_8[] PROGMEM = "August";
-const char month_9[] PROGMEM = "September";
-const char month_10[] PROGMEM = "October";
-const char month_11[] PROGMEM = "November";
-const char month_12[] PROGMEM = "December";
+const char month_0[] PROGMEM = "January";
+const char month_1[] PROGMEM = "February";
+const char month_2[] PROGMEM = "March";
+const char month_3[] PROGMEM = "April";
+const char month_4[] PROGMEM = "May";
+const char month_5[] PROGMEM = "June";
+const char month_6[] PROGMEM = "July";
+const char month_7[] PROGMEM = "August";
+const char month_8[] PROGMEM = "September";
+const char month_9[] PROGMEM = "October";
+const char month_10[] PROGMEM = "November";
+const char month_11[] PROGMEM = "December";
 
 const char* const month_table[] PROGMEM = {
-        month_1, month_2, month_3, month_4, month_5, month_6,
-        month_7, month_8, month_9, month_10, month_11, month_12
+    month_0, month_1, month_2, month_3, month_4, month_5,
+    month_6, month_7, month_8, month_9, month_10, month_11
 };
 
 // Alarm interrupt flag must be volatile
@@ -149,7 +136,7 @@ void alarmHandler()
 void readDateTime()
 {
     // Read RTC date and time from RTC
-    if (rtc.getDateTime(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("Error: Read date time failed"));
         return;
     }
@@ -162,19 +149,19 @@ void printDateTime()
     readDateTime();
 
     // Print day of the week, day month, month and year
-    strncpy_P(buf, (char *)pgm_read_dword(&(day_week_table[dt.dayWeek - 1])), sizeof(buf));
+    strncpy_P(buf, (char *)pgm_read_dword(&(day_week_table[dt.tm_wday])), sizeof(buf));
     Serial.print(buf);
     Serial.print(F(" "));
-    Serial.print(dt.dayMonth);
+    Serial.print(dt.tm_mday);
     Serial.print(F(" "));
-    strncpy_P(buf, (char *)pgm_read_dword(&(month_table[dt.month - 1])), sizeof(buf));
+    strncpy_P(buf, (char *)pgm_read_dword(&(month_table[dt.tm_mon])), sizeof(buf));
     Serial.print(buf);
     Serial.print(F(" "));
-    Serial.print(dt.year);
+    Serial.print(1900 + dt.tm_year);
     Serial.print(F("  "));
 
     // Print time
-    snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.hour, dt.minute, dt.second);
+    snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.tm_hour, dt.tm_min, dt.tm_sec);
     Serial.println(buf);
 }
 
@@ -183,13 +170,13 @@ void printLogData()
     char buf[10];
 
     // Read RTC date and time from RTC
-    if (rtc.getDateTime(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("Error: Read date time failed"));
         return;
     }
 
     // Print log data
-    snprintf(buf, sizeof(buf), "%d:%02d", dt.hour, dt.minute);
+    snprintf(buf, sizeof(buf), "%d:%02d", dt.tm_hour, dt.tm_min);
     Serial.print(buf);
     Serial.print(F(", "));
     printTemperature(logData.temperature);
@@ -228,20 +215,17 @@ void printHumidity(int16_t humidity)
 void getCsvFilename(char *csvFilename, uint8_t csvFilenameLen)
 {
     // Create CSV filename
-    snprintf(csvFilename, csvFilenameLen,
-             "%d%02d%02d.csv", dt.year, dt.month, dt.dayMonth);
+    snprintf(csvFilename, csvFilenameLen, "%d%02d.csv", 1900 + dt.tm_year, dt.tm_mon + 1);
 }
 
 void getCsvDate(char *csvDate, uint8_t csvDateLen)
 {
-    snprintf(csvDate, csvDateLen,
-             "%d-%02d-%02d", dt.year, dt.month, dt.dayMonth);
+    snprintf(csvDate, csvDateLen, "%d-%02d-%02d", 1900 + dt.tm_year, dt.tm_mon + 1, dt.tm_mday);
 }
 
 void getCsvTime(char *csvTime, uint8_t csvTimeLen)
 {
-    snprintf(csvTime, csvTimeLen,
-             "%d:%02d", dt.hour, dt.minute);
+    snprintf(csvTime, csvTimeLen, "%d:%02d", dt.tm_hour, dt.tm_min);
 }
 
 void saveLogDataSDCard()
@@ -337,18 +321,30 @@ void setup()
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (rtc.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("Error: Could not detect DS3231 RTC"));
         delay(3000);
     }
 
 #if defined(RTC_SET_DATE_TIME)
+    // Set date and time
+    dt.tm_hour = 12;
+    dt.tm_min = 0;
+    dt.tm_sec = 0;
+    dt.tm_mday = 1;
+    dt.tm_mon = 1-1; // Month: 0..11
+    dt.tm_year = 2021-1900; // Year since 1900
+
+    // Calculate day of the week: 0=Sunday .. 6=Saturday
+    time_t t = mktime(&dt);
+    dt.tm_wday = localtime(&t)->tm_wday;
+
     // Set new RTC date/time
     rtc.setDateTime(&dt);
 #endif
 
     // Check oscillator status
-    if (rtc.isOscillatorStopped()) {
+    if (!rtc.isRunning()) {
         Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
         while (1) {
             ;
@@ -384,7 +380,7 @@ void loop()
             Serial.print(F("  "));
 
             // Save to SD-card every 10 minutes
-            if ((dt.minute % 10) == 0) {
+            if ((dt.tm_min % LOG_INTERVAL_MIN) == 0) {
                 saveLogDataSDCard();
             }
 
