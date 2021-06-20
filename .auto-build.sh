@@ -3,7 +3,14 @@
 # Automatic build script
 #
 # To run locally, execute:
-# sudo apt install doxygen graphviz texlive-latex-base texlive-latex-recommended texlive-pictures texlive-latex-extra
+#   sudo apt install python3-virtualenv
+#   virtualenv .env
+#   source .env/bin/activate
+#   pip install platformio
+#   ./.auto-build.sh
+#
+# Optional:
+#   sudo apt install doxygen graphviz texlive-latex-base texlive-latex-recommended texlive-pictures texlive-latex-extra
 
 # Exit immediately if a command exits with a non-zero status.
 set -e
@@ -29,6 +36,7 @@ function autobuild()
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/DHT22Average/DHT22Average.ino
     platformio ci --lib="." ${BOARDS_AVR} examples/DHT22DurationTest/DHT22DurationTest.ino
     platformio ci --lib="." ${BOARDS_AVR} examples/DHT22Logging/DHT22Logging.ino
+    platformio ci --lib="." ${BOARDS_AVR} examples/DHT22LoggingAVR/DHT22LoggingAVR.ino
     platformio ci --lib="." ${BOARDS_AVR} examples/DHT22LowPower/DHT22LowPower.ino
 }
 
